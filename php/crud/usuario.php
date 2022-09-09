@@ -1,0 +1,96 @@
+<?php
+    require_once('../php/conexion.php');
+    class Usuario{
+        public $id_usr;
+        public $nom_usr;
+        public $nombre;
+        public $pswrd;
+        public $apellidoPat;
+        public $apellidoMat;
+        public $correo;
+        public $numero;
+        public $idTipo_usr;
+        public $msj;
+        private $tabla;
+        /*
+        id_usr		int primary key auto_increment,
+        nomb_usr	varchar(30) unique not null,
+        pswrd		varchar(15) not null,
+        nombre		varchar(25),
+        apellidoPat	varchar(25),
+        apellidoMat	varchar(25),
+        correo		varchar(50),
+        numero 		varchar(15),
+        idTipo_usr	int,
+        */
+
+        function __construct()
+        {
+            $con = new Conexion();
+        }
+        public function Registrar($obj){
+            $con = new Conexion();
+            $con->Conectar();
+            $tabla = "usuario";
+            $sql = "INSERT INTO ". $tabla ."
+            VALUES (null,
+                '". $obj->nom_usr      ."',
+                '". $obj->pswrd         ."',
+                '". $obj->nombre        ."',
+                '". $obj->apellidoPat   ."',
+                '". $obj->apellidoMat   ."',
+                '". $obj->correo        ."',
+                '". $obj->numero        ."',
+                '". $obj->idTipo_usr    ."'
+            );";
+            if ($con->conexion->query($sql) === TRUE) {
+                echo '<script>console.log("Usuario creado correctamente ;)")</script>';
+                $msj = "Correcto";
+            } else {
+                echo "Error: " . $sql . "<br>" . $con->error;
+                $msj = "Error";
+            }
+            $con->Desconectar();
+        }
+
+        public function Consultar($obj){
+
+            /*PENDIENTE*/
+          
+        }
+
+        public function Consulta_Todos(){
+            $con = new Conexion();
+            $con->Conectar();
+            $tabla = "usuario";
+            $sql = "SELECT 
+            id_usr as 'ID', nomb_usr as 'Usuario',
+            pswrd as 'Contraseña', nombre as 'Nombre', apellidoPat as 'Apellido Paterno',
+            apellidoMat as 'Apellido Materno', correo as 'Correo', numero as 'Teléfono',
+            idTipo_usr as 'Tipo de Usuario'
+             FROM ". $tabla. ";";
+            $result = $con->conexion->query($sql);
+            if ($result->num_rows < 0) {
+                return null;
+            } else {
+                return $result;
+            }
+            $con->Desconectar();
+        }
+
+
+
+        public function Actualizar($obj){
+           
+            /*PENDIENTE*/
+          
+        }
+
+        public function Eliminar($obj){
+          
+            /*PENDIENTE*/
+          
+        }
+
+    }
+?>

@@ -10,7 +10,8 @@
 
 body, html {
   font-family: 'Source Sans Pro', sans-serif;
-  background-color: #1d243d;
+  background-color: rgb(255, 255, 255);
+  /*background-color: #1d243d;*/
   padding: 0;
   margin: 0;
 }
@@ -28,18 +29,41 @@ body, html {
   position: absolute;
   text-align: center;
   transform: translateX(-50%);
+  
+  /*
   background-color: rgb( 33, 41, 66 );
-  border-radius: 9px;
   border-top: 10px solid #79a6fe;
   border-bottom: 10px solid #8BD17C;
+  box-shadow: 1px 1px 108.8px 19.2px rgb(25,31,53);
+
+  **border-top: 0px solid #5d9e5d;
+  **border-bottom: 0px solid #5d9e5d;
+  */
+  border-radius: 10px;  
   width: 400px;
   height: 500px;
-  box-shadow: 1px 1px 108.8px 19.2px rgb(25,31,53);
+  background-color: #7bffde;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #383463;
+  box-shadow: 1px 1px 108.8px 19.2px rgb(192, 233, 192);
+  
+}
+
+img{
+  display:block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 10;
+  margin: auto;
 }
 
 .box h4 {
   font-family: 'Source Sans Pro', sans-serif;
-  color: #5c6bc0; 
+  color: #004a00; /*SA de CV*/
+  /*color: #333c6c; */
   font-size: 18px;
   margin-top:94px;;
 }
@@ -52,7 +76,7 @@ body, html {
 .box h5 {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 13px;
-  color: #a1a4ad;
+  color: #188018;/*Ingresa usr pass*/
   letter-spacing: 1.5px;
   margin-top: -15px;
   margin-bottom: 70px;
@@ -61,13 +85,14 @@ body, html {
 .box input[type = "text"],.box input[type = "password"] {
   display: block;
   margin: 20px auto;
-  background: #262e49;
+  background: #49b89c ;/*Campos de texto*/
+  /* background: #262e49; */
   border: 0;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 14px 10px;
   width: 320px;
   outline: none;
-  color: #d6d6d6;
+  color: #000000; /*Color texto*/
       -webkit-transition: all .2s ease-out;
     -moz-transition: all .2s ease-out;
     -ms-transition: all .2s ease-out;
@@ -76,11 +101,11 @@ body, html {
   
 }
 ::-webkit-input-placeholder {
-  color: #565f79;
+  color: #7b8299;
 }
 
 .box input[type = "text"]:focus,.box input[type = "password"]:focus {
-  border: 1px solid #79A6FE;
+  border: 2px solid #79A6FE;
   
 }
 
@@ -114,7 +139,7 @@ label span {
   border:0;
   background: #7f5feb;
   color: #dfdeee;
-  border-radius: 100px;
+  border-radius: 20px;
   width: 340px;
   height: 49px;
   font-size: 16px;
@@ -203,4 +228,8 @@ label span {
 .footer .fa {
   color: #7f5feb;;
 
+}
+
+.Sinput{
+  width: 50%;
 }

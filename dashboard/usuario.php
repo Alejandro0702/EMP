@@ -6,9 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Estructuras Metálicas</title>
+        <title>Estructuras Metálicas - Usuarios</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
+        <link href="./css/style.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -111,64 +112,151 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4">Usuarios</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active">Usuarios que pueden ingresar al sistema</li>
                         </ol>
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Primary Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                        <form action="../php/registroUsuario.php" method="post">
+                            <!-- 2 column grid layout with text inputs for the first and last names -->
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <input name="nombre" type="text" id="form3Example1" class="form-control" />
+                                        <label class="form-label" for="form3Example1">Nombre(s)</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <input name="apPat" type="text" id="form3Example2" class="form-control" />
+                                        <label class="form-label" for="form3Example2">Apellido Paterno</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Warning Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <input name="apMat" type="text" id="form3Example1" class="form-control" />
+                                        <label class="form-label" for="form3Example1">Apellido Materno</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <input name="tel" type="text" id="form3Example2" class="form-control" />
+                                        <label class="form-label" for="form3Example2">Teléfono</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Success Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                            <!-- Email input -->                      
+                            <div class="form-outline mb-2">
+                                <input name="email" type="email" id="form3Example3" class="form-control" />
+                                <label class="form-label" for="form3Example3">Correo electrónico</label>
+                            </div>
+
+                            <div class="form-outline mb-2">
+                                <input name="nomUsr" type="text" id="form3Example4" class="form-control" />
+                                <label class="form-label" for="form3Example4">Nombre de usuario</label>
+                            </div>
+                          
+
+
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <div class="form-outline">
+                                    <input name="pass" type="password" id="form3Example4" class="form-control" />
+                                    <label class="form-label" for="form3Example4">Contraseña</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <div class="col-12">
+                                            <label class="form-label" for="form3Example4">Tipo de Usuario</label>
+                                                <?php
+                                                   include('../php/crud/tipoUsuario.php');
+                                                   $tipoUsr = new tipoUsuario();
+                                                   $result = $tipoUsr->Consulta_Todos();
+                                                    if(mysqli_num_rows($result) > 0)
+                                                    {
+                                                        $select = '
+                                                            <select name = "sel_Tipo" class="select">
+                                                        ';
+                                                    while($row = mysqli_fetch_array($result))
+                                                    {
+                                                        $select .= '
+                                                        <option value="' .$row["ID"]. '">'.
+                                                            $row["Descripcion"].'
+                                                        </option>
+                                                        ';
+                                                    }
+                                                        $select .= '</select>';
+                                                        echo $select;
+                                                    }
+                                                    
+                                                ?>
+                                        </div>         
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Danger Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
+                            
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-primary btn-block mb-2">Registrar</button>
                             </div>
-                        </div>
-                        
+                        </form>
+                        <br>
+
+                    <?php
+                        include('../php/crud/usuario.php');
+                        $usr = new Usuario();
+                        $result = $usr->Consulta_Todos();
+                        if(mysqli_num_rows($result) > 0)
+                        {
+                            $table = '
+                            <table border=1 class="table table-striped">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col"> ID </th>
+                                        <th scope="col">Usuario</th>
+                                        <th scope="col">Contraseña</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Apellido Paterno</th>
+                                        <th scope="col">Apellido Materno</th>
+                                        <th scope="col">Correo</th>
+                                        <th scope="col">Teléfono</th>
+                                        <th scope="col">Tipo de Usuario</th>
+                                    </tr>
+                                </thead>
+                            ';
+                            while($row = mysqli_fetch_array($result))
+                            {
+                            $table .= '
+                                <tr>
+                                    <td>'.$row["ID"].'</td>
+                                    <td>'.$row["Usuario"].'</td>
+                                    <td>'.$row["Contraseña"].'</td>
+                                    <td>'.$row["Nombre"].'</td>
+                                    <td>'.$row["Apellido Paterno"].'</td>
+                                    <td>'.$row["Apellido Materno"].'</td>
+                                    <td>'.$row["Correo"].'</td>
+                                    <td>'.$row["Teléfono"].'</td>
+                                    <td>'.$row["Tipo de Usuario"].'</td>
+                                </tr>
+                            ';
+                            }
+                            $table .= '</table>';
+                            echo $table;
+                        }
+                    ?>
                     </div>
                 </main>
-                <footer class="py-4 bg-light mt-auto">
+                
+            </div>
+            <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2022</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
+                            
                         </div>
                     </div>
                 </footer>
-            </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

@@ -23,10 +23,10 @@ class Conexion
         );
         $this->conexion->set_charset("utf8");
         if (mysqli_connect_errno()) {
-            echo ("Error al conectar con el servidor.");
+            echo '<script> console.log("Error al conectar con el servidor."); </script>';
         }
         else{
-            echo("Conectado ;)");
+            echo '<script> console.log("Conectado ;)"); </script>';
         }
     }
     function Desconectar(){
