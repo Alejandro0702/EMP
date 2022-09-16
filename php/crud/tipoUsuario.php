@@ -55,9 +55,6 @@
             }
             $con->Desconectar();
         }
-
-
-
         public function Actualizar($obj){
             $con = new Conexion();
             $con->Conectar();

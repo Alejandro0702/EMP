@@ -16,6 +16,16 @@ body, html {
   margin: 0;
 }
 
+.bg-image {
+  background-image: url("../img/Arch.jpg");
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 #particles-js {
   position: absolute;
   width: 100%;
@@ -42,7 +52,8 @@ body, html {
   border-radius: 10px;  
   width: 400px;
   height: 500px;
-  background-color: #7bffde;
+  background-color: white;
+  /*background-color: #7bffde;*/
   border-width: 1px;
   border-style: solid;
   border-color: #383463;
@@ -78,8 +89,8 @@ img{
   font-size: 13px;
   color: #188018;/*Ingresa usr pass*/
   letter-spacing: 1.5px;
-  margin-top: -15px;
-  margin-bottom: 70px;
+  margin-top: -10px;
+  margin-bottom: 50px;
 }
 
 .box input[type = "text"],.box input[type = "password"] {
@@ -92,7 +103,7 @@ img{
   padding: 14px 10px;
   width: 320px;
   outline: none;
-  color: #000000; /*Color texto*/
+  color: #FFF; /*Color texto*/
       -webkit-transition: all .2s ease-out;
     -moz-transition: all .2s ease-out;
     -ms-transition: all .2s ease-out;
@@ -137,7 +148,7 @@ label span {
 
 .btn1 {
   border:0;
-  background: #7f5feb;
+  background: rgb(61, 61, 255);
   color: #dfdeee;
   border-radius: 20px;
   width: 340px;
@@ -233,3 +244,4 @@ label span {
 .Sinput{
   width: 50%;
 }
+
