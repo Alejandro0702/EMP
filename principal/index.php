@@ -60,9 +60,7 @@
                                     <a class="nav-link" href="usuario.php">Usuarios</a>
                                 </nav>
                             </div>
-
-
-
+                            <!--Trabajos-->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Trabajos
@@ -76,17 +74,13 @@
                                     </a>
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.php">Tipos</a>
-                                            <a class="nav-link" href="register.php">Piezas</a>
+                                            <a class="nav-link" href="tiposDePieza.php">Tipos</a>
+                                            <a class="nav-link" href="piezas.php">Piezas +</a>
                                         </nav>
-                                    </div>
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="trabajos.php">Trabajos</a>
-                                    </nav>
-
-
-
-                                   
+                                    </div>                             
+                                </nav>
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="trabajos.php">Trabajos +</a>
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">Addons</div>

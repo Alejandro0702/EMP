@@ -6,11 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Estructuras Metálicas</title>
+        <title>Estructuras Metálicas - Tipos de Piezas</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <link href="./css/style.css" rel="stylesheet" />
+        <link href="../css/style_principal.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <script src="../js/script_tabla.js" defer></script>
     </head>
     <body class="sb-nav-fixed">
         <?php session_start();?>
@@ -61,9 +64,7 @@
                                     <a class="nav-link" href="usuario.php">Usuarios</a>
                                 </nav>
                             </div>
-
-
-
+                            <!--Trabajos-->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Trabajos
@@ -77,17 +78,13 @@
                                     </a>
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.php">Tipos</a>
-                                            <a class="nav-link" href="register.php">Piezas</a>
+                                            <a class="nav-link" href="tiposDePieza.php">Tipos</a>
+                                            <a class="nav-link" href="piezas.php">Piezas +</a>
                                         </nav>
-                                    </div>
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="trabajos.php">Trabajos</a>
-                                    </nav>
-
-
-
-                                   
+                                    </div>                             
+                                </nav>
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="trabajos.php">Trabajos +</a>
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">Addons</div>
@@ -109,79 +106,70 @@
             </div>
 
 
-
-            
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Tipos de usuario</h1>
+                        <h1 class="mt-4">Tipos de Piezas</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Tipos de usuario que pueden ingresar al sistema</li>
+                            <li class="breadcrumb-item active">Tipos de piezas para producción</li>
                         </ol>
-                        <div class="">
-                            <form action="../php/registroTipo.php" method="post" >
-                                <label for="descr">Descripción</label>
-                                <br>
-                                <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
-                                <br><br>
-                                <button type="submit" class="btn btn-primary">Registrar</button>
-                            </form>
-                        </div>
-                       
+                        <form action="../php/registroTipoPieza.php" method="post" >
+                            <label for="descr">Descripción</label>
+                            <br>
+                            <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
+                            <br><br>
+                            <button type="submit" class="btn btn-primary">Registrar</button>
+                        </form>
                         <br>
-
-                        <!-- -->
-                        <?php
-                            include('../php/crud/tipoUsuario.php');
-                            $tipoUsr = new tipoUsuario();
-                            $result = $tipoUsr->Consulta_Todos();
-                            if(mysqli_num_rows($result) > 0)
+                        <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar</button>
+                    <?php
+                        include('../php/crud/tipoPieza.php');
+                        $t_Pieza = new TipoPieza();
+                        $result = $t_Pieza->Consulta_Todos();
+                        if(mysqli_num_rows($result) > 0)
+                        {
+                            $table = '
+                            <table id="tabla" class="table table-striped table-bordered" border=1>
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col"> ID </th>
+                                        <th scope="col">Descripción</th>                  
+                                    </tr>
+                                </thead>
+                                <tfoot class="thead-dark">
+                                    <tr>
+                                        <th scope="col"> ID </th>
+                                        <th scope="col">Descripción</th>                  
+                                    </tr>
+                                </tfoot>
+                            ';
+                            while($row = mysqli_fetch_array($result))
                             {
-                                $table = '
-                                <table class="table table-striped" border=1>
-                                    <thead class="thead-dark">
+                                $table .= '
+                                    
                                         <tr>
-                                            <th scope="col"> ID </th>
-                                            <th scope="col">Descripción</th>                  
+                                            <td>'.$row["ID"].'</td>
+                                            <td>'.$row["Descripcion"].'</td>                 
                                         </tr>
-                                    </thead>
-                                    <tfoot class="thead-dark">
-                                        <tr>
-                                            <th scope="col"> ID </th>
-                                            <th scope="col">Descripción</th>                  
-                                        </tr>
-                                    </tfoot>
+                                    
                                 ';
-                                while($row = mysqli_fetch_array($result))
-                                {
-                                    $table .= '
-                                        
-                                            <tr>
-                                                <td>'.$row["ID"].'</td>
-                                                <td>'.$row["Descripcion"].'</td>                 
-                                            </tr>
-                                        
-                                    ';
-                                }
-                                $table .= '</table>';
-                                echo $table;
                             }
-                        ?>
+                            $table .= '</table>';
+                            echo $table;
+                        }
+                        
+                    ?>
                     </div>
                 </main>
-                <footer class="py-4 bg-light mt-auto">
+                
+            </div>
+            <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2022</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
+                            
                         </div>
                     </div>
                 </footer>
-            </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

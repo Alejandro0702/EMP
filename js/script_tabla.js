@@ -1,22 +1,12 @@
-function Buscar(){
-    let tabla = document.getElementById('tabla_trabajos');
-    let busqueda = document.getElementById('buscador_tabla').value.toLowerCase();
-    let cellsOfRow="";
-    let found=false;
-    let compareWith="";
-    for (var i = 1; i < tabla.rows.length; i++) {
-        cellsOfRow = tabla.rows[i].getElementsByTagName('td');
-        found = false;
-        for (var j = 0; j < cellsOfRow.length && !found; j++) { compareWith = cellsOfRow[j].innerHTML.toLowerCase(); if (busqueda.length == 0 || (compareWith.indexOf(busqueda) > -1))
-            {
-                found = true;
-            }
-        }
-        if(found)
-        {
-            tabla.rows[i].style.display = '';
-        } else {
-            tabla.rows[i].style.display = 'none';
-        }
-    }
-}
+$("#tabla tr").click(function(){
+    $(this).addClass('selected').siblings().removeClass('selected');   
+
+    var value=$(this).find('td:first').html();
+    //alert("PRUEBA SELECCIONAR \n" + value);    
+ });
+ 
+ $('#i_Eliminar').on('click', function(e){
+    let usr = $("#tabla tr.selected td:first-child").html();
+    alert("Dato: " + usr);
+    
+ });

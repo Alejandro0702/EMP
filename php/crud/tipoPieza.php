@@ -1,6 +1,6 @@
 <?php
     require_once('../php/conexion.php');
-    class tipoUsuario{
+    class TipoPieza{
         public $id;
         public $desc;
         public $msj;
@@ -10,9 +10,14 @@
             $con = new Conexion();
         }
         public function Registrar($obj){
+            /*
+                MEJORAS:
+                    PARA REGISTRAR MEDIDA DE PIE (COMILLA SIMPLE: ')
+                    ES NECESARIO PONER DOS COMILLAS SIMPLES O MARCA ERROR
+            */
             $con = new Conexion();
             $con->Conectar();
-            $tabla = "tipo_usuario";
+            $tabla = "profile_pieza";
             $sql = "INSERT INTO ". $tabla ."
             VALUES (null, '". $obj->desc. "');";
             if ($con->conexion->query($sql) === TRUE) {
@@ -28,8 +33,8 @@
         public function Consultar($obj){
             $con = new Conexion();
             $con->Conectar();
-            $tabla = "tipo_usuario";
-            $sql = "SELECT idTipo_usr as 'ID', descr as 'Descripcion' FROM ". $tabla. " WHERE idTipo_usr = ". $obj->id . " ;";
+            $tabla = "profile_pieza";
+            $sql = "SELECT idTipo_usr as 'ID', descr as 'Descripcion' FROM ". $tabla. " WHERE id_profile_pz = ". $obj->id . " ;";
             $result = $con->conexion->query($sql);
             if ($result->num_rows > 0) {
             // output data of each row
@@ -45,9 +50,8 @@
         public function Consulta_Todos(){
             $con = new Conexion();
             $con->Conectar();
-            $tabla = "tipo_usuario";
-            $sql = "SELECT idTipo_usr as 'ID', descr as 'Descripcion' FROM ". $tabla. " 
-            order by idTipo_usr asc;";
+            $tabla = "profile_pieza";
+            $sql = "SELECT id_profile_pz as 'ID', descr as 'Descripcion' FROM ". $tabla. ";";
             $result = $con->conexion->query($sql);
             if ($result->num_rows < 0) {
                 return null;
@@ -59,9 +63,9 @@
         public function Actualizar($obj){
             $con = new Conexion();
             $con->Conectar();
-            $tabla = "tipo_usuario";
+            $tabla = "profile_pieza";
             $sql = "UPDATE ". $tabla ."
-            SET descr = '". $obj->desc. "' where idTipo_usr = ".$obj->id.";";
+            SET descr = '". $obj->desc. "' where id_profile_pz = ".$obj->id.";";
             if ($con->conexion->query($sql) === TRUE) {
                 echo "New record updated successfully";
                 $msj = "Correcto";
@@ -75,9 +79,9 @@
         public function Eliminar($obj){
             $con = new Conexion();
             $con->Conectar();
-            $tabla = "tipo_usuario";
-            $sql = "DELETE FROM tipo_usuario
-            where idTipo_usr = ".$obj->id.";";
+            $tabla = "profile_pieza";
+            $sql = "DELETE FROM profile_pieza
+            where id_profile_pz = ".$obj->id.";";
             if ($con->conexion->query($sql) === TRUE) {
                 echo "The record deleted successfully";
                 $msj = "Correcto";

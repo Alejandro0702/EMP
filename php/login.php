@@ -26,7 +26,7 @@
 			$_SESSION['pswrd'] = $consulta['pswrd'];
 			$_SESSION['sesion'] = 1;
 			//header('Location: ../principal.php');
-			header('Location: ../dashboard/');	//Prueba
+			header('Location: ../principal/');	//Prueba
 		}
 		else
 		{

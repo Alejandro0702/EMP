@@ -90,7 +90,7 @@ img{
   color: #188018;/*Ingresa usr pass*/
   letter-spacing: 1.5px;
   margin-top: -10px;
-  margin-bottom: 50px;
+  margin-bottom: 80px;
 }
 
 .box input[type = "text"],.box input[type = "password"] {
@@ -213,7 +213,7 @@ label span {
   background: #ff3333;
   text-align: center;
   width: 337px;
-  height: 20px;
+  height: 28px;
   padding: 2px;
   border: 0;
   border-radius: 5px;

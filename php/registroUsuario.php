@@ -15,9 +15,9 @@
         $usr->pswrd = $_POST['pass'];
         $usr->idTipo_usr = $_POST['sel_Tipo'];
         $usr->Registrar($usr);
-        header('Location: ../dashboard/usuario.php?registro=1');
+        header('Location: ../principal/usuario.php?registro=1');
     }
     else{
-        header('Location: ../dashboard/usuario.php?registro=0');
+        header('Location: ../principal/usuario.php?registro=0');
     }
 ?>

@@ -67,8 +67,10 @@
             id_usr as 'ID', nomb_usr as 'Usuario',
             pswrd as 'Contraseña', nombre as 'Nombre', apellidoPat as 'Apellido Paterno',
             apellidoMat as 'Apellido Materno', correo as 'Correo', numero as 'Teléfono',
-            idTipo_usr as 'Tipo de Usuario'
-             FROM ". $tabla. ";";
+            tipo_usuario.descr as 'Tipo de Usuario'
+             FROM ". $tabla. "
+             INNER JOIN tipo_usuario on tipo_usuario.idTipo_usr = usuario.idTipo_usr
+             order by usuario.id_usr asc;";
             $result = $con->conexion->query($sql);
             if ($result->num_rows < 0) {
                 return null;

@@ -1,10 +1,12 @@
 create database StructuralSteel_db;
 use StructuralSteel_db;
 
+
 create table tipo_usuario(
 idTipo_usr		int primary key auto_increment,
 descr			varchar(25) unique
 );
+
 
 create table usuario(
 id_usr		int primary key auto_increment,
@@ -20,7 +22,7 @@ foreign key(idTipo_usr) references tipo_usuario(idTipo_usr)
 );
 
 insert into tipo_usuario values (null, 'Administrador'), (null, 'Gerente'), (null, 'Control de Calidad');
-select* from tipo_usuario;
+select* from tipo_usuario order by idTipo_usr asc;
 
 insert into usuario values
 (null, 'admin', 'admin', 'Perla', 'Abrego', 'Morales', 'perla@gmail.com',  '6641234567', 1);
@@ -60,6 +62,7 @@ create table job(
 id_job	int primary key auto_increment,
 fechaRegistro	date
 );
+
 insert into job value (null, curdate());
 select * from job;
 
@@ -101,4 +104,3 @@ insert into job_art value
 (1, 6, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA');
 
 select * from pieza;
-select * from job_art;

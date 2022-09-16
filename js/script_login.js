@@ -6,7 +6,7 @@ window.onload = function(){
     //alert("Usuario o contraseña incorrectos");
     console.log(err);
     msg.style.display = 'block';
-    msg.innerHTML = "Por favor verifique usuario y contraseña";
+    msg.innerHTML = "Por favor verifique usuario y/o contraseña";
   }
 }
 function getParameterByName(name, url = window.location.href) {

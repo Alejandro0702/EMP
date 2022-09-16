@@ -6,11 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Estructuras Metálicas</title>
+        <title>Estructuras Metálicas - Tipos de Usuario</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <link href="./css/style.css" rel="stylesheet" />
+        <link href="../css/style_principal.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <script src="../js/script_tabla.js" defer></script>
     </head>
     <body class="sb-nav-fixed">
         <?php session_start();?>
@@ -62,8 +65,7 @@
                                 </nav>
                             </div>
 
-
-
+                            <!--Trabajos-->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Trabajos
@@ -77,19 +79,16 @@
                                     </a>
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.php">Tipos</a>
-                                            <a class="nav-link" href="register.php">Piezas</a>
+                                            <a class="nav-link" href="tiposDePieza.php">Tipos</a>
+                                            <a class="nav-link" href="piezas.php">Piezas +</a>
                                         </nav>
-                                    </div>
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="trabajos.php">Trabajos</a>
-                                    </nav>
-
-
-
-                                   
+                                    </div>                             
+                                </nav>
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="trabajos.php">Trabajos +</a>
                                 </nav>
                             </div>
+
                             <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="charts.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
@@ -109,104 +108,63 @@
             </div>
 
 
+
+            
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Trabajos</h1>
+                        <h1 class="mt-4">Tipos de usuario</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Trabajos registrados en el sistema</li>
+                            <li class="breadcrumb-item active">Tipos de usuario que pueden ingresar al sistema</li>
                         </ol>
-                        
+                        <div class="">
+                            <form action="../php/registroTipo.php" method="post" >
+                                <label for="descr">Descripción</label>
+                                <br>
+                                <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
+                                <br><br>
+                                <button type="submit" class="btn btn-primary">Registrar</button>
+                            </form>
+                        </div>
                        
                         <br>
-
+                        <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar</button>
                         <!-- -->
-                        
                         <?php
-                            include('../php/crud/trabajos.php');
-                            $trabajos = new Trabajos();
-                            $result = $trabajos->Consulta_Todos();
+                            include('../php/crud/tipoUsuario.php');
+                            $tipoUsr = new tipoUsuario();
+                            $result = $tipoUsr->Consulta_Todos();
                             if(mysqli_num_rows($result) > 0)
                             {
                                 $table = '
-                                <table id="tabla_trabajos" class="table table-striped table-bordered" border=1 style="font-size: 85%;">
+                                <table id="tabla" class="table table-striped table-bordered" border=1>
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th scope="col">P.O.</th>
-                                            <th scope="col">JOB ID</th>
-                                            <th scope="col">QTY</th>
-                                            <th scope="col">ID PZ</th>
-                                            <th scope="col">DESCRIPTION</th>
-                                            <th scope="col">PROFILE</th>
-                                            <th scope="col">LENGHT</th>
-                                            <th scope="col">W(LBS)</th>
-                                            <th scope="col">CL</th>
-                                            <th scope="col">HEAT</th>
-                                            <th scope="col">FU</th>
-                                            <th scope="col">QC</th>
-                                            <th scope="col">W</th>
-                                            <th scope="col">CLEAN</th>
-                                            <th scope="col">FINISH</th>
-                                            <th scope="col">DD</th>
-                                            <th scope="col">NOTE</th>
+                                            <th scope="col"> ID </th>
+                                            <th scope="col">Descripción</th>            
                                         </tr>
                                     </thead>
                                     <tfoot class="thead-dark">
                                         <tr>
-                                            <th scope="col">P.O.</th>
-                                            <th scope="col">JOB ID</th>
-                                            <th scope="col">QTY</th>
-                                            <th scope="col">ID PZ</th>
-                                            <th scope="col">DESCRIPTION</th>
-                                            <th scope="col">PROFILE</th>
-                                            <th scope="col">LENGHT</th>
-                                            <th scope="col">W(LBS)</th>
-                                            <th scope="col">CL</th>
-                                            <th scope="col">HEAT</th>
-                                            <th scope="col">FU</th>
-                                            <th scope="col">QC</th>
-                                            <th scope="col">W</th>
-                                            <th scope="col">CLEAN</th>
-                                            <th scope="col">FINISH</th>
-                                            <th scope="col">DD</th>
-                                            <th scope="col">NOTE</th>
+                                            <th scope="col"> ID </th>
+                                            <th scope="col">Descripción</th>
                                         </tr>
                                     </tfoot>
                                 ';
                                 while($row = mysqli_fetch_array($result))
                                 {
                                     $table .= '
+                                        
                                             <tr>
-                                                <td>'.$row["P.O."].'</td>
-                                                <td>'.$row["JOB ID"].'</td>
-                                                <td>'.$row["QTY"].'</td>
-                                                <td>'.$row["ID PZ"].'</td>
-                                                <td>'.$row["DESCRIPTION"].'</td>
-                                                <td>'.$row["PROFILE"].'</td>
-                                                <td>'.$row["LENGHT"].'</td>
-                                                <td>'.$row["W(LBS)"].'</td>
-                                                <td>'.$row["CL"].'</td>
-                                                <td>'.$row["HEAT"].'</td>
-                                                <td>'.$row["FU"].'</td>
-                                                <td>'.$row["QC"].'</td>
-                                                <td>'.$row["W"].'</td>
-                                                <td>'.$row["CLEAN"].'</td>
-                                                <td>'.$row["FINISH"].'</td>
-                                                <td>'.$row["DD"].'</td>
-                                                <td>'.$row["NOTE"].'</td>
+                                                <td>'.$row["ID"].'</td>
+                                                <td>'.$row["Descripcion"].'</td>
                                             </tr>
+                                        
                                     ';
                                 }
                                 $table .= '</table>';
                                 echo $table;
                             }
-                            /*
-                            job.fechaRegistro as 'P.O.', job_art.id_job as 'JOB ID', job_art.qty as 'QTY', job_art.id_pz as 'ID PZ', 
-                            pieza.descr as 'DESCRIPTION', profile_pieza.descr as 'PROFILE',
-                            pieza.lenght_pz as 'LENGHT', pieza.weight_pz AS 'W(LBS)',
-                            job_art.CL, job_art.HEAT, job_art.FU, job_art.QC, job_art.W,
-                            job_art.CLEAN, job_art.FINISH, job_art.DD, job_art.NOTE		
-                            */
                         ?>
                     </div>
                 </main>
@@ -231,6 +189,5 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
-        <script src="../js/script_tabla.js" ></script>
     </body>
 </html>
