@@ -78,7 +78,7 @@
                                     </a>
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="tipos.php">Tipos</a>
+                                            <a class="nav-link" href="tiposDePieza.php">Tipos</a>
                                             <a class="nav-link" href="piezas.php">Piezas +</a>
                                         </nav>
                                     </div>                             
@@ -109,23 +109,23 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Usuarios</h1>
+                        <h1 class="mt-4">Piezas</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Usuarios que pueden ingresar al sistema</li>
+                            <li class="breadcrumb-item active">Piezas para fabricación</li>
                         </ol>
-                        <form action="../php/registroUsuario.php" method="post">
+                        <form action="../php/registroPieza.php" method="post">
                             <!-- 2 column grid layout with text inputs for the first and last names -->
                             <div class="row mb-2">
                                 <div class="col">
                                     <div class="form-outline">
-                                        <input name="nombre" type="text" id="form3Example1" class="form-control" />
-                                        <label class="form-label" for="form3Example1">Nombre(s)</label>
+                                        <input name="descr" type="text" id="form3Example1" class="form-control" />
+                                        <label class="form-label" for="form3Example1">Descripción</label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
-                                        <input name="apPat" type="text" id="form3Example2" class="form-control" />
-                                        <label class="form-label" for="form3Example2">Apellido Paterno</label>
+                                        <input name="long" type="text" id="form3Example2" class="form-control" />
+                                        <label class="form-label" for="form3Example2">Longitud</label>
                                     </div>
                                 </div>
                             </div>
@@ -133,45 +133,17 @@
                             <div class="row mb-2">
                                 <div class="col">
                                     <div class="form-outline">
-                                        <input name="apMat" type="text" id="form3Example1" class="form-control" />
-                                        <label class="form-label" for="form3Example1">Apellido Materno</label>
+                                        <input name="peso" type="text" id="form3Example1" class="form-control" />
+                                        <label class="form-label" for="form3Example1">Peso (LBS)</label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
-                                        <input name="tel" type="text" id="form3Example2" class="form-control" />
-                                        <label class="form-label" for="form3Example2">Teléfono</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Email input -->                      
-                            <div class="form-outline mb-2">
-                                <input name="email" type="email" id="form3Example3" class="form-control" />
-                                <label class="form-label" for="form3Example3">Correo electrónico</label>
-                            </div>
-
-                            <div class="form-outline mb-2">
-                                <input name="nomUsr" type="text" id="form3Example4" class="form-control" />
-                                <label class="form-label" for="form3Example4">Nombre de usuario</label>
-                            </div>
-                          
-
-
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <div class="form-outline">
-                                    <input name="pass" type="password" id="form3Example4" class="form-control" />
-                                    <label class="form-label" for="form3Example4">Contraseña</label>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <div class="col-12">
-                                            <label class="form-label" for="form3Example4">Tipo de Usuario</label>
+                                    <label class="form-label" for="form3Example4">Tipo de Pieza</label>
                                                 <?php
-                                                   include('../php/crud/tipoUsuario.php');
-                                                   $tipoUsr = new tipoUsuario();
-                                                   $result = $tipoUsr->Consulta_Todos();
+                                                   include('../php/crud/tipoPieza.php');
+                                                   $tipoPz = new TipoPieza();
+                                                   $result = $tipoPz->Consulta_Todos();
                                                     if(mysqli_num_rows($result) > 0)
                                                     {
                                                         $select = '
@@ -190,36 +162,30 @@
                                                     }
                                                     
                                                 ?>
-                                        </div>         
                                     </div>
                                 </div>
-                            </div>
-                            
+                            </div>                
                             <!-- Submit button -->
                             <button type="submit" class="btn btn-primary btn-block mb-2">Registrar</button>
                             </div>
                         </form>
                         <br>
-
+                        <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar</button>
                     <?php
-                        include('../php/crud/usuario.php');
-                        $usr = new Usuario();
-                        $result = $usr->Consulta_Todos();
+                        include('../php/crud/Pieza.php');
+                        $pieza = new Pieza();
+                        $result = $pieza->Consulta_Todos();
                         if(mysqli_num_rows($result) > 0)
                         {
                             $table = '
                             <table id="tabla" border=1 class="table table-striped table-bordered">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th scope="col"> ID </th>
-                                        <th scope="col">Usuario</th>
-                                        <th scope="col">Contraseña</th>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">Apellido Paterno</th>
-                                        <th scope="col">Apellido Materno</th>
-                                        <th scope="col">Correo</th>
-                                        <th scope="col">Teléfono</th>
-                                        <th scope="col">Tipo de Usuario</th>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col">LENGHT</th>
+                                        <th scope="col">WEIGHT</th>
+                                        <th scope="col">PROFILE</th>
                                     </tr>
                                 </thead>
                             ';
@@ -228,14 +194,10 @@
                             $table .= '
                                 <tr>
                                     <td>'.$row["ID"].'</td>
-                                    <td>'.$row["Usuario"].'</td>
-                                    <td>'.$row["Contraseña"].'</td>
-                                    <td>'.$row["Nombre"].'</td>
-                                    <td>'.$row["Apellido Paterno"].'</td>
-                                    <td>'.$row["Apellido Materno"].'</td>
-                                    <td>'.$row["Correo"].'</td>
-                                    <td>'.$row["Teléfono"].'</td>
-                                    <td>'.$row["Tipo de Usuario"].'</td>
+                                    <td>'.$row["Descripcion"].'</td>
+                                    <td>'.$row["LENGHT"].'</td>
+                                    <td>'.$row["WEIGHT"].'</td>
+                                    <td>'.$row["PROFILE"].'</td>
                                 </tr>
                             ';
                             }

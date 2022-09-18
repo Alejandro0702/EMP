@@ -3,6 +3,9 @@
     class Pieza{
         public $id;
         public $desc;
+        public $lenght;
+        public $weight;
+        public $id_profile_pz;
         
         private $tabla;
         function __construct()
@@ -17,9 +20,12 @@
             */
             $con = new Conexion();
             $con->Conectar();
-            $tabla = "profile_pieza";
+            $tabla = "pieza";
             $sql = "INSERT INTO ". $tabla ."
-            VALUES (null, '". $obj->desc. "');";
+            VALUES (
+            null, '". $obj->desc. "','".
+            $obj->lenght . "','".
+            $obj->weight."', ". $obj->id_profile_pz . ");";
             if ($con->conexion->query($sql) === TRUE) {
                 echo '<script>console.log("New record created successfully")</script>';
             } else {
@@ -29,27 +35,16 @@
         }
 
         public function Consultar($obj){
-            $con = new Conexion();
-            $con->Conectar();
-            $tabla = "profile_pieza";
-            $sql = "SELECT idTipo_usr as 'ID', descr as 'Descripcion' FROM ". $tabla. " WHERE id_profile_pz = ". $obj->id . " ;";
-            $result = $con->conexion->query($sql);
-            if ($result->num_rows > 0) {
-            // output data of each row
-            while($row = $result->fetch_assoc()) {
-                echo "<br>ID: " . $row["ID"]. " - Name: " . $row["Descripcion"]. "<br>";
-            }
-            } else {
-                echo "0 results";
-            }
-            $con->Desconectar();
+           
         }
 
         public function Consulta_Todos(){
             $con = new Conexion();
             $con->Conectar();
-            $tabla = "profile_pieza";
-            $sql = "SELECT id_profile_pz as 'ID', descr as 'Descripcion' FROM ". $tabla. ";";
+            $tabla = "pieza";
+            $sql = "SELECT id_pz as 'ID', descr as 'Descripcion',
+            lenght_pz as 'LENGHT', weight_pz as 'WEIGHT', id_profile_pz as 'PROFILE'
+             FROM ". $tabla. ";";
             $result = $con->conexion->query($sql);
             if ($result->num_rows < 0) {
                 return null;
@@ -59,35 +54,11 @@
             $con->Desconectar();
         }
         public function Actualizar($obj){
-            $con = new Conexion();
-            $con->Conectar();
-            $tabla = "profile_pieza";
-            $sql = "UPDATE ". $tabla ."
-            SET descr = '". $obj->desc. "' where id_profile_pz = ".$obj->id.";";
-            if ($con->conexion->query($sql) === TRUE) {
-                echo "New record updated successfully";
-                $msj = "Correcto";
-            } else {
-                echo "Error: " . $sql . "<br>" . $con->error;
-                $msj = "Error";
-            }
-            $con->Desconectar();
+         
         }
 
         public function Eliminar($obj){
-            $con = new Conexion();
-            $con->Conectar();
-            $tabla = "profile_pieza";
-            $sql = "DELETE FROM profile_pieza
-            where id_profile_pz = ".$obj->id.";";
-            if ($con->conexion->query($sql) === TRUE) {
-                echo "The record deleted successfully";
-                $msj = "Correcto";
-            } else {
-                echo "Error: " . $sql . "<br>" . $con->error;
-                $msj = "Error";
-            }
-            $con->Desconectar();
+         
         }
 
     }
