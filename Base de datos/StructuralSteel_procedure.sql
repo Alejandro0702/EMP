@@ -1,5 +1,7 @@
 use StructuralSteel_db;
 
+
+/*CREACION DE PROCEDIMIENTO PARA CONSULTA DE TODOS LOS TRABAJOS*/
 DELIMITER //
 CREATE PROCEDURE pr_Consulta_Trabajos()
 BEGIN
@@ -14,5 +16,7 @@ BEGIN
 	INNER JOIN profile_pieza on profile_pieza.id_profile_pz = pieza.id_profile_pz
     ORDER BY job_art.id_job ASC;
 END //
+
+/*LLAMAR AL PROCEDIMIENTO*/
 call pr_Consulta_Trabajos();
 
