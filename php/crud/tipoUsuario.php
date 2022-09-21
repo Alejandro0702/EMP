@@ -16,10 +16,10 @@
             $sql = "INSERT INTO ". $tabla ."
             VALUES (null, '". $obj->desc. "');";
             if ($con->conexion->query($sql) === TRUE) {
-                echo '<script>console.log("New record created successfully")</script>';
+                $msj =  '<script>console.log("New record created successfully")</script>';
                 $msj = "Correcto";
             } else {
-                echo "Error: " . $sql . "<br>" . $con->error;
+                $msj =  "Error: " . $sql . "<br>" . $con->error;
                 $msj = "Error";
             }
             $con->Desconectar();
@@ -34,10 +34,10 @@
             if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
-                echo "<br>ID: " . $row["ID"]. " - Name: " . $row["Descripcion"]. "<br>";
+                $msj =  "<br>ID: " . $row["ID"]. " - Name: " . $row["Descripcion"]. "<br>";
             }
             } else {
-                echo "0 results";
+                $msj =  "0 results";
             }
             $con->Desconectar();
         }
@@ -63,10 +63,10 @@
             $sql = "UPDATE ". $tabla ."
             SET descr = '". $obj->desc. "' where idTipo_usr = ".$obj->id.";";
             if ($con->conexion->query($sql) === TRUE) {
-                echo "New record updated successfully";
+                $msj =  "New record updated successfully";
                 $msj = "Correcto";
             } else {
-                echo "Error: " . $sql . "<br>" . $con->error;
+                $msj =  "Error: " . $sql . "<br>" . $con->error;
                 $msj = "Error";
             }
             $con->Desconectar();
@@ -79,11 +79,10 @@
             $sql = "DELETE FROM tipo_usuario
             where idTipo_usr = ".$obj->id.";";
             if ($con->conexion->query($sql) === TRUE) {
-                echo "The record deleted successfully";
-                $msj = "Correcto";
+                $msj =  "The record deleted successfully";
             } else {
-                echo "Error: " . $sql . "<br>" . $con->error;
-                $msj = "Error";
+                $msj = "Error: " . $sql . "<br>" . $con->error;
+                
             }
             $con->Desconectar();
         }

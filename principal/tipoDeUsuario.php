@@ -107,7 +107,7 @@
                 </nav>
             </div>
 
-
+            
 
             
             <div id="layoutSidenav_content">
@@ -118,7 +118,11 @@
                             <li class="breadcrumb-item active">Tipos de usuario que pueden ingresar al sistema</li>
                         </ol>
                         <div class="">
-                            <form action="../php/registroTipo.php" method="post" >
+                            <form id="formulario" action="../php/registroTipo.php" method="post" >
+                                <label for="id">Número Identificador</label>
+                                <br>
+                                <input type="text"  name="id" id="id" placeholder="ID" maxlength="25" disabled>
+                                <br>
                                 <label for="descr">Descripción</label>
                                 <br>
                                 <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
@@ -126,9 +130,17 @@
                                 <button type="submit" class="btn btn-primary">Registrar</button>
                             </form>
                         </div>
-                       
                         <br>
+
+                        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                            <div class="input-group">
+                                <input id="txtFiltro" class="form-control" type="text" placeholder="Buscar..." aria-label="Buscar..." aria-describedby="btnNavbarSearch" />
+                                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                            </div>
+                        </form>
+                        
                         <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar</button>
+                        <button name="n_Eliminar" id="i_Eliminar" class="btn btn-secondary">Modificar</button>
                         <!-- -->
                         <?php
                             include('../php/crud/tipoUsuario.php');
@@ -189,5 +201,7 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        <script src="../js/script_FiltroTabla.js"></script>
+        <script src="../js/script_TipoUsr.js"></script>
     </body>
 </html>

@@ -1,6 +1,7 @@
 create database StructuralSteel_db;
 use StructuralSteel_db;
 
+
 create table tipo_usuario(
 idTipo_usr		int primary key auto_increment,
 descr			varchar(25) unique

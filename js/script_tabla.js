@@ -10,3 +10,4 @@ $("#tabla tr").click(function(){
     alert("Dato: " + usr);
     
  });
+
