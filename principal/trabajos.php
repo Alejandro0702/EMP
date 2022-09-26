@@ -108,6 +108,15 @@
 
             <div id="layoutSidenav_content">
                 <main>
+                    <!-- NAVEGACION SUPERIOR-->
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a id="tab-registrar" class="nav-link active" aria-current="page" href="#">Registro</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="tab-modificar" class="nav-link" href="#">Modificación</a>
+                        </li>
+                    </ul>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Trabajos</h1>
                         <ol class="breadcrumb mb-4">
@@ -234,5 +243,6 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
         <script src="../js/script_FiltroTabla.js"></script>
+        <script src="../js/script_Reg-Mod.js"></script>
     </body>
 </html>

@@ -82,17 +82,38 @@
 
 
 
-        public function Actualizar($obj){
-           
-            /*PENDIENTE*/
-          
+        public function Actualizar($obj){            
+            $con = new Conexion();
+            $con->Conectar();
+            $sql = "
+                CALL pr_Actualizar_Usr(". $obj->id .",
+                '". $obj->nom_usr."', '". $obj->pswrd ."', '". $obj->nombre . "',
+                '". $obj->apellidoPat ."', '". $obj->apellidoMat ."', '". $obj->correo ."',
+                '". $obj->numero . "', ". $obj->idTipo_usr .");
+            ";
+            if ($con->conexion->query($sql) === TRUE) {
+                $msj = '<script>console.log("Usuario actualizado correctamente ;)")</script>';
+                $msj = "Correcto";
+            } else {
+                $msj = "Error: " . $sql . "<br>" . $con->error;
+                $msj = "Error";
+            }
+            $con->Desconectar();
         }
 
         public function Eliminar($obj){
-          
-            /*PENDIENTE*/
-          
+            $con = new Conexion();
+            $con->Conectar();
+            $tabla = " usuario ";
+            $sql = "DELETE FROM". $tabla ."
+            where id_usr = ". $obj->id. ";";
+            if ($con->conexion->query($sql) === TRUE) {
+                $msj =  "The record deleted successfully";
+            } else {
+                $msj = "Error: " . $sql . "<br>" . $con->error;
+            }
+            $con->Desconectar();
         }
 
-    }
+    }//clase
 ?>

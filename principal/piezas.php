@@ -231,5 +231,6 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
         <script src="../js/script_FiltroTabla.js"></script>
+        <script src="../js/js_crud/script_pieza.js"></script>
     </body>
 </html>

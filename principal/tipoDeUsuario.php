@@ -108,17 +108,34 @@
             </div>
 
             
-
-            
             <div id="layoutSidenav_content">
                 <main>
+                    <!-- NAVEGACION SUPERIOR-->
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a id="tab-registrar" class="nav-link active" aria-current="page" href="#">Registro</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="tab-modificar" class="nav-link" href="#">Modificación</a>
+                        </li>
+                    </ul>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Tipos de usuario</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Tipos de usuario que pueden ingresar al sistema</li>
                         </ol>
-                        <div class="">
+                        <div id="form-registrar">
                             <form id="formulario" action="../php/registroTipo.php" method="post" >
+                                <label for="descr">Descripción</label>
+                                <br>
+                                <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
+                                <br><br>
+                                <button type="submit" class="btn btn-primary">Registrar</button>
+                            </form>
+                            <br>
+                        </div>
+                        <div id="form-modificar">
+                            <form id="formulario" name= "formulario" action="../php/actualizarTipo.php" method="post" >
                                 <label for="id">Número Identificador</label>
                                 <br>
                                 <input type="text"  name="id" id="id" placeholder="ID" maxlength="25" disabled>
@@ -127,10 +144,10 @@
                                 <br>
                                 <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
                                 <br><br>
-                                <button type="submit" class="btn btn-primary">Registrar</button>
+                                <button id="i_Actualizar" type="submit" class="btn btn-primary">Actualizar</button>
                             </form>
+                            <br>
                         </div>
-                        <br>
 
                         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                             <div class="input-group">
@@ -140,7 +157,7 @@
                         </form>
                         
                         <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar</button>
-                        <button name="n_Eliminar" id="i_Eliminar" class="btn btn-secondary">Modificar</button>
+                        <button id="i_Modificar" class="btn btn-success">Seleccionar</button>
                         <!-- -->
                         <?php
                             include('../php/crud/tipoUsuario.php');
@@ -202,6 +219,7 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
         <script src="../js/script_FiltroTabla.js"></script>
-        <script src="../js/script_TipoUsr.js"></script>
+        <script src="../js/js_crud/script_TipoUsr.js"></script>
+        <script src="../js/script_Reg-Mod.js"></script>
     </body>
 </html>

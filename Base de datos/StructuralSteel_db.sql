@@ -39,6 +39,7 @@ id_job	int primary key auto_increment,
 fechaRegistro	date
 );
 
+
 create table job_art(
 id_job		int,
 id_pz 		int,
@@ -52,7 +53,7 @@ CLEAN 		varchar(30),
 FINISH 		varchar(30),
 DD			date,/*fecha envio*/
 NOTE		varchar(150),
-foreign key(id_job) references job(id_job),
+foreign key(id_job) references job(id_job) ON DELETE CASCADE,
 foreign key(id_pz) references pieza(id_pz)
 );
 
@@ -88,7 +89,7 @@ insert into pieza values
 
 /*REGISTRO DE UN TRABAJO*/
 insert into job values (null, curdate());
-
+select * from job;
 /*REGISTRAR PIEZAS EN TRABAJOS*/
 insert into job_art values
 (1, 2, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),

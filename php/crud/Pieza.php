@@ -58,7 +58,16 @@
         }
 
         public function Eliminar($obj){
-         
+            $con = new Conexion();
+            $con->Conectar();
+            $sql = "DELETE FROM pieza 
+            where id_pz = ".$obj->id.";";
+            if ($con->conexion->query($sql) === TRUE) {
+                $msj = "The record deleted successfully";
+            } else {
+                $msj = "Error: " . $sql . "<br>" . $con->error;
+            }
+            $con->Desconectar();
         }
 
     }

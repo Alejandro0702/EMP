@@ -108,98 +108,187 @@
 
             <div id="layoutSidenav_content">
                 <main>
+                    <!-- NAVEGACION SUPERIOR-->
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a id="tab-registrar" class="nav-link active" aria-current="page" href="#">Registro</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="tab-modificar" class="nav-link" href="#">Modificación</a>
+                        </li>
+                    </ul>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Usuarios</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Usuarios que pueden ingresar al sistema</li>
                         </ol>
-                        <form action="../php/registroUsuario.php" method="post">
-                            <!-- 2 column grid layout with text inputs for the first and last names -->
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <input name="nombre" type="text" id="form3Example1" class="form-control" />
-                                        <label class="form-label" for="form3Example1">Nombre(s)</label>
+                        <div id="form-registrar">
+                            <form action="../php/registroUsuario.php" method="post">
+                                <!-- 2 column grid layout with text inputs for the first and last names -->
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <input name="nombre" type="text" id="form3Example1" class="form-control" />
+                                            <label class="form-label" for="form3Example1">Nombre(s)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <input name="apPat" type="text" id="form3Example2" class="form-control" />
+                                            <label class="form-label" for="form3Example2">Apellido Paterno</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <input name="apPat" type="text" id="form3Example2" class="form-control" />
-                                        <label class="form-label" for="form3Example2">Apellido Paterno</label>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <input name="apMat" type="text" id="form3Example1" class="form-control" />
-                                        <label class="form-label" for="form3Example1">Apellido Materno</label>
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <input name="apMat" type="text" id="form3Example1" class="form-control" />
+                                            <label class="form-label" for="form3Example1">Apellido Materno</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <input name="tel" type="text" id="form3Example2" class="form-control" />
+                                            <label class="form-label" for="form3Example2">Teléfono</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <input name="tel" type="text" id="form3Example2" class="form-control" />
-                                        <label class="form-label" for="form3Example2">Teléfono</label>
+                                <!-- Email input -->                      
+                                <div class="form-outline mb-2">
+                                    <input name="email" type="email" id="form3Example3" class="form-control" />
+                                    <label class="form-label" for="form3Example3">Correo electrónico</label>
+                                </div>
+                                <div class="form-outline mb-2">
+                                    <input name="nomUsr" type="text" id="form3Example4" class="form-control" />
+                                    <label class="form-label" for="form3Example4">Nombre de usuario</label>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <div class="form-outline">
+                                        <input name="pass" type="password" id="form3Example4" class="form-control" />
+                                        <label class="form-label" for="form3Example4">Contraseña</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <div class="col-12">
+                                                <label class="form-label" for="form3Example4">Tipo de Usuario</label>
+                                                    <?php
+                                                    require_once('../php/crud/tipoUsuario.php');
+                                                    $tipoUsr = new tipoUsuario();
+                                                    $result = $tipoUsr->Consulta_Todos();
+                                                        if(mysqli_num_rows($result) > 0){
+                                                            $select = '
+                                                                <select name = "sel_Tipo" class="select">
+                                                            ';
+                                                            while($row = mysqli_fetch_array($result)){
+                                                                $select .= '
+                                                                <option value="' .$row["ID"]. '">'.
+                                                                    $row["Descripcion"].'
+                                                                </option>
+                                                                ';
+                                                            }
+                                                            $select .= '</select>';
+                                                            echo $select;
+                                                        }  
+                                                    ?>
+                                            </div>         
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Email input -->                      
-                            <div class="form-outline mb-2">
-                                <input name="email" type="email" id="form3Example3" class="form-control" />
-                                <label class="form-label" for="form3Example3">Correo electrónico</label>
-                            </div>
+                                <!-- Submit button -->
+                                <button type="submit" class="btn btn-primary btn-block mb-2">Registrar</button>
+                                
+                            </form>
+                        </div>
 
-                            <div class="form-outline mb-2">
-                                <input name="nomUsr" type="text" id="form3Example4" class="form-control" />
-                                <label class="form-label" for="form3Example4">Nombre de usuario</label>
-                            </div>
-                          
-
-
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <div class="form-outline">
-                                    <input name="pass" type="password" id="form3Example4" class="form-control" />
-                                    <label class="form-label" for="form3Example4">Contraseña</label>
+                        <div id="form-modificar">
+                            <form id="formulario" name="formulario" action="../php/actualizarUsr.php" method="post">
+                                <label for="id">Número Identificador</label>
+                                <br>
+                                <input type="text"  name="id" id="id" placeholder="ID" maxlength="25" disabled>
+                                <br><br>
+                                <!-- 2 column grid layout with text inputs for the first and last names -->
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <input name="nombre" type="text" id="form3Example1" class="form-control" />
+                                            <label class="form-label" for="form3Example1">Nombre(s)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <input name="apPat" type="text" id="form3Example2" class="form-control" />
+                                            <label class="form-label" for="form3Example2">Apellido Paterno</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <div class="col-12">
-                                            <label class="form-label" for="form3Example4">Tipo de Usuario</label>
-                                                <?php
-                                                   include('../php/crud/tipoUsuario.php');
-                                                   $tipoUsr = new tipoUsuario();
-                                                   $result = $tipoUsr->Consulta_Todos();
-                                                    if(mysqli_num_rows($result) > 0)
-                                                    {
-                                                        $select = '
-                                                            <select name = "sel_Tipo" class="select">
-                                                        ';
-                                                    while($row = mysqli_fetch_array($result))
-                                                    {
-                                                        $select .= '
-                                                        <option value="' .$row["ID"]. '">'.
-                                                            $row["Descripcion"].'
-                                                        </option>
-                                                        ';
-                                                    }
-                                                        $select .= '</select>';
-                                                        echo $select;
-                                                    }
-                                                    
-                                                ?>
-                                        </div>         
+
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <input name="apMat" type="text" id="form3Example1" class="form-control" />
+                                            <label class="form-label" for="form3Example1">Apellido Materno</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <input name="tel" type="text" id="form3Example2" class="form-control" />
+                                            <label class="form-label" for="form3Example2">Teléfono</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <!-- Submit button -->
-                            <button type="submit" class="btn btn-primary btn-block mb-2">Registrar</button>
-                            </div>
-                        </form>
-                        <br>
+                                <!-- Email input -->                      
+                                <div class="form-outline mb-2">
+                                    <input name="email" type="email" id="form3Example3" class="form-control" />
+                                    <label class="form-label" for="form3Example3">Correo electrónico</label>
+                                </div>
+                                <div class="form-outline mb-2">
+                                    <input name="nomUsr" type="text" id="form3Example4" class="form-control" />
+                                    <label class="form-label" for="form3Example4">Nombre de usuario</label>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <div class="form-outline">
+                                        <input name="pass" type="password" id="form3Example4" class="form-control" />
+                                        <label class="form-label" for="form3Example4">Contraseña</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <div class="col-12">
+                                                <label class="form-label" for="form3Example4">Tipo de Usuario</label>
+                                                    <?php
+                                                    require_once('../php/crud/tipoUsuario.php');
+                                                    $tipoUsr = new tipoUsuario();
+                                                    $result = $tipoUsr->Consulta_Todos();
+                                                        if(mysqli_num_rows($result) > 0){
+                                                            $select = '
+                                                                <select id = "sel_Tipo" name = "sel_Tipo" class="select">
+                                                            ';
+                                                            while($row = mysqli_fetch_array($result)){
+                                                                $select .= '
+                                                                <option value="' .$row["ID"]. '">'.
+                                                                    $row["Descripcion"].'
+                                                                </option>
+                                                                ';
+                                                            }
+                                                            $select .= '</select>';
+                                                            echo $select;
+                                                        }  
+                                                    ?>
+                                            </div>         
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Submit button -->
+                                <button id="i_Actualizar" type="submit" class="btn btn-primary btn-block mb-2">Actualizar</button>
+                            </form>
+                            <br>
+                        </div>
+                        
+                        
                         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                             <div class="input-group">
                                 <input id="txtFiltro" class="form-control" type="text" placeholder="Buscar..." aria-label="Buscar..." aria-describedby="btnNavbarSearch" />
@@ -207,9 +296,9 @@
                             </div>
                         </form>
                         <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar</button>
-
+                        <button id="i_Modificar" class="btn btn-success">Seleccionar</button>
                     <?php
-                        include('../php/crud/usuario.php');
+                        require_once('../php/crud/usuario.php');
                         $usr = new Usuario();
                         $result = $usr->Consulta_Todos();
                         if(mysqli_num_rows($result) > 0)
@@ -270,5 +359,7 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
         <script src="../js/script_FiltroTabla.js"></script>
+        <script src="../js/js_crud/script_Usuario.js"></script>
+        <script src="../js/script_Reg-Mod.js"></script>
     </body>
 </html>
