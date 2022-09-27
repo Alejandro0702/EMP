@@ -57,3 +57,15 @@ $('#i_Eliminar').on('click', function(e){
     })();
 
 });
+
+
+$('#i_Seleccionar').on('click', function(e){
+    let id = $("#tabla tr.selected td:first-child").html();
+    let desc = $("#tabla tr.selected td:nth-child(2)").html();
+    document.formulario.id.value = id;
+    document.formulario.descr.value = desc;
+});
+
+$('#i_Actualizar').on('click', function(e){
+    document.getElementById('id').disabled = false;
+});

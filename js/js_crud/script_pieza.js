@@ -56,3 +56,14 @@ $('#i_Eliminar').on('click', function(e){
     })();
 
 });
+
+$('#i_Seleccionar').on('click', function(e){
+    document.formulario.id.value = $("#tabla tr.selected td:first-child").html();
+    document.formulario.descr.value = $("#tabla tr.selected td:nth-child(2)").html();
+    document.formulario.long.value = $("#tabla tr.selected td:nth-child(3)").html();
+    document.formulario.peso.value = $("#tabla tr.selected td:nth-child(4)").html();
+});
+
+$('#i_Actualizar').on('click', function(e){
+    document.getElementById('id').disabled = false;
+});

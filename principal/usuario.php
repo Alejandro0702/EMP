@@ -296,7 +296,7 @@
                             </div>
                         </form>
                         <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar</button>
-                        <button id="i_Modificar" class="btn btn-success">Seleccionar</button>
+                        <button id="i_Seleccionar" class="btn btn-success">Seleccionar</button>
                     <?php
                         require_once('../php/crud/usuario.php');
                         $usr = new Usuario();

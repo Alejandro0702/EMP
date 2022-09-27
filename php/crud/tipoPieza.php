@@ -62,8 +62,10 @@
             $con = new Conexion();
             $con->Conectar();
             $tabla = "profile_pieza";
-            $sql = "UPDATE ". $tabla ."
-            SET descr = '". $obj->desc. "' where id_profile_pz = ".$obj->id.";";
+            $sql = "CALL pr_Actualizar_ProfilePz(
+                ".  $obj->id .", 
+                '". $obj->desc ."'
+            )";
             if ($con->conexion->query($sql) === TRUE) {
                 $msj = "New record updated successfully";
             } else {

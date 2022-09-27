@@ -122,21 +122,39 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Tipos de piezas para producción</li>
                         </ol>
-                        <form action="../php/registroTipoPieza.php" method="post" >
-                            <label for="descr">Descripción</label>
-                            <br>
-                            <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
-                            <br><br>
-                            <button type="submit" class="btn btn-primary">Registrar</button>
-                        </form>
+
+                        <div id="form-registrar">
+                            <form action="../php/registroTipoPieza.php" method="post" >
+                                <label for="descr">Descripción</label>
+                                <br>
+                                <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
+                                <br><br>
+                                <button type="submit" class="btn btn-primary">Registrar</button>
+                            </form>
+                        </div>
+                        <div id="form-modificar">
+                            <form action="../php/actualizarProfile.php" method="post" >
+                                <label for="id">Número Identificador</label>
+                                <br>
+                                <input type="text" name="id" id="id" placeholder="ID" maxlength="25" disabled>
+                                <br>
+                                <label for="descr">Descripción</label>
+                                <br>
+                                <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
+                                <br><br>
+                                <button id="i_Actualizar" type="submit" class="btn btn-primary">Actualizar</button>
+                            </form>
+                        </div>
+                       
                         <br>
-                        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                        <form id="formulario" name="formulario" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                             <div class="input-group">
                                 <input id="txtFiltro" class="form-control" type="text" placeholder="Buscar..." aria-label="Buscar..." aria-describedby="btnNavbarSearch" />
                                 <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                             </div>
                         </form>
                         <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar</button>
+                        <button id="i_Seleccionar" class="btn btn-success">Seleccionar</button>
                     <?php
                         include('../php/crud/tipoPieza.php');
                         $t_Pieza = new TipoPieza();

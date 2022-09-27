@@ -54,7 +54,21 @@
             $con->Desconectar();
         }
         public function Actualizar($obj){
-         
+            $con = new Conexion();
+            $con->Conectar();
+            $sql = "CALL pr_Actualizar_Pieza(
+                 ". $obj->id .",
+                '". $obj->desc ."',
+                '". $obj->lenght ."', 
+                '". $obj->weight ."',
+                 ". $obj->id_profile_pz . "
+            );";
+            if ($con->conexion->query($sql) === TRUE) {
+                $msj = "New record updated successfully";
+            } else {
+                $msj = "Error: " . $sql . "<br>" . $con->error;
+            }
+            $con->Desconectar();
         }
 
         public function Eliminar($obj){

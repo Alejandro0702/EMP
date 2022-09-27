@@ -57,7 +57,7 @@ $('#i_Eliminar').on('click', function(e){
 
 });
 
-$('#i_Modificar').on('click', function(e){
+$('#i_Seleccionar').on('click', function(e){
     document.formulario.id.value = $("#tabla tr.selected td:first-child").html();
     document.formulario.nomUsr.value = $("#tabla tr.selected td:nth-child(2)").html();
     document.formulario.pass.value = $("#tabla tr.selected td:nth-child(3)").html();

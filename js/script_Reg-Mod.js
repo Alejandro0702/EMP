@@ -2,7 +2,7 @@ var form_reg = document.getElementById('form-registrar');
 var form_mod = document.getElementById('form-modificar');
 var mod = document.getElementById('tab-modificar');
 var reg = document.getElementById('tab-registrar');
-var btn_mod = document.getElementById('i_Modificar');
+var btn_mod = document.getElementById('i_Seleccionar');
 
 window.onload = function(){    
     mod.addEventListener('click', Form_Mod);

@@ -108,67 +108,139 @@
 
             <div id="layoutSidenav_content">
                 <main>
+                    <!-- NAVEGACION SUPERIOR-->
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a id="tab-registrar" class="nav-link active" aria-current="page" href="#">Registro</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="tab-modificar" class="nav-link" href="#">Modificación</a>
+                        </li>
+                    </ul>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Piezas</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Piezas para fabricación</li>
                         </ol>
-                        <form action="../php/registroPieza.php" method="post">
-                            <!-- 2 column grid layout with text inputs for the first and last names -->
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <input name="descr" type="text" id="form3Example1" class="form-control" />
-                                        <label class="form-label" for="form3Example1">Descripción</label>
+                        <div id="form-registrar">
+                            <form action="../php/registroPieza.php" method="post">
+                                <!-- 2 column grid layout with text inputs for the first and last names -->
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <input name="descr" type="text" id="form3Example1" class="form-control" />
+                                            <label class="form-label" for="form3Example1">Descripción</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <input name="long" type="text" id="form3Example2" class="form-control" />
+                                            <label class="form-label" for="form3Example2">Longitud</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <input name="long" type="text" id="form3Example2" class="form-control" />
-                                        <label class="form-label" for="form3Example2">Longitud</label>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <input name="peso" type="text" id="form3Example1" class="form-control" />
-                                        <label class="form-label" for="form3Example1">Peso (LBS)</label>
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <input name="peso" type="text" id="form3Example1" class="form-control" />
+                                            <label class="form-label" for="form3Example1">Peso (LBS)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-outline">
+                                        <label class="form-label" for="form3Example4">Tipo de Pieza</label>
+                                                    <?php
+                                                    include('../php/crud/tipoPieza.php');
+                                                    $tipoPz = new TipoPieza();
+                                                    $result = $tipoPz->Consulta_Todos();
+                                                        if(mysqli_num_rows($result) > 0)
+                                                        {
+                                                            $select = '
+                                                                <select name = "sel_Tipo" class="select">
+                                                            ';
+                                                        while($row = mysqli_fetch_array($result))
+                                                        {
+                                                            $select .= '
+                                                            <option value="' .$row["ID"]. '">'.
+                                                                $row["Descripcion"].'
+                                                            </option>
+                                                            ';
+                                                        }
+                                                            $select .= '</select>';
+                                                            echo $select;
+                                                        }
+                                                        
+                                                    ?>
+                                        </div>
+                                    </div>
+                                </div>                
+                                <!-- Submit button -->
+                                <button type="submit" class="btn btn-primary btn-block mb-2">Registrar</button>
+                            </form>
+                        </div>
+                        <div id="form-modificar">
+                            <form name="formulario" action="../php/actualizarPieza.php" method="post">
+                                <label for="id">Número Identificador</label>
+                                <br>
+                                <input type="text"  name="id" id="id" placeholder="ID" maxlength="25" disabled>
+                                <br><br>
+                                <!-- 2 column grid layout with text inputs for the first and last names -->
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <input name="descr" type="text" id="form3Example1" class="form-control" />
+                                            <label class="form-label" for="form3Example1">Descripción</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <input name="long" type="text" id="form3Example2" class="form-control" />
+                                            <label class="form-label" for="form3Example2">Longitud</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-outline">
-                                    <label class="form-label" for="form3Example4">Tipo de Pieza</label>
-                                                <?php
-                                                   include('../php/crud/tipoPieza.php');
-                                                   $tipoPz = new TipoPieza();
-                                                   $result = $tipoPz->Consulta_Todos();
-                                                    if(mysqli_num_rows($result) > 0)
-                                                    {
-                                                        $select = '
-                                                            <select name = "sel_Tipo" class="select">
-                                                        ';
-                                                    while($row = mysqli_fetch_array($result))
-                                                    {
-                                                        $select .= '
-                                                        <option value="' .$row["ID"]. '">'.
-                                                            $row["Descripcion"].'
-                                                        </option>
-                                                        ';
-                                                    }
-                                                        $select .= '</select>';
-                                                        echo $select;
-                                                    }
-                                                    
-                                                ?>
+
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <input name="peso" type="text" id="form3Example1" class="form-control" />
+                                            <label class="form-label" for="form3Example1">Peso (LBS)</label>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>                
-                            <!-- Submit button -->
-                            <button type="submit" class="btn btn-primary btn-block mb-2">Registrar</button>
-                            </div>
-                        </form>
+                                    <div class="col">
+                                        <div class="form-outline">
+                                        <label class="form-label" for="form3Example4">Tipo de Pieza</label>
+                                                    <?php
+                                                    require_once('../php/crud/tipoPieza.php');
+                                                    $tipoPz = new TipoPieza();
+                                                    $result = $tipoPz->Consulta_Todos();
+                                                        if(mysqli_num_rows($result) > 0)
+                                                        {
+                                                            $select = '
+                                                                <select name = "sel_Tipo" class="select">
+                                                            ';
+                                                        while($row = mysqli_fetch_array($result))
+                                                        {
+                                                            $select .= '
+                                                            <option value="' .$row["ID"]. '">'.
+                                                                $row["Descripcion"].'
+                                                            </option>
+                                                            ';
+                                                        }
+                                                            $select .= '</select>';
+                                                            echo $select;
+                                                        }
+                                                        
+                                                    ?>
+                                        </div>
+                                    </div>
+                                </div>                
+                                <!-- Submit button -->
+                                <button id="i_Actualizar" type="submit" class="btn btn-primary btn-block mb-2">Actualizar</button>
+                            </form>                            
+                        </div>
+                        
                         <br>
                         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                             <div class="input-group">
@@ -177,8 +249,9 @@
                             </div>
                         </form>
                         <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar</button>
+                        <button id="i_Seleccionar" class="btn btn-success">Seleccionar</button>
                     <?php
-                        include('../php/crud/Pieza.php');
+                        require_once('../php/crud/Pieza.php');
                         $pieza = new Pieza();
                         $result = $pieza->Consulta_Todos();
                         if(mysqli_num_rows($result) > 0)
@@ -232,5 +305,6 @@
         <script src="js/datatables-simple-demo.js"></script>
         <script src="../js/script_FiltroTabla.js"></script>
         <script src="../js/js_crud/script_pieza.js"></script>
+        <script src="../js/script_Reg-Mod.js"></script>
     </body>
 </html>
