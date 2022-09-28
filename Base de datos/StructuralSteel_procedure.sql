@@ -1,4 +1,11 @@
 use StructuralSteel_db;
+/******PROCEDIMIENTOS PARA GENERAR TRABAJO NUEVO******/
+DELIMITER //
+create procedure pr_Generar_Trabajo()
+BEGIN
+	insert into job values (null, curdate());
+END //
+CALL pr_Generar_Trabajo();
 
 /******PROCEDIMIENTOS PARA MODIFICACIONES******/
 /*PROCEDIMIENTO PARA MODIFICAR TIPOS DE USUARIO*/
@@ -37,16 +44,6 @@ BEGIN
 END //
 /*LLAMAR AL PROCEDIMIENTO*/
 call pr_Actualizar_Usr(1, 'admin', 'admin', 'Perla', 'Abrego', 'Morales', 'correo@correo.com', '664664664', 1);
-
-/*PROCEDIMIENTO PARA MODIFICAR TIPOS DE PIEZAS*/
-DELIMITER //
-CREATE PROCEDURE pr_Actualizar_ProfilePz(IN _id int, IN _descr varchar(40))
-BEGIN
-	update profile_pieza set descr = _descr where id_profile_pz = _id;
-END //
-/*LLAMAR AL PROCEDIMIENTO*/
-call pr_Actualizar_ProfilePz(1, 'PL 1/8" x 10"');
-
 
 /*PROCEDIMIENTO PARA MODIFICAR TIPOS DE PIEZAS*/
 DELIMITER //
@@ -200,12 +197,29 @@ CALL pr_Consultar_pieza_id(1);
 CALL pr_Consultar_pieza_id(2);
 CALL pr_Consultar_pieza_id(3);
 
+/*CREACION DE PROCEDIMIENTO PARA CONSULTA DE TODOS LOS TRABAJOS SIN DETALLES */
+DELIMITER //
+CREATE PROCEDURE pr_Consulta_Trabajos_sd()/*sin detalles*/
+BEGIN
+	select id_job as 'JOB ID', fechaRegistro as 'Fecha de registro' from job;
+END //
+CALL pr_Consulta_Trabajos_sd();
 
-/*CREACION DE PROCEDIMIENTO PARA CONSULTA DE TODOS LOS TRABAJOS*/
+/*CREACION DE PROCEDIMIENTO PARA CONSULTA DE TODOS LOS TRABAJOS SIN DETALLES POR ID*/
+DELIMITER //
+CREATE PROCEDURE pr_Consulta_Trabajos_sd_id(
+	IN _id int
+)/*sin detalles*/
+BEGIN
+	select id_job as 'JOB ID', fechaRegistro as 'Fecha de registro' from job where id_job = _id;
+END //
+
+/*CREACION DE PROCEDIMIENTO PARA CONSULTA DE TODOS LOS TRABAJOS CON DETALLES*/
 DELIMITER //
 CREATE PROCEDURE pr_Consulta_Trabajos()
 BEGIN
-	select job.fechaRegistro as 'P.O.', job_art.id_job as 'JOB ID', job_art.qty as 'QTY', job_art.id_pz as 'ID PZ', 
+	select job_art.id_job_art as 'ID JOB-PZ', job.fechaRegistro as 'P.O.',
+    job_art.id_job as 'JOB ID', job_art.qty as 'QTY', job_art.id_pz as 'ID PZ', 
 	pieza.descr as 'DESCRIPTION', profile_pieza.descr as 'PROFILE',
 	pieza.lenght_pz as 'LENGHT', pieza.weight_pz AS 'W(LBS)',
 	job_art.CL, job_art.HEAT, job_art.FU, job_art.QC, job_art.W,
@@ -219,13 +233,13 @@ END //
 CALL pr_Consulta_Trabajos();
 
 
-/*PROCEDIMIENTO PARA CONSULTA ED TRABAJOS POR ID*/
+/*PROCEDIMIENTO PARA CONSULTA DE TRABAJOS CON DETALLES POR ID DEL TRABAJO*/
 DELIMITER //
 CREATE PROCEDURE pr_Consulta_Trabajos_id(
 	IN _id_job INT
 )
 BEGIN
-	select job.fechaRegistro as 'P.O.', job_art.id_job as 'JOB ID', job_art.qty as 'QTY', job_art.id_pz as 'ID PZ', 
+	select job_art.id_job_art, job.fechaRegistro as 'P.O.', job_art.id_job as 'JOB ID', job_art.qty as 'QTY', job_art.id_pz as 'ID PZ', 
 	pieza.descr as 'DESCRIPTION', profile_pieza.descr as 'PROFILE',
 	pieza.lenght_pz as 'LENGHT', pieza.weight_pz AS 'W(LBS)',
 	job_art.CL, job_art.HEAT, job_art.FU, job_art.QC, job_art.W,

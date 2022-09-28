@@ -8,6 +8,7 @@
         <meta name="author" content="" />
         <title>Estructuras Metálicas - Trabajos</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="css/styles.css" rel="stylesheet" />
         <link href="./css/style.css" rel="stylesheet" />
         <link href="../css/style_principal.css" rel="stylesheet" />
@@ -114,6 +115,9 @@
                             <a id="tab-registrar" class="nav-link active" aria-current="page" href="#">Registro</a>
                         </li>
                         <li class="nav-item">
+                            <a id="tab-detalles" class="nav-link" href="#">Detalles</a>
+                        </li>
+                        <li class="nav-item">
                             <a id="tab-modificar" class="nav-link" href="#">Modificación</a>
                         </li>
                     </ul>
@@ -122,19 +126,64 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Trabajos registrados en el sistema</li>
                         </ol>
-                        
-                       
+                        <div id="form-registrar">
+                            <form id="formulario" action="../php/registroTrabajo.php" method="post" >
+                                <button type="submit" class="btn btn-primary">Generar nuevo <i class="fa fa-plus-square"></i></button>
+                            </form>                            
+                        </div>
+                        <div id="form-modificar">
+                            <h4>Modificar</h4>
+                        </div>
+                        <div id="form-detalles">
+                            <h4>Detalles</h4>
+                        </div>
                         <br>
+
                         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                             <div class="input-group">
                                 <input id="txtFiltro" class="form-control" type="text" placeholder="Buscar..." aria-label="Buscar..." aria-describedby="btnNavbarSearch" />
                                 <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                            </div>
-                        </form>
+                                </div>
+                        </form>                        
+                        
                         <!-- -->
                         <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar</button>
                         <?php
-                            include('../php/crud/trabajos.php');
+                            require_once('../php/crud/trabajos.php');
+                            $trabajos = new Trabajos();
+                            $result = $trabajos->Consulta_Todos_sd();
+                            if(mysqli_num_rows($result) > 0)
+                            {
+                                $table = '
+                                <table id="tabla" class="table table-striped table-bordered" border=1 style="font-size: 85%;">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">JOB ID</th>
+                                            <th scope="col">Fecha de registro</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot class="thead-dark">
+                                        <tr>
+                                            <th scope="col">JOB ID</th>
+                                            <th scope="col">Fecha de registro</th>
+                                        </tr>
+                                    </tfoot>
+                                ';
+                                while($row = mysqli_fetch_array($result))
+                                {
+                                    $table .= '
+                                            <tr>
+                                                <td>'.$row["JOB ID"].'</td>
+                                                <td>'.$row["Fecha de registro"].'</td>
+                                            </tr>
+                                    ';
+                                }
+                                $table .= '</table>';
+                                echo $table;
+                            }
+                        ?>
+                        <?php
+                            require_once('../php/crud/trabajos.php');
                             $trabajos = new Trabajos();
                             $result = $trabajos->Consulta_Todos();
                             if(mysqli_num_rows($result) > 0)
@@ -143,10 +192,11 @@
                                 <table id="tabla" class="table table-striped table-bordered" border=1 style="font-size: 85%;">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th scope="col">P.O.</th>
                                             <th scope="col">JOB ID</th>
-                                            <th scope="col">QTY</th>
+                                            <th scope="col">P.O.</th>
                                             <th scope="col">ID PZ</th>
+                                            <th scope="col">ID JOB-PZ</th>
+                                            <th scope="col">QTY</th>
                                             <th scope="col">DESCRIPTION</th>
                                             <th scope="col">PROFILE</th>
                                             <th scope="col">LENGHT</th>
@@ -164,10 +214,11 @@
                                     </thead>
                                     <tfoot class="thead-dark">
                                         <tr>
-                                            <th scope="col">P.O.</th>
                                             <th scope="col">JOB ID</th>
-                                            <th scope="col">QTY</th>
+                                            <th scope="col">P.O.</th>
                                             <th scope="col">ID PZ</th>
+                                            <th scope="col">ID JOB-PZ</th>
+                                            <th scope="col">QTY</th>
                                             <th scope="col">DESCRIPTION</th>
                                             <th scope="col">PROFILE</th>
                                             <th scope="col">LENGHT</th>
@@ -188,10 +239,11 @@
                                 {
                                     $table .= '
                                             <tr>
-                                                <td>'.$row["P.O."].'</td>
                                                 <td>'.$row["JOB ID"].'</td>
-                                                <td>'.$row["QTY"].'</td>
+                                                <td>'.$row["P.O."].'</td>
                                                 <td>'.$row["ID PZ"].'</td>
+                                                <td>'.$row["ID JOB-PZ"].'</td>
+                                                <td>'.$row["QTY"].'</td>
                                                 <td>'.$row["DESCRIPTION"].'</td>
                                                 <td>'.$row["PROFILE"].'</td>
                                                 <td>'.$row["LENGHT"].'</td>
@@ -211,13 +263,6 @@
                                 $table .= '</table>';
                                 echo $table;
                             }
-                            /*
-                            job.fechaRegistro as 'P.O.', job_art.id_job as 'JOB ID', job_art.qty as 'QTY', job_art.id_pz as 'ID PZ', 
-                            pieza.descr as 'DESCRIPTION', profile_pieza.descr as 'PROFILE',
-                            pieza.lenght_pz as 'LENGHT', pieza.weight_pz AS 'W(LBS)',
-                            job_art.CL, job_art.HEAT, job_art.FU, job_art.QC, job_art.W,
-                            job_art.CLEAN, job_art.FINISH, job_art.DD, job_art.NOTE		
-                            */
                         ?>
                     </div>
                 </main>
