@@ -16,7 +16,10 @@
         <script src="../js/script_tabla.js" defer></script>
     </head>
     <body class="sb-nav-fixed">
-        <?php session_start();?>
+        <?php
+            require_once('../php/sesion.php');
+            Sesion::Comprobar();
+        ?>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.php">Estructuras Metálicas</a>

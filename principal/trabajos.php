@@ -17,7 +17,10 @@
         <script src="../js/script_tabla.js" defer></script>
     </head>
     <body class="sb-nav-fixed">
-        <?php session_start();?>
+        <?php
+            require_once('../php/sesion.php');
+            Sesion::Comprobar();
+        ?>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.php">Estructuras Metálicas</a>
@@ -115,10 +118,13 @@
                             <a id="tab-registrar" class="nav-link active" aria-current="page" href="#">Registro</a>
                         </li>
                         <li class="nav-item">
-                            <a id="tab-detalles" class="nav-link" href="#">Detalles</a>
+                            <a id="tab-anadir" class="nav-link" href="#">Añadir Piezas</a>
                         </li>
                         <li class="nav-item">
                             <a id="tab-modificar" class="nav-link" href="#">Modificación</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="tab-detalles" class="nav-link" href="#">Detalles</a>
                         </li>
                     </ul>
                     <div class="container-fluid px-4">
@@ -128,8 +134,11 @@
                         </ol>
                         <div id="form-registrar">
                             <form id="formulario" action="../php/registroTrabajo.php" method="post" >
-                                <button type="submit" class="btn btn-primary">Generar nuevo <i class="fa fa-plus-square"></i></button>
-                            </form>                            
+                                <button type="submit" class="btn btn-primary">Crear Nuevo <i class="fa fa-plus-square"></i></button>
+                            </form>                 
+                        </div>
+                        <div id="form-anadir">
+                            <h4>Añadir</h4>
                         </div>
                         <div id="form-modificar">
                             <h4>Modificar</h4>
@@ -138,132 +147,134 @@
                             <h4>Detalles</h4>
                         </div>
                         <br>
-
                         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                             <div class="input-group">
                                 <input id="txtFiltro" class="form-control" type="text" placeholder="Buscar..." aria-label="Buscar..." aria-describedby="btnNavbarSearch" />
                                 <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                                 </div>
-                        </form>                        
-                        
+                        </form>    
                         <!-- -->
                         <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar</button>
-                        <?php
-                            require_once('../php/crud/trabajos.php');
-                            $trabajos = new Trabajos();
-                            $result = $trabajos->Consulta_Todos_sd();
-                            if(mysqli_num_rows($result) > 0)
-                            {
-                                $table = '
-                                <table id="tabla" class="table table-striped table-bordered" border=1 style="font-size: 85%;">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th scope="col">JOB ID</th>
-                                            <th scope="col">Fecha de registro</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot class="thead-dark">
-                                        <tr>
-                                            <th scope="col">JOB ID</th>
-                                            <th scope="col">Fecha de registro</th>
-                                        </tr>
-                                    </tfoot>
-                                ';
-                                while($row = mysqli_fetch_array($result))
+                        <div id="tabla-jobs">
+                            <?php
+                                require_once('../php/crud/trabajos.php');
+                                $trabajos = new Trabajos();
+                                $result = $trabajos->Consulta_Todos_sd();
+                                if(mysqli_num_rows($result) > 0)
                                 {
-                                    $table .= '
+                                    $table = '
+                                    <table id="tabla" class="table table-striped table-bordered" border=1 style="font-size: 85%;">
+                                        <thead class="thead-dark">
                                             <tr>
-                                                <td>'.$row["JOB ID"].'</td>
-                                                <td>'.$row["Fecha de registro"].'</td>
+                                                <th scope="col">JOB ID</th>
+                                                <th scope="col">Fecha de creación</th>
                                             </tr>
+                                        </thead>
+                                        <tfoot class="thead-dark">
+                                            <tr>
+                                                <th scope="col">JOB ID</th>
+                                                <th scope="col">Fecha de creación</th>
+                                            </tr>
+                                        </tfoot>
                                     ';
+                                    while($row = mysqli_fetch_array($result))
+                                    {
+                                        $table .= '
+                                                <tr>
+                                                    <td>'.$row["JOB ID"].'</td>
+                                                    <td>'.$row["Fecha de registro"].'</td>
+                                                </tr>
+                                        ';
+                                    }
+                                    $table .= '</table>';
+                                    echo $table;
                                 }
-                                $table .= '</table>';
-                                echo $table;
-                            }
-                        ?>
-                        <?php
-                            require_once('../php/crud/trabajos.php');
-                            $trabajos = new Trabajos();
-                            $result = $trabajos->Consulta_Todos();
-                            if(mysqli_num_rows($result) > 0)
-                            {
-                                $table = '
-                                <table id="tabla" class="table table-striped table-bordered" border=1 style="font-size: 85%;">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th scope="col">JOB ID</th>
-                                            <th scope="col">P.O.</th>
-                                            <th scope="col">ID PZ</th>
-                                            <th scope="col">ID JOB-PZ</th>
-                                            <th scope="col">QTY</th>
-                                            <th scope="col">DESCRIPTION</th>
-                                            <th scope="col">PROFILE</th>
-                                            <th scope="col">LENGHT</th>
-                                            <th scope="col">W(LBS)</th>
-                                            <th scope="col">CL</th>
-                                            <th scope="col">HEAT</th>
-                                            <th scope="col">FU</th>
-                                            <th scope="col">QC</th>
-                                            <th scope="col">W</th>
-                                            <th scope="col">CLEAN</th>
-                                            <th scope="col">FINISH</th>
-                                            <th scope="col">DD</th>
-                                            <th scope="col">NOTE</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot class="thead-dark">
-                                        <tr>
-                                            <th scope="col">JOB ID</th>
-                                            <th scope="col">P.O.</th>
-                                            <th scope="col">ID PZ</th>
-                                            <th scope="col">ID JOB-PZ</th>
-                                            <th scope="col">QTY</th>
-                                            <th scope="col">DESCRIPTION</th>
-                                            <th scope="col">PROFILE</th>
-                                            <th scope="col">LENGHT</th>
-                                            <th scope="col">W(LBS)</th>
-                                            <th scope="col">CL</th>
-                                            <th scope="col">HEAT</th>
-                                            <th scope="col">FU</th>
-                                            <th scope="col">QC</th>
-                                            <th scope="col">W</th>
-                                            <th scope="col">CLEAN</th>
-                                            <th scope="col">FINISH</th>
-                                            <th scope="col">DD</th>
-                                            <th scope="col">NOTE</th>
-                                        </tr>
-                                    </tfoot>
-                                ';
-                                while($row = mysqli_fetch_array($result))
+                            ?>
+                        </div>
+                        <div id="tabla-trabajos-det">
+                            <?php
+                                require_once('../php/crud/trabajos.php');
+                                $trabajos = new Trabajos();
+                                $result = $trabajos->Consulta_Todos();
+                                if(mysqli_num_rows($result) > 0)
                                 {
-                                    $table .= '
+                                    $table = '
+                                    <table id="tabla" class="table table-striped table-bordered" border=1 style="font-size: 85%;">
+                                        <thead class="thead-dark">
                                             <tr>
-                                                <td>'.$row["JOB ID"].'</td>
-                                                <td>'.$row["P.O."].'</td>
-                                                <td>'.$row["ID PZ"].'</td>
-                                                <td>'.$row["ID JOB-PZ"].'</td>
-                                                <td>'.$row["QTY"].'</td>
-                                                <td>'.$row["DESCRIPTION"].'</td>
-                                                <td>'.$row["PROFILE"].'</td>
-                                                <td>'.$row["LENGHT"].'</td>
-                                                <td>'.$row["W(LBS)"].'</td>
-                                                <td>'.$row["CL"].'</td>
-                                                <td>'.$row["HEAT"].'</td>
-                                                <td>'.$row["FU"].'</td>
-                                                <td>'.$row["QC"].'</td>
-                                                <td>'.$row["W"].'</td>
-                                                <td>'.$row["CLEAN"].'</td>
-                                                <td>'.$row["FINISH"].'</td>
-                                                <td>'.$row["DD"].'</td>
-                                                <td>'.$row["NOTE"].'</td>
+                                                <th scope="col">JOB ID</th>
+                                                <th scope="col">P.O.</th>
+                                                <th scope="col">ID PZ</th>
+                                                <th scope="col">ID JOB-PZ</th>
+                                                <th scope="col">QTY</th>
+                                                <th scope="col">DESCRIPTION</th>
+                                                <th scope="col">PROFILE</th>
+                                                <th scope="col">LENGHT</th>
+                                                <th scope="col">W(LBS)</th>
+                                                <th scope="col">CL</th>
+                                                <th scope="col">HEAT</th>
+                                                <th scope="col">FU</th>
+                                                <th scope="col">QC</th>
+                                                <th scope="col">W</th>
+                                                <th scope="col">CLEAN</th>
+                                                <th scope="col">FINISH</th>
+                                                <th scope="col">DD</th>
+                                                <th scope="col">NOTE</th>
                                             </tr>
+                                        </thead>
+                                        <tfoot class="thead-dark">
+                                            <tr>
+                                                <th scope="col">JOB ID</th>
+                                                <th scope="col">P.O.</th>
+                                                <th scope="col">ID PZ</th>
+                                                <th scope="col">ID JOB-PZ</th>
+                                                <th scope="col">QTY</th>
+                                                <th scope="col">DESCRIPTION</th>
+                                                <th scope="col">PROFILE</th>
+                                                <th scope="col">LENGHT</th>
+                                                <th scope="col">W(LBS)</th>
+                                                <th scope="col">CL</th>
+                                                <th scope="col">HEAT</th>
+                                                <th scope="col">FU</th>
+                                                <th scope="col">QC</th>
+                                                <th scope="col">W</th>
+                                                <th scope="col">CLEAN</th>
+                                                <th scope="col">FINISH</th>
+                                                <th scope="col">DD</th>
+                                                <th scope="col">NOTE</th>
+                                            </tr>
+                                        </tfoot>
                                     ';
+                                    while($row = mysqli_fetch_array($result))
+                                    {
+                                        $table .= '
+                                                <tr>
+                                                    <td>'.$row["JOB ID"].'</td>
+                                                    <td>'.$row["P.O."].'</td>
+                                                    <td>'.$row["ID PZ"].'</td>
+                                                    <td>'.$row["ID JOB-PZ"].'</td>
+                                                    <td>'.$row["QTY"].'</td>
+                                                    <td>'.$row["DESCRIPTION"].'</td>
+                                                    <td>'.$row["PROFILE"].'</td>
+                                                    <td>'.$row["LENGHT"].'</td>
+                                                    <td>'.$row["W(LBS)"].'</td>
+                                                    <td>'.$row["CL"].'</td>
+                                                    <td>'.$row["HEAT"].'</td>
+                                                    <td>'.$row["FU"].'</td>
+                                                    <td>'.$row["QC"].'</td>
+                                                    <td>'.$row["W"].'</td>
+                                                    <td>'.$row["CLEAN"].'</td>
+                                                    <td>'.$row["FINISH"].'</td>
+                                                    <td>'.$row["DD"].'</td>
+                                                    <td>'.$row["NOTE"].'</td>
+                                                </tr>
+                                        ';
+                                    }
+                                    $table .= '</table>';
+                                    echo $table;
                                 }
-                                $table .= '</table>';
-                                echo $table;
-                            }
-                        ?>
+                            ?>
+                        </div>
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
@@ -288,6 +299,6 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
         <script src="../js/script_FiltroTabla.js"></script>
-        <script src="../js/script_Reg-Mod.js"></script>
+        <script src="../js/script_Reg-Mod_job.js"></script>
     </body>
 </html>

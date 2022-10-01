@@ -12,6 +12,6 @@
         header('Location: ../principal/piezas.php?actualizacion=1');
     }
     else{
-        //header('Location: ../principal/piezas.php?actualizacion=0');
+        header('Location: ../principal/piezas.php?actualizacion=0');
     }
 ?>

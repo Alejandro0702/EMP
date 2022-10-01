@@ -12,7 +12,10 @@
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
-        <?php session_start();?>
+        <?php 
+            require_once('../php/sesion.php');
+            Sesion::Comprobar();
+        ?>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.php">Estructuras Metálicas</a>

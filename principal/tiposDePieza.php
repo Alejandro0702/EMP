@@ -16,7 +16,10 @@
         <script src="../js/script_tabla.js" defer></script>
     </head>
     <body class="sb-nav-fixed">
-        <?php session_start();?>
+        <?php
+            require_once('../php/sesion.php');
+            Sesion::Comprobar();
+        ?>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.php">Estructuras Metálicas</a>
@@ -129,6 +132,18 @@
                                 <br>
                                 <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
                                 <br><br>
+                                <input type="text"  name="medida1" id="medida1" placeholder="Medida..." maxlength="25">
+                                <select name="sel_medida1">
+                                    <option value = "pulgada">Pulgada (")</option>
+                                    <option value = "pie">Pie (')</option>
+                                </select>
+                                x 
+                                <input type="text"  name="medida2" id="medida2" placeholder="Medida..." maxlength="25">
+                                <select name="sel_medida2">
+                                    <option value = "pulgada">Pulgada (")</option>
+                                    <option value = "pie">Pie (')</option>
+                                </select>
+                                <br><br>
                                 <button type="submit" class="btn btn-primary">Registrar</button>
                             </form>
                         </div>
@@ -141,6 +156,18 @@
                                 <label for="descr">Descripción</label>
                                 <br>
                                 <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
+                                <br><br>
+                                <input type="text"  name="medida1" id="medida1" placeholder="Medida..." maxlength="25">
+                                <select name="sel_medida1">
+                                    <option value = "pulgada">Pulgada (")</option>
+                                    <option value = "pie">Pie (')</option>
+                                </select>
+                                x 
+                                <input type="text"  name="medida2" id="medida2" placeholder="Medida..." maxlength="25">
+                                <select name="sel_medida2">
+                                    <option value = "pulgada">Pulgada (")</option>
+                                    <option value = "pie">Pie (')</option>
+                                </select>
                                 <br><br>
                                 <button id="i_Actualizar" type="submit" class="btn btn-primary">Actualizar</button>
                             </form>
