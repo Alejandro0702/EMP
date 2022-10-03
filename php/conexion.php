@@ -1,5 +1,4 @@
 <?php
-
 class Conexion
 {
     public $SQL_SERVER;

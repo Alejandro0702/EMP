@@ -1,5 +1,7 @@
 <?php
-    include('../php/crud/tipoUsuario.php');
+    include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
+    require_once CRUD_PATH.'tipoUsuario.php';
+    //include('../php/crud/tipoUsuario.php');
     
     $tipoUsr = new tipoUsuario();
     if( !empty($_POST['descr']) && !empty($_POST['id']) ){

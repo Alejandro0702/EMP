@@ -1,5 +1,6 @@
 <?php
-    require_once('../php/conexion.php');
+    include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
+    require_once MODEL_PATH."conexion.php";
     class Usuario{
         public $id_usr;
         public $nom_usr;

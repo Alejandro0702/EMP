@@ -1,7 +1,9 @@
 <?php
     header("Content-type: application/json; charset=utf-8");
     $input = json_decode(file_get_contents("php://input"), true);
-    require_once('../php/crud/usuario.php');
+    include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
+    require_once CRUD_PATH.'usuario.php';
+    //require_once('../php/crud/usuario.php');
     $output = array("RESPUESTA" => "");
     $usr = new Usuario();
     if( !empty($input["ID"]) ){

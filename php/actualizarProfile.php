@@ -1,5 +1,7 @@
 <?php
-    include('../php/crud/tipoPieza.php');
+    include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
+    require_once CRUD_PATH.'tipoPieza.php';
+    //include('../php/crud/tipoPieza.php');
     
     $tipoPz = new TipoPieza();
     if( !empty($_POST['descr']) && !empty($_POST['id']) ){

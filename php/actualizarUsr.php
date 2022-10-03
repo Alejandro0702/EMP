@@ -1,5 +1,7 @@
 <?php
-    require_once('../php/crud/usuario.php');
+    include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
+    require_once CRUD_PATH.'usuario.php';
+    //require_once('../php/crud/usuario.php');
     $usr = new Usuario();
     if(
         !empty($_POST['nombre']) && !empty($_POST['apPat']) && !empty($_POST['apMat'])

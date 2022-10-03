@@ -7,9 +7,12 @@ td {border: 1px #DDD solid; padding: 5px; cursor: pointer;}
 
 #i_Eliminar{
     float: right;
-    margin: 5px;
+    margin: 0px 5px 7px 5px;
 }
 #i_Seleccionar{
     float: right;
-    margin: 5px;
+    margin: 0px 5px 7px 5px;
+}
+.derecha{
+    float: right;
 }

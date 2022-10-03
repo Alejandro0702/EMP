@@ -1,5 +1,7 @@
 <?php
-    require_once('../php/crud/tipoPieza.php');
+    include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
+    require_once CRUD_PATH.'tipoPieza.php';
+    //require_once('../php/crud/tipoPieza.php');
     $tipoPz = new TipoPieza();
     if( !empty($_POST['descr']) && !empty($_POST['medida1']) 
     && !empty($_POST['medida2']) && !empty($_POST['sel_medida1']) 
