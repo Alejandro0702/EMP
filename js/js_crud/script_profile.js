@@ -58,14 +58,30 @@ $('#i_Eliminar').on('click', function(e){
 
 });
 
-
 $('#i_Seleccionar').on('click', function(e){
     let id = $("#tabla tr.selected td:first-child").html();
     let desc = $("#tabla tr.selected td:nth-child(2)").html();
     document.formulario.id.value = id;
-    document.formulario.descr.value = desc;
+    RellenarCampos(desc);
 });
 
 $('#i_Actualizar').on('click', function(e){
     document.getElementById('id').disabled = false;
-});
+}); 
+
+function RellenarCampos(x){
+    let y = x.replace(' x ',' ');
+    let array =  y.split(' ');
+    document.formulario.descr.value = array[0];
+    if(array.length > 1){
+        if(array[1].includes("\'"))
+        document.getElementById("sel_medida1").selectedIndex = 1;
+        if(array[2].includes("\'"))
+            document.getElementById("sel_medida2").selectedIndex = 1;
+        array = array.map(function(ans){
+            return ans.replace("\"", "").replace("\'", "") ;
+        });
+        document.formulario.medida1.value = array[1];
+        document.formulario.medida2.value = array[2];
+    }
+}

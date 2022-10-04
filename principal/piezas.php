@@ -179,7 +179,7 @@
                                     </div>
                                 </div>                
                                 <!-- Submit button -->
-                                <button type="submit" class="btn btn-primary btn-block mb-2">Registrar</button>
+                                <button type="submit" class="btn btn-primary btn-block mb-2">Registrar   <i class="fa fa-check"></i></button>
                             </form>
                         </div>
                         <div id="form-modificar">
@@ -213,34 +213,34 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-outline">
-                                        <label class="form-label" for="form3Example4">Tipo de Pieza</label>
-                                                    <?php
-                                                    require_once('../php/crud/tipoPieza.php');
-                                                    $tipoPz = new TipoPieza();
-                                                    $result = $tipoPz->Consulta_Todos();
-                                                        if(mysqli_num_rows($result) > 0)
-                                                        {
-                                                            $select = '
-                                                                <select name = "sel_Tipo" class="select">
-                                                            ';
-                                                        while($row = mysqli_fetch_array($result))
-                                                        {
-                                                            $select .= '
-                                                            <option value="' .$row["ID"]. '">'.
-                                                                $row["Descripcion"].'
-                                                            </option>
-                                                            ';
-                                                        }
-                                                            $select .= '</select>';
-                                                            echo $select;
-                                                        }
-                                                        
-                                                    ?>
+                                            <label class="form-label" for="form3Example4">Tipo de Pieza</label>
+                                            <?php
+                                                include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
+                                                require_once CRUD_PATH.'tipoPieza.php';
+                                                $tipoPz = new TipoPieza();
+                                                $result = $tipoPz->Consulta_Todos();
+                                                if(mysqli_num_rows($result) > 0)
+                                                {
+                                                    $select = '
+                                                        <select name = "sel_Tipo" class="select">
+                                                    ';
+                                                while($row = mysqli_fetch_array($result))
+                                                {
+                                                    $select .= '
+                                                    <option value="' .$row["ID"]. '">'.
+                                                        $row["Descripcion"].'
+                                                    </option>
+                                                    ';
+                                                }
+                                                    $select .= '</select>';
+                                                    echo $select;
+                                                }            
+                                            ?>
                                         </div>
                                     </div>
                                 </div>                
                                 <!-- Submit button -->
-                                <button id="i_Actualizar" type="submit" class="btn btn-primary btn-block mb-2">Actualizar</button>
+                                <button id="i_Actualizar" type="submit" class="btn btn-primary btn-block mb-2">Actualizar   <i class="fa fa-refresh"></i></button>
                             </form>                            
                         </div>
                         
@@ -251,10 +251,14 @@
                                 <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                             </div>
                         </form>
-                        <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar</button>
+                        <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar  <i class="fa fa-times"></i></button>
+                        <form class="derecha mb-0" action="../php/reportes/reporte_pieza.php" method="post" target="_blank">
+                                <button class="btn btn-info">Imprimir <i class="fa fa-print"></i></button>
+                        </form>
                         <button id="i_Seleccionar" class="btn btn-success">Seleccionar</button>
                     <?php
-                        require_once('../php/crud/Pieza.php');
+                        include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
+                        require_once CRUD_PATH.'Pieza.php';
                         $pieza = new Pieza();
                         $result = $pieza->Consulta_Todos();
                         if(mysqli_num_rows($result) > 0)

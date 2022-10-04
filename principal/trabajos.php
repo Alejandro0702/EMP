@@ -154,10 +154,14 @@
                                 </div>
                         </form>    
                         <!-- -->
-                        <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar</button>
+                        <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar   <i class="fa fa-times"></i></button>
+                        <form class="derecha mb-0" action="../php/reportes/reporte_trabajo.php" method="post" target="_blank">
+                                <button class="btn btn-info">Imprimir <i class="fa fa-print"></i></button>
+                        </form>
                         <div id="tabla-jobs">
                             <?php
-                                require_once('../php/crud/trabajos.php');
+                                include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
+                                require_once CRUD_PATH.'trabajos.php';
                                 $trabajos = new Trabajos();
                                 $result = $trabajos->Consulta_Todos_sd();
                                 if(mysqli_num_rows($result) > 0)
@@ -193,7 +197,8 @@
                         </div>
                         <div id="tabla-trabajos-det">
                             <?php
-                                require_once('../php/crud/trabajos.php');
+                                include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
+                                require_once CRUD_PATH.'trabajos.php';
                                 $trabajos = new Trabajos();
                                 $result = $trabajos->Consulta_Todos();
                                 if(mysqli_num_rows($result) > 0)

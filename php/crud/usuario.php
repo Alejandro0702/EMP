@@ -13,18 +13,6 @@
         public $idTipo_usr;
         public $msj;
         private $tabla;
-        /*
-        id_usr		int primary key auto_increment,
-        nomb_usr	varchar(30) unique not null,
-        pswrd		varchar(15) not null,
-        nombre		varchar(25),
-        apellidoPat	varchar(25),
-        apellidoMat	varchar(25),
-        correo		varchar(50),
-        numero 		varchar(15),
-        idTipo_usr	int,
-        */
-
         function __construct()
         {
             $con = new Conexion();

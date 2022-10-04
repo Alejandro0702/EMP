@@ -144,11 +144,11 @@
                                     <option value = "pie">Pie (')</option>
                                 </select>
                                 <br><br>
-                                <button type="submit" class="btn btn-primary">Registrar</button>
+                                <button type="submit" class="btn btn-primary">Registrar  <i class="fa fa-check"></i></button>
                             </form>
                         </div>
                         <div id="form-modificar">
-                            <form action="../php/actualizarProfile.php" method="post" >
+                            <form name = "formulario" action="../php/actualizarProfile.php" method="post" >
                                 <label for="id">Número Identificador</label>
                                 <br>
                                 <input type="text" name="id" id="id" placeholder="ID" maxlength="25" disabled>
@@ -158,32 +158,36 @@
                                 <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
                                 <br><br>
                                 <input type="text"  name="medida1" id="medida1" placeholder="Medida..." maxlength="25">
-                                <select name="sel_medida1">
+                                <select id="sel_medida1" name="sel_medida1">
                                     <option value = "pulgada">Pulgada (")</option>
                                     <option value = "pie">Pie (')</option>
                                 </select>
                                 x 
                                 <input type="text"  name="medida2" id="medida2" placeholder="Medida..." maxlength="25">
-                                <select name="sel_medida2">
+                                <select id="sel_medida2" name="sel_medida2">
                                     <option value = "pulgada">Pulgada (")</option>
                                     <option value = "pie">Pie (')</option>
                                 </select>
                                 <br><br>
-                                <button id="i_Actualizar" type="submit" class="btn btn-primary">Actualizar</button>
+                                <button id="i_Actualizar" type="submit" class="btn btn-primary">Actualizar   <i class="fa fa-refresh"></i></button>
                             </form>
                         </div>
                        
                         <br>
-                        <form id="formulario" name="formulario" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                        <form id="form" name="form" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                             <div class="input-group">
                                 <input id="txtFiltro" class="form-control" type="text" placeholder="Buscar..." aria-label="Buscar..." aria-describedby="btnNavbarSearch" />
                                 <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                             </div>
                         </form>
-                        <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar</button>
+                        <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar   <i class="fa fa-times"></i></button>
+                        <form class="derecha mb-0" action="../php/reportes/reporte_tipo-pieza.php" method="post" target="_blank">
+                                <button class="btn btn-info">Imprimir <i class="fa fa-print"></i></button>
+                        </form>
                         <button id="i_Seleccionar" class="btn btn-success">Seleccionar</button>
                     <?php
-                        include('../php/crud/tipoPieza.php');
+                        include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
+                        require_once CRUD_PATH.'tipoPieza.php';
                         $t_Pieza = new TipoPieza();
                         $result = $t_Pieza->Consulta_Todos();
                         if(mysqli_num_rows($result) > 0)
@@ -217,7 +221,6 @@
                             $table .= '</table>';
                             echo $table;
                         }
-                        
                     ?>
                     </div>
                 </main>

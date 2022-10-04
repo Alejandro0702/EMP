@@ -1,4 +1,5 @@
 <?php
+    date_default_timezone_set('America/Los_Angeles');
     define('ROOT_PATH', $_SERVER['DOCUMENT_ROOT'].'/EMP/');
     define('MODEL_PATH', ROOT_PATH.'php/');
     define('CRUD_PATH', MODEL_PATH.'crud/');

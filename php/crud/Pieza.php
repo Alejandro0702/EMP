@@ -42,10 +42,10 @@
         public function Consulta_Todos(){
             $con = new Conexion();
             $con->Conectar();
-            $tabla = "pieza";
-            $sql = "SELECT id_pz as 'ID', descr as 'Descripcion',
-            lenght_pz as 'LENGHT', weight_pz as 'WEIGHT', id_profile_pz as 'PROFILE'
-             FROM ". $tabla. ";";
+            $tabla = " pieza ";
+            $sql = "SELECT id_pz as 'ID', pieza.descr as 'Descripcion',
+            lenght_pz as 'LENGHT', weight_pz as 'WEIGHT', profile_pieza.descr as 'PROFILE'
+             FROM ". $tabla. " INNER JOIN profile_pieza ON pieza.id_profile_pz = profile_pieza.id_profile_pz;";
             $result = $con->conexion->query($sql);
             if ($result->num_rows < 0) {
                 return null;

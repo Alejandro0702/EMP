@@ -8,7 +8,6 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Estructuras Metálicas - Tipos de Usuario</title>
-        
         <link rel="stylesheet" href="../../css/normalize.css">
         <link rel="stylesheet" href="../../css/reportes.css">
     </head>
@@ -16,45 +15,50 @@
     <?php
         include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
         require_once CSS_PATH.'encabezado.php';
-        include CRUD_PATH.'tipoUsuario.php';
         echo '
         <div class="header-text text-center">
-            <h4>Reporte de tipos de usuario</h4>
+            <h4>Reporte de usuarios</h4>
         </div>
         <br>
         ';
-        $tipoUsr = new tipoUsuario();
-        $result = $tipoUsr->Consulta_Todos();
+        require_once CRUD_PATH.'usuario.php';
+        $usr = new Usuario();
+        $result = $usr->Consulta_Todos();
         if(mysqli_num_rows($result) > 0)
         {
             $table = '
-            <table id="tabla_" class="table table-sm table-striped table-bordered" border=1>
+            <table id="tabla" border=1 class="table table-striped table-bordered">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col"> ID </th>
-                        <th scope="col">Descripción</th>            
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Contraseña</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido Paterno</th>
+                        <th scope="col">Apellido Materno</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Tipo de Usuario</th>
                     </tr>
                 </thead>
-                
             ';
             while($row = mysqli_fetch_array($result))
             {
-                $table .= '
-                        <tr>
-                            <td >'.$row["ID"].'</td>
-                            <td >'.$row["Descripcion"].'</td>
-                        </tr>
-                    
-                ';
-            }
             $table .= '
-                    <tfoot class="thead-dark">
-                    <tr>
-                        <th scope="col"> ID </th>
-                        <th scope="col">Descripción</th>
-                    </tr>
-                </tfoot>
-            </table>';
+                <tr>
+                    <td>'.$row["ID"].'</td>
+                    <td>'.$row["Usuario"].'</td>
+                    <td>'.$row["Contraseña"].'</td>
+                    <td>'.$row["Nombre"].'</td>
+                    <td>'.$row["Apellido Paterno"].'</td>
+                    <td>'.$row["Apellido Materno"].'</td>
+                    <td>'.$row["Correo"].'</td>
+                    <td>'.$row["Teléfono"].'</td>
+                    <td>'.$row["Tipo de Usuario"].'</td>
+                </tr>
+            ';
+            }
+            $table .= '</table>';
             echo $table;
         }
     ?>
@@ -64,5 +68,5 @@
     $html = ob_get_clean();
     include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
     require_once MODEL_PATH.'Generarpdf.php';
-    GenerarPdf::Generar($html, 'letter', 'Reporte_Tipos-De-Usuario_'.date('d-m-Y'));
+    GenerarPdf::Generar($html, 'letter', 'Reporte_Usuarios_'.date('d-m-Y'));
 ?>

@@ -133,7 +133,7 @@
                                 <br>
                                 <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
                                 <br><br>
-                                <button type="submit" class="btn btn-primary">Registrar</button>
+                                <button type="submit" class="btn btn-primary">Registrar  <i class="fa fa-check"></i></button>
                             </form>
                             <br>
                         </div>
@@ -147,7 +147,7 @@
                                 <br>
                                 <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
                                 <br><br>
-                                <button id="i_Actualizar" type="submit" class="btn btn-primary">Actualizar</button>
+                                <button id="i_Actualizar" type="submit" class="btn btn-primary">Actualizar   <i class="fa fa-refresh"></i></button>
                             </form>
                             <br>
                         </div>
@@ -160,7 +160,7 @@
                             </div>
                         </form>
 
-                        <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar</button>
+                        <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar   <i class="fa fa-times"></i></button>
                         <form class="derecha mb-0" action="../php/reportes/reporte_tipo-usr.php" method="post" target="_blank">
                                 <button class="btn btn-info">Imprimir <i class="fa fa-print"></i></button>
                         </form>
@@ -179,7 +179,7 @@
                                     <thead class="thead-dark">
                                         <tr>
                                             <th scope="col"> ID </th>
-                                            <th scope="col">Descripción</th>            
+                                            <th scope="col">Descripción</th>
                                         </tr>
                                     </thead>
                                     <tfoot class="thead-dark">

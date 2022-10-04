@@ -66,4 +66,4 @@ $('#i_Seleccionar').on('click', function(e){
 
 $('#i_Actualizar').on('click', function(e){
     document.getElementById('id').disabled = false;
-});
+}); 

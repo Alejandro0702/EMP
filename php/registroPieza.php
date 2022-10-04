@@ -15,7 +15,7 @@
         header('Location: ../principal/piezas.php?registro=1');
     }
     else{
-        //header('Location: ../principal/piezas.php?registro=0');
+        header('Location: ../principal/piezas.php?registro=0');
     }
     function Comilla($x){
         $arr = str_split($x);

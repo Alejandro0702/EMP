@@ -7,7 +7,7 @@ create table tipo_usuario(
 idTipo_usr		int primary key auto_increment,
 descr			varchar(25) unique
 );
-
+ 
 create table usuario(
 id_usr		int primary key auto_increment,
 nomb_usr	varchar(30) unique not null,

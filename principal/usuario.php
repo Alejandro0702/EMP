@@ -201,7 +201,7 @@
                                     </div>
                                 </div>
                                 <!-- Submit button -->
-                                <button type="submit" class="btn btn-primary btn-block mb-2">Registrar</button>
+                                <button type="submit" class="btn btn-primary btn-block mb-2">Registrar   <i class="fa fa-check"></i></button>
                                 
                             </form>
                         </div>
@@ -286,7 +286,7 @@
                                     </div>
                                 </div>
                                 <!-- Submit button -->
-                                <button id="i_Actualizar" type="submit" class="btn btn-primary btn-block mb-2">Actualizar</button>
+                                <button id="i_Actualizar" type="submit" class="btn btn-primary btn-block mb-2">Actualizar   <i class="fa fa-refresh"></i></button>
                             </form>
                             <br>
                         </div>
@@ -298,10 +298,14 @@
                                 <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                             </div>
                         </form>
-                        <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar</button>
-                        <button id="i_Seleccionar" class="btn btn-success">Seleccionar</button>
+                        <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar   <i class="fa fa-times"></i></button>
+                        <form class="derecha mb-0" action="../php/reportes/reporte_usuario.php" method="post" target="_blank">
+                                <button class="btn btn-info">Imprimir <i class="fa fa-print"></i></button>
+                        </form>
+                        <button id="i_Seleccionar" class="btn btn-success">Seleccionar </button>
                     <?php
-                        require_once('../php/crud/usuario.php');
+                        include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
+                        require_once CRUD_PATH.'usuario.php';
                         $usr = new Usuario();
                         $result = $usr->Consulta_Todos();
                         if(mysqli_num_rows($result) > 0)
