@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Estructuras Metálicas - Tipos de Usuario</title>
+        <title>Estructuras Metálicas - Trabajos</title>
         <link rel="stylesheet" href="../../css/normalize.css">
         <link rel="stylesheet" href="../../css/reportes.css">
     </head>
@@ -17,10 +17,9 @@
         require_once CSS_PATH.'encabezado.php';
         require_once CRUD_PATH.'trabajos.php';
         echo '
-        <div class="header-text text-center">
-            <h4>Reporte de trabajos</h4>
+        <div>
+            <h2>Reporte de trabajos</h2>
         </div>
-        <br>
         ';
         $trabajos = new Trabajos();
         $result = $trabajos->Consulta_Todos_sd();

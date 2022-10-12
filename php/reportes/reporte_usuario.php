@@ -16,10 +16,9 @@
         include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
         require_once CSS_PATH.'encabezado.php';
         echo '
-        <div class="header-text text-center">
-            <h4>Reporte de usuarios</h4>
+        <div>
+            <h2>Reporte de usuarios</h2>
         </div>
-        <br>
         ';
         require_once CRUD_PATH.'usuario.php';
         $usr = new Usuario();

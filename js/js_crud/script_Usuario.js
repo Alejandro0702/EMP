@@ -56,7 +56,7 @@ $('#i_Eliminar').on('click', function(e){
     })();
 
 });
-
+ 
 $('#i_Seleccionar').on('click', function(e){
     document.formulario.id.value = $("#tabla tr.selected td:first-child").html();
     document.formulario.nomUsr.value = $("#tabla tr.selected td:nth-child(2)").html();
@@ -67,21 +67,18 @@ $('#i_Seleccionar').on('click', function(e){
     document.formulario.email.value = $("#tabla tr.selected td:nth-child(7)").html();
     document.formulario.tel.value = $("#tabla tr.selected td:nth-child(8)").html();
     let x = $("#tabla tr.selected td:nth-child(9)").html();
-    
+    console.log(x);
     let sel = document.getElementById('sel_Tipo');
-    sel.options.forEach(element => console.log(element));    
-    $("#sel_Tipo option").each(function() {
-        let y = $(this).text()
-        alert(typeof(y));
-        if(x == y){
-            let i = $(this).attr('value');
-            document.formulario.sel_Tipo.options[i];
-        }
-        //alert('opcion '+$(this).text()+' valor '+ $(this).attr('value'))
-    });
-    //document.formulario.sel_Tipo.value = 
+    sel.selectedIndex = Seleccionar(sel, x);
 });
 
 $('#i_Actualizar').on('click', function(e){
     document.getElementById('id').disabled = false;
 });
+function Seleccionar(sel, x){
+    for (let i = 0; i < sel.length; i++)
+        if(sel.options[i].text == x)
+            return i;
+}
+
+//<i class="fa fa-eye"></i>

@@ -14,11 +14,6 @@
             $con = new Conexion();
         }
         public function Registrar($obj){
-            /*
-                MEJORAS:
-                    PARA REGISTRAR MEDIDA DE PIE (COMILLA SIMPLE: ')
-                    ES NECESARIO PONER DOS COMILLAS SIMPLES O MARCA ERROR
-            */
             $con = new Conexion();
             $con->Conectar();
             $tabla = "pieza";

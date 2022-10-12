@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Estructuras Metálicas - Tipos de Usuario</title>
+        <title>Estructuras Metálicas - Piezas</title>
         <link rel="stylesheet" href="../../css/normalize.css">
         <link rel="stylesheet" href="../../css/reportes.css">
     </head>
@@ -17,10 +17,9 @@
         require_once CSS_PATH.'encabezado.php';
         require_once CRUD_PATH.'Pieza.php';
         echo '
-        <div class="header-text text-center">
-            <h4>Reporte de piezas</h4>
+        <div>
+            <h2>Reporte de piezas</h2>
         </div>
-        <br>
         ';
         $pieza = new Pieza();
         $result = $pieza->Consulta_Todos();

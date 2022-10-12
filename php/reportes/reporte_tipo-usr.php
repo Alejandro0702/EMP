@@ -10,7 +10,7 @@
         <title>Estructuras Metálicas - Tipos de Usuario</title>
         
         <link rel="stylesheet" href="../../css/normalize.css">
-        <link rel="stylesheet" href="../../css/reportes.css">
+        
     </head>
     <body>
     <?php
@@ -19,17 +19,16 @@
         include CRUD_PATH.'tipoUsuario.php';
         echo '
         <div class="header-text text-center">
-            <h4>Reporte de tipos de usuario</h4>
+            <h2>Reporte de tipos de usuario</h2>
         </div>
-        <br>
         ';
         $tipoUsr = new tipoUsuario();
         $result = $tipoUsr->Consulta_Todos();
         if(mysqli_num_rows($result) > 0)
         {
             $table = '
-            <table id="tabla_" class="table table-sm table-striped table-bordered" border=1>
-                <thead class="thead-dark">
+            <table id="tabla">
+                <thead>
                     <tr>
                         <th scope="col"> ID </th>
                         <th scope="col">Descripción</th>            
@@ -48,7 +47,7 @@
                 ';
             }
             $table .= '
-                    <tfoot class="thead-dark">
+                    <tfoot>
                     <tr>
                         <th scope="col"> ID </th>
                         <th scope="col">Descripción</th>

@@ -17,8 +17,7 @@
     </head>
     <body class="sb-nav-fixed">
         <?php
-            require_once('../php/sesion.php');
-            Sesion::Comprobar();
+            include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
         ?>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
@@ -186,7 +185,6 @@
                         </form>
                         <button id="i_Seleccionar" class="btn btn-success">Seleccionar</button>
                     <?php
-                        include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
                         require_once CRUD_PATH.'tipoPieza.php';
                         $t_Pieza = new TipoPieza();
                         $result = $t_Pieza->Consulta_Todos();

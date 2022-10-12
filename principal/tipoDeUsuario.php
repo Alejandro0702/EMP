@@ -17,8 +17,7 @@
     </head>
     <body class="sb-nav-fixed">
         <?php
-            require_once('../php/sesion.php');
-            Sesion::Comprobar();
+            include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
         ?>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
@@ -168,7 +167,6 @@
                         
                         <!-- -->
                         <?php
-                            include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
                             include CRUD_PATH.'tipoUsuario.php';
                             $tipoUsr = new tipoUsuario();
                             $result = $tipoUsr->Consulta_Todos();

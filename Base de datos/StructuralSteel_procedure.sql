@@ -1,11 +1,47 @@
 use StructuralSteel_db;
-/******PROCEDIMIENTOS PARA GENERAR TRABAJO NUEVO******/
+/******PROCEDIMIENTO PARA GENERAR TRABAJO NUEVO******/
 DELIMITER //
 create procedure pr_Generar_Trabajo()
 BEGIN
 	insert into job values (null, curdate());
 END //
-CALL pr_Generar_Trabajo();
+/*CALL pr_Generar_Trabajo();*/
+/***** INSERTAR PIEZA EN TRABAJO*****/
+DELIMITER //
+create procedure pr_Insertar_Piezas_Trabajo(
+IN _id_job int(11),
+IN _id_pz int(11),
+IN _NOTE varchar(150)
+)
+BEGIN
+insert into job_art values
+	(null, _id_job, _id_pz, 1, '0%', '0%', '0%', '0%', '0%', '0%', '0%', curdate(), _NOTE);
+END //
+/*CALL pr_Insertar_Piezas_Trabajo(2, 2, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA');*/
+
+/*PENDIENTE MODIFICAR PIEZA******************
+DELIMITER //
+create procedure pr_Insertar_Piezas_Trabajo(
+IN _id_job int(11),
+IN _id_pz int(11), 
+IN _qty int(11), 
+IN _CL varchar(30), 
+IN _HEAT varchar(30), 
+IN _FU varchar(30),
+IN _QC varchar(30),
+IN _W varchar(30),
+IN _CLEAN varchar(30),
+IN _FINISH varchar(30),
+IN _DD date,
+IN _NOTE varchar(150)
+)
+BEGIN
+insert into job_art values
+	(null, _id_job, _id_pz, 1, _CL, _HEAT, _FU, _QC, _W, _CLEAN, _FINISH, _DD, _NOTE);
+END //
+
+*/
+
 
 /******PROCEDIMIENTOS PARA MODIFICACIONES******/
 /*PROCEDIMIENTO PARA MODIFICAR TIPOS DE USUARIO*/
@@ -15,7 +51,7 @@ BEGIN
 	update tipo_usuario set descr = _descr where idTipo_usr = _id;
 END //
 /*LLAMAR AL PROCEDIMIENTO*/
-call pr_Actualizar_TipoUsr(1, 'Administrador');
+/*call pr_Actualizar_TipoUsr(1, 'Administrador');*/
 
 /*PROCEDIMIENTO PARA MODIFICAR USUARIO*/
 DELIMITER //
@@ -43,7 +79,7 @@ BEGIN
     where id_usr = _id;
 END //
 /*LLAMAR AL PROCEDIMIENTO*/
-call pr_Actualizar_Usr(1, 'admin', 'admin', 'Perla', 'Abrego', 'Morales', 'correo@correo.com', '664664664', 1);
+/*call pr_Actualizar_Usr(1, 'admin', 'admin', 'Perla', 'Abrego', 'Morales', 'correo@correo.com', '664664664', 1);*/
 
 /*PROCEDIMIENTO PARA MODIFICAR TIPOS DE PIEZAS*/
 DELIMITER //
@@ -52,7 +88,7 @@ BEGIN
 	update profile_pieza set descr = _descr where id_profile_pz = _id;
 END //
 /*LLAMAR AL PROCEDIMIENTO*/
-call pr_Actualizar_ProfilePz(1, 'PL 1/8" x 10"');
+/*call pr_Actualizar_ProfilePz(1, 'PL 1/8" x 10"');*/
 
 
 /*PROCEDIMIENTO PARA MODIFICAR TIPOS DE PIEZAS*/
@@ -72,7 +108,7 @@ BEGIN
     id_profile_pz = _id_profile_pz
     where id_pz = _id_pz;
 END //
-call pr_Actualizar_Pieza(1, 'TEMPLATEEE', '1\'-2"' , '5', 1);
+/*call pr_Actualizar_Pieza(1, 'TEMPLATEEE', '1\'-2"' , '5', 1);*/
 
 
 /****** PROCEDIMIENTOS PARA ELIMINAR******/
@@ -84,7 +120,7 @@ CREATE PROCEDURE pr_Eliminar_Trabajos(
 BEGIN
 	delete from job where id_job = _id_job;
 END //
-CALL pr_Eliminar_Trabajos(1);
+/*CALL pr_Eliminar_Trabajos(1);*/
 
 /*PROCEDIMIENTO PARA ELIMINAR PIEZAS DE TRABAJOS*/
 DELIMITER //
@@ -95,7 +131,7 @@ CREATE PROCEDURE pr_Eliminar_Pz_Trab(
 BEGIN
 	delete from job_art where id_pz = _id_pz and id_job = _id_job;	
 END //
-CALL pr_Eliminar_Pz_Trab(1,3);
+/*CALL pr_Eliminar_Pz_Trab(1,3);*/
 
 
 /******PROCEDIMIENTOS PARA CONSULTAS******/
@@ -106,7 +142,7 @@ CREATE PROCEDURE pr_Consultar_tipo_usuario()
 BEGIN
 	SELECT idTipo_usr as 'ID', descr as 'Descripcion' FROM tipo_usuario;
 END //
-CALL pr_Consultar_tipo_usuario();
+/*CALL pr_Consultar_tipo_usuario();*/
 /*CONSULTA DE UN TIPO DE USUARIO ESPECIFICO*/
 DELIMITER //
 CREATE PROCEDURE pr_Consultar_tipo_usuario_id(
@@ -115,7 +151,7 @@ CREATE PROCEDURE pr_Consultar_tipo_usuario_id(
 BEGIN
 	SELECT idTipo_usr as 'ID', descr as 'Descripcion' FROM tipo_usuario where idTipo_usr = _id;
 END //
-CALL pr_Consultar_tipo_usuario_id(1);
+/*CALL pr_Consultar_tipo_usuario_id(1);*/
 
 
 /*CONSULTA DE TODOS LOS USUARIOS*/
@@ -130,7 +166,7 @@ BEGIN
 		INNER JOIN tipo_usuario on tipo_usuario.idTipo_usr = usuario.idTipo_usr
         order by usuario.id_usr asc;
 END //
-CALL pr_Consultar_usuario();
+/*CALL pr_Consultar_usuario();*/
 
 /*CONSULTA DE TODOS LOS USUARIOS POR ID*/
 DELIMITER //
@@ -147,7 +183,7 @@ BEGIN
         WHERE id_usr = _id_usr
         order by usuario.id_usr asc;
 END //
-CALL pr_Consultar_usuario_id(1);
+/*CALL pr_Consultar_usuario_id(1);*/
 
 /* CONSULTA DE TODOS PROFILE - PIEZA */
 DELIMITER //
@@ -155,7 +191,7 @@ create procedure pr_Consultar_profile_pieza()
 BEGIN
 	SELECT id_profile_pz as 'ID', descr as 'Descripcion' FROM profile_pieza;
 END //
-CALL pr_Consultar_profile_pieza();
+/*CALL pr_Consultar_profile_pieza();*/
 
 /* CONSULTA DE PROFILE - PIEZA POR ID*/
 DELIMITER //
@@ -168,9 +204,9 @@ BEGIN
 		FROM profile_pieza
 		WHERE id_profile_pz = _id_profile_pz;
 END //
-CALL pr_Consultar_profile_pieza_id(1);
+/*CALL pr_Consultar_profile_pieza_id(1);
 CALL pr_Consultar_profile_pieza_id(2);
-CALL pr_Consultar_profile_pieza_id(3);
+CALL pr_Consultar_profile_pieza_id(3);*/
 
 /*CONSULTA DE PIEZAS*/
 DELIMITER //
@@ -180,7 +216,7 @@ BEGIN
 		lenght_pz as 'LENGHT', weight_pz as 'WEIGHT', id_profile_pz as 'PROFILE'
 		FROM pieza;
 END //
-CALL pr_Consultar_pieza();
+/*CALL pr_Consultar_pieza();*/
 
 /*CONSULTA DE PIEZAS POR ID*/
 DELIMITER //
@@ -193,9 +229,9 @@ BEGIN
 		FROM pieza
         WHERE id_pz = _id_pz;
 END //
-CALL pr_Consultar_pieza_id(1);
+/*CALL pr_Consultar_pieza_id(1);
 CALL pr_Consultar_pieza_id(2);
-CALL pr_Consultar_pieza_id(3);
+CALL pr_Consultar_pieza_id(3);*/
 
 /*CREACION DE PROCEDIMIENTO PARA CONSULTA DE TODOS LOS TRABAJOS SIN DETALLES */
 DELIMITER //
@@ -203,7 +239,7 @@ CREATE PROCEDURE pr_Consulta_Trabajos_sd()/*sin detalles*/
 BEGIN
 	select id_job as 'JOB ID', fechaRegistro as 'Fecha de registro' from job;
 END //
-CALL pr_Consulta_Trabajos_sd();
+/*CALL pr_Consulta_Trabajos_sd();*/
 
 /*CREACION DE PROCEDIMIENTO PARA CONSULTA DE TODOS LOS TRABAJOS SIN DETALLES POR ID*/
 DELIMITER //
@@ -230,7 +266,7 @@ BEGIN
 	INNER JOIN profile_pieza on profile_pieza.id_profile_pz = pieza.id_profile_pz
     ORDER BY job_art.id_job ASC;
 END //
-CALL pr_Consulta_Trabajos();
+/*CALL pr_Consulta_Trabajos();*/
 
 
 /*PROCEDIMIENTO PARA CONSULTA DE TRABAJOS CON DETALLES POR ID DEL TRABAJO*/
@@ -251,4 +287,4 @@ BEGIN
     WHERE job.id_job = _id_job
     ORDER BY job_art.id_job ASC;
 END //
-CALL pr_Consulta_Trabajos_id(1);
+/*CALL pr_Consulta_Trabajos_id(1);*/

@@ -17,8 +17,7 @@
     </head>
     <body class="sb-nav-fixed">
         <?php
-            require_once('../php/sesion.php');
-            Sesion::Comprobar();
+            include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
         ?>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
@@ -131,14 +130,14 @@
                                 <div class="row mb-2">
                                     <div class="col">
                                         <div class="form-outline">
-                                            <input name="nombre" type="text" id="form3Example1" class="form-control" />
                                             <label class="form-label" for="form3Example1">Nombre(s)</label>
+                                            <input name="nombre" type="text" id="form3Example1" class="form-control" placeholder="Nombre(s)"/>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-outline">
-                                            <input name="apPat" type="text" id="form3Example2" class="form-control" />
                                             <label class="form-label" for="form3Example2">Apellido Paterno</label>
+                                            <input name="apPat" type="text" id="form3Example2" class="form-control" placeholder="Apellido Paterno"/>
                                         </div>
                                     </div>
                                 </div>
@@ -146,37 +145,38 @@
                                 <div class="row mb-2">
                                     <div class="col">
                                         <div class="form-outline">
-                                            <input name="apMat" type="text" id="form3Example1" class="form-control" />
                                             <label class="form-label" for="form3Example1">Apellido Materno</label>
+                                            <input name="apMat" type="text" id="form3Example1" class="form-control" placeholder="Apellido Materno"/>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-outline">
-                                            <input name="tel" type="text" id="form3Example2" class="form-control" />
                                             <label class="form-label" for="form3Example2">Teléfono</label>
+                                            <input name="tel" type="text" id="form3Example2" class="form-control" placeholder="Teléfono"/>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Email input -->                      
                                 <div class="form-outline mb-2">
-                                    <input name="email" type="email" id="form3Example3" class="form-control" />
                                     <label class="form-label" for="form3Example3">Correo electrónico</label>
+                                    <input name="email" type="email" id="form3Example3" class="form-control" placeholder="Correo electrónico"/>
                                 </div>
                                 <div class="form-outline mb-2">
-                                    <input name="nomUsr" type="text" id="form3Example4" class="form-control" />
                                     <label class="form-label" for="form3Example4">Nombre de usuario</label>
+                                    <input name="nomUsr" type="text" id="form3Example4" class="form-control" placeholder="Nombre de Usuario"/>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col">
                                         <div class="form-outline">
-                                        <input name="pass" type="password" id="form3Example4" class="form-control" />
-                                        <label class="form-label" for="form3Example4">Contraseña</label>
+                                            <label class="form-label" for="form3Example4">Contraseña</label>
+                                            <input name="pass" type="password" id="form3Example4" class="form-control" placeholder="Contraseña"/>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-outline">
                                             <div class="col-12">
                                                 <label class="form-label" for="form3Example4">Tipo de Usuario</label>
+                                                    <br>
                                                     <?php
                                                     require_once('../php/crud/tipoUsuario.php');
                                                     $tipoUsr = new tipoUsuario();
@@ -216,14 +216,14 @@
                                 <div class="row mb-2">
                                     <div class="col">
                                         <div class="form-outline">
-                                            <input name="nombre" type="text" id="form3Example1" class="form-control" />
                                             <label class="form-label" for="form3Example1">Nombre(s)</label>
+                                            <input name="nombre" type="text" id="form3Example1" class="form-control" placeholder="Nombre(s)"/>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-outline">
-                                            <input name="apPat" type="text" id="form3Example2" class="form-control" />
                                             <label class="form-label" for="form3Example2">Apellido Paterno</label>
+                                            <input name="apPat" type="text" id="form3Example2" class="form-control" placeholder="Apellido Paterno"/>
                                         </div>
                                     </div>
                                 </div>
@@ -231,37 +231,38 @@
                                 <div class="row mb-2">
                                     <div class="col">
                                         <div class="form-outline">
-                                            <input name="apMat" type="text" id="form3Example1" class="form-control" />
                                             <label class="form-label" for="form3Example1">Apellido Materno</label>
+                                            <input name="apMat" type="text" id="form3Example1" class="form-control" placeholder="Apellido Materno"/>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-outline">
-                                            <input name="tel" type="text" id="form3Example2" class="form-control" />
                                             <label class="form-label" for="form3Example2">Teléfono</label>
+                                            <input name="tel" type="text" id="form3Example2" class="form-control" placeholder="Teléfono"/>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Email input -->                      
                                 <div class="form-outline mb-2">
-                                    <input name="email" type="email" id="form3Example3" class="form-control" />
                                     <label class="form-label" for="form3Example3">Correo electrónico</label>
+                                    <input name="email" type="email" id="form3Example3" class="form-control" placeholder="Correo electrónico"/>
                                 </div>
                                 <div class="form-outline mb-2">
-                                    <input name="nomUsr" type="text" id="form3Example4" class="form-control" />
                                     <label class="form-label" for="form3Example4">Nombre de usuario</label>
+                                    <input name="nomUsr" type="text" id="form3Example4" class="form-control" placeholder="Nombre de Usuario"/>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col">
                                         <div class="form-outline">
-                                        <input name="pass" type="password" id="form3Example4" class="form-control" />
-                                        <label class="form-label" for="form3Example4">Contraseña</label>
+                                            <label class="form-label" for="form3Example4">Contraseña</label>
+                                            <input name="pass" type="password" id="form3Example4" class="form-control" placeholder="Contraseña"/>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-outline">
                                             <div class="col-12">
                                                 <label class="form-label" for="form3Example4">Tipo de Usuario</label>
+                                                    <br>
                                                     <?php
                                                     require_once('../php/crud/tipoUsuario.php');
                                                     $tipoUsr = new tipoUsuario();

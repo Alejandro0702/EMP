@@ -1,5 +1,6 @@
+<?php include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php'); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,15 +13,82 @@
         <link href="css/styles.css" rel="stylesheet" />
         <link href="./css/style.css" rel="stylesheet" />
         <link href="../css/style_principal.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="../css/style_trabajos.css" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-        <script src="../js/script_tabla.js" defer></script>
+        
+        <!-- Data Table -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#tabla-pz').DataTable({
+                    language: {
+                        lengthMenu: 'Mostrando _MENU_ registros por página',
+                        zeroRecords: 'Sin registros encontrados - perdón',
+                        info: 'Mostrando página _PAGE_ de _PAGES_',
+                        infoEmpty: 'Sin registros disponibles',
+                        infoFiltered: '(Buscado entre _MAX_ registros)',
+                    },
+                });
+                
+                //Tabla seleccionar trabajo
+                $('#tabla_trab tfoot th').each(function () {
+                    var title = $(this).text();
+                    $(this).html('<input type="text" placeholder="Buscar ' + title + '" />');
+                });
+                $('#tabla_trab').DataTable({
+                    initComplete: function () {
+                        // Apply the search
+                        this.api()
+                            .columns()
+                            .every(function () {
+                                var that = this;
+            
+                                $('input', this.footer()).on('keyup change clear', function () {
+                                    if (that.search() !== this.value) {
+                                        that.search(this.value).draw();
+                                    }
+                                });
+                            });
+                    },
+
+                    language: {
+                        lengthMenu: 'Mostrando _MENU_ registros por página',
+                        zeroRecords: 'Sin registros encontrados - perdón',
+                        info: 'Mostrando página _PAGE_ de _PAGES_',
+                        infoEmpty: 'Sin registros disponibles',
+                        infoFiltered: '(Buscado entre _MAX_ registros)',
+                    },
+                    lengthMenu: [
+                        [5, 10],
+                        [5, 10],
+                    ],
+                });//DataTable
+
+    
+                
+                $("#tabla_trab tbody").on('click', 'tr',function(){
+                    $(this).addClass('selected').siblings().removeClass('selected');
+
+                    let x = $("#tabla_trab tr.selected td:first-child").html();
+                    $('#idJob').val(x);
+                });
+                var tableAnadir = $('#tabla-pz-anadir').DataTable({
+                    paging: false,
+                    ordering: true,
+                    info: false
+                });
+                $("#tabla-pz-anadir tbody").on('click', 'tr',function(){
+                    $(this).toggleClass('selected');
+                });
+                $('#quitar').click(function () {
+                    tableAnadir.row('.selected').remove().draw(false);
+                });
+            });
+        </script>
     </head>
     <body class="sb-nav-fixed">
-        <?php
-            require_once('../php/sesion.php');
-            Sesion::Comprobar();
-        ?>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.php">Estructuras Metálicas</a>
@@ -109,7 +177,6 @@
                 </nav>
             </div>
 
-
             <div id="layoutSidenav_content">
                 <main>
                     <!-- NAVEGACION SUPERIOR-->
@@ -127,40 +194,136 @@
                             <a id="tab-detalles" class="nav-link" href="#">Detalles</a>
                         </li>
                     </ul>
+
+                    <!-- CONTENEDOR DE ACCIONES-->
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Trabajos</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Trabajos registrados en el sistema</li>
-                        </ol>
+                        <!-- CREAR NUEVOS TRABAJOS-->
                         <div id="form-registrar">
-                            <form id="formulario" action="../php/registroTrabajo.php" method="post" >
+                            <h1 class="mt-4">Trabajos</h1>
+                            <ol class="breadcrumb mb-4">
+                                <li class="breadcrumb-item active">Trabajos registrados en el sistema</li>
+                            </ol>
+                            <form id="formulario-registrar" action="../php/registroTrabajo.php" method="post" >
                                 <button type="submit" class="btn btn-primary">Crear Nuevo <i class="fa fa-plus-square"></i></button>
-                            </form>                 
+                            </form>
+                            <br>
+                            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                                <div class="input-group">
+                                    <input id="txtFiltro" class="form-control" type="text" placeholder="Buscar..." aria-label="Buscar..." aria-describedby="btnNavbarSearch" />
+                                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                                    </div>
+                            </form>
+                            <!-- -->
+                            <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar   <i class="fa fa-times"></i></button>
+                            <form class="derecha mb-0" action="../php/reportes/reporte_trabajo.php" method="post" target="_blank">
+                                    <button class="btn btn-info">Imprimir <i class="fa fa-print"></i></button>
+                            </form>
                         </div>
+                        
+                        <!-- AÑADIR PIEZAS A TRABAJOS-->
                         <div id="form-anadir">
-                            <h4>Añadir</h4>
+                            <div id="formulario_selec_trab">
+                                <div id="formulario_principal">
+                                    <h1 class="mt-4">Trabajos</h1>
+                                    
+                                    <ol class="breadcrumb mb-4">
+                                        <li class="breadcrumb-item active">Añadir piezas a trabajos</li>
+                                    </ol>
+                                    <form id="formulario_anadir" name="formulario_anadir" action="" method="" >
+                                        <label for="idJob">Número de Trabajo</label>
+                                        <br>
+                                        <input type="text"  name="idJob" id="idJob" placeholder="Selecciona un Trabajo..." maxlength="5">
+                                        <br>
+                                        <label for="nota">Nota: </label>
+                                        <br>
+                                        <input type="text"  name="nota" id="nota" placeholder="Agrega una Nota..." maxlength="150">
+                                        <br><br>
+                                        <button id="btn_Anadir" name="btn_Anadir" type="submit" class="btn btn-primary">Añadir todos <i class="fa fa-check"></i></button>
+                                    </form>
+                                </div>
+                                <div id="tablas_trab_pz">
+                                    <h3>Selecciona un trabajo</h3>
+                                    <?php
+                                    require_once CRUD_PATH.'trabajos.php';
+                                    $trabajos = new Trabajos();
+                                    $result = $trabajos->Consulta_Todos_sd();
+                                    if(mysqli_num_rows($result) > 0)
+                                    {
+                                        $table = '
+                                        <table id="tabla_trab" class="table table-striped table-bordered" border=1 style="font-size: 85%;">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">JOB ID</th>
+                                                    <th scope="col">Fecha de creación</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                        ';
+                                        while($row = mysqli_fetch_array($result))
+                                        {
+                                            $table .= '
+                                                    <tr>
+                                                        <td>'.$row["JOB ID"].'</td>
+                                                        <td>'.$row["Fecha de registro"].'</td>
+                                                    </tr>
+                                            ';
+                                        }
+                                        $table .= '
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th scope="col">JOB ID</th>
+                                                    <th scope="col">Fecha de creación</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>';
+                                        echo $table;
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                            
+                            <br>
+                            <h5>Piezas Añadidas:</h5>
+                                <br>
+                                <button id="quitar" name="quitar" type="button" class="btn btn-danger">Quitar Pieza</button>
+                            <br><br>
+                            <table id="tabla-pz-anadir" border=1 class="table table-striped table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">DESCRIPCIÓN</th>
+                                        <th scope="col">LENGHT</th>
+                                        <th scope="col">WEIGHT</th>
+                                        <th scope="col">PROFILE</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <br>
+                            <button id="Seleccionar" name="Seleccionar" type="button" class="btn btn-secondary">Seleccionar</button>
                         </div>
+
+
+                        <!-- MODIFICAR TRABAJOS (AÑADIR O QUITAR PIEZAS)-->
                         <div id="form-modificar">
                             <h4>Modificar</h4>
                         </div>
+                        
+                        <!-- MODIFICAR PIEZAS DE TRABAJOS (PROCESO DE PRODUCCION DE LAS PIEZAS)-->
+                        <div id="form-modificar-piezas">
+                            <h4>Modificar Piezas</h4>
+                        </div>
+
+                        <!-- TRABAJOS CON DETALLES -->
                         <div id="form-detalles">
                             <h4>Detalles</h4>
                         </div>
+
                         <br>
-                        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                            <div class="input-group">
-                                <input id="txtFiltro" class="form-control" type="text" placeholder="Buscar..." aria-label="Buscar..." aria-describedby="btnNavbarSearch" />
-                                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                                </div>
-                        </form>    
-                        <!-- -->
-                        <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar   <i class="fa fa-times"></i></button>
-                        <form class="derecha mb-0" action="../php/reportes/reporte_trabajo.php" method="post" target="_blank">
-                                <button class="btn btn-info">Imprimir <i class="fa fa-print"></i></button>
-                        </form>
+                        
                         <div id="tabla-jobs">
                             <?php
-                                include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
                                 require_once CRUD_PATH.'trabajos.php';
                                 $trabajos = new Trabajos();
                                 $result = $trabajos->Consulta_Todos_sd();
@@ -193,6 +356,45 @@
                                     $table .= '</table>';
                                     echo $table;
                                 }
+                            ?>
+                        </div>
+                        <div id="tabla-piezas">
+                            <?php
+                            require_once CRUD_PATH.'Pieza.php';
+                            $pieza = new Pieza();
+                            $result = $pieza->Consulta_Todos();
+                            if(mysqli_num_rows($result) > 0)
+                            {
+                                $table = '
+                                <table id="tabla-pz" name="tabla-pz" border=1 class="display">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Descripción</th>
+                                            <th scope="col">LENGHT</th>
+                                            <th scope="col">WEIGHT</th>
+                                            <th scope="col">PROFILE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                ';
+                                while($row = mysqli_fetch_array($result))
+                                {
+                                $table .= '
+                                    <tr>
+                                        <td>'.$row["ID"].'</td>
+                                        <td>'.$row["Descripcion"].'</td>
+                                        <td>'.$row["LENGHT"].'</td>
+                                        <td>'.$row["WEIGHT"].'</td>
+                                        <td>'.$row["PROFILE"].'</td>
+                                    </tr>
+                                ';
+                                }
+                                $table .= '
+                                    </tbody>
+                                </table>';
+                                echo $table;
+                            }
                             ?>
                         </div>
                         <div id="tabla-trabajos-det">
@@ -303,7 +505,10 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
-        <script src="../js/script_FiltroTabla.js"></script>
+        <script src="../js/script_filtros_Trabajos.js"></script>
+        <script src="../js/script_tabla_trabajos.js"></script>
         <script src="../js/script_Reg-Mod_job.js"></script>
+        <script src="../js/js_crud/script_trabajos.js"></script>
+        
     </body>
 </html>

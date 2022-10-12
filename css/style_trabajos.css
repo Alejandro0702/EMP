@@ -1,0 +1,27 @@
+#formulario_selec_trab{
+    display: inline-block;
+    border-bottom: black;
+    border: 1px;
+    width: 100%;
+    height: auto;
+    max-height: 512px;
+    text-align: left;
+}
+
+#formulario_principal{
+    width: 25%;
+    float: left;
+    display: inline;
+    position: relative;
+}
+#tablas_trab_pz{
+    margin-top: 4%;
+    display: inline;
+    float: right;
+    width: 75%;
+    
+    position: relative;
+}
+h3{
+    text-align: left;
+}

@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include("conexion.php");	//Se incluye el archivo conexion.php, ahí esta la clase Conexion
+	include_once("conexion.php");	//Se incluye el archivo conexion.php, ahí esta la clase Conexion
 	$login = new Conexion();	//Creacion de objeto Conexion
 	$login->Conectar();			//Conexión a Base de datos
 	mysqli_select_db($login->conexion, $login->SQL_DB) or die("Problemas para conectar con la base de datos");
