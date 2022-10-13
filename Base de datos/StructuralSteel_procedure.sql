@@ -271,11 +271,11 @@ END //
 
 /*PROCEDIMIENTO PARA CONSULTA DE TRABAJOS CON DETALLES POR ID DEL TRABAJO*/
 DELIMITER //
-CREATE PROCEDURE pr_Consulta_Trabajos_id(
+drop PROCEDURE pr_Consulta_Trabajos_id(
 	IN _id_job INT
 )
 BEGIN
-	select job_art.id_job_art, job.fechaRegistro as 'P.O.', job_art.id_job as 'JOB ID', job_art.qty as 'QTY', job_art.id_pz as 'ID PZ', 
+	select job_art.id_job_art as 'ID JOB-PZ', job.fechaRegistro as 'P.O.', job_art.id_job as 'JOB ID', job_art.qty as 'QTY', job_art.id_pz as 'ID PZ', 
 	pieza.descr as 'DESCRIPTION', profile_pieza.descr as 'PROFILE',
 	pieza.lenght_pz as 'LENGHT', pieza.weight_pz AS 'W(LBS)',
 	job_art.CL, job_art.HEAT, job_art.FU, job_art.QC, job_art.W,

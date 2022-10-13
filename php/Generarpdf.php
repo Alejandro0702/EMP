@@ -15,5 +15,16 @@ class GenerarPdf
         $dompdf->render();
         $dompdf->stream($nombre, array("Attachment" => false ));
     }
+    static function Generar_Orientacion($html, $tipoHoja, $orientacion, $nombre){
+        $dompdf = new Dompdf();
+        $options = $dompdf->getOptions();
+        $options->set(array('isRemoteEnabled' => true )); //mostrar imagenes
+        $dompdf->setOptions($options);
+        $dompdf->loadHtml($html);
+        //$dompdf->setPaper($tipoHoja);
+        $dompdf->setPaper($tipoHoja, $orientacion);
+        $dompdf->render();
+        $dompdf->stream($nombre, array("Attachment" => false ));
+    }
 }
 ?>

@@ -62,8 +62,6 @@ window.addEventListener('DOMContentLoaded', event => {
 
 
 
-
-
 $( ".input" ).focusin(function() {
     $( this ).find( "span" ).animate({"opacity":"0"}, 200);
   });

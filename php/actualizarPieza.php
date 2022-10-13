@@ -1,7 +1,6 @@
 <?php
     include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
     require_once CRUD_PATH.'Pieza.php';
-    //require_once('../php/crud/Pieza.php');
     $pieza = new Pieza();
     if( !empty($_POST['id']) && !empty($_POST['descr']) && !empty($_POST['long']) &&
         !empty($_POST['peso'])  && !empty($_POST['sel_Tipo'])){

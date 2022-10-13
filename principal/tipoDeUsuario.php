@@ -14,6 +14,9 @@
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
         <script src="../js/script_tabla.js" defer></script>
+        <!-- Data Table -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
     </head>
     <body class="sb-nav-fixed">
         <?php

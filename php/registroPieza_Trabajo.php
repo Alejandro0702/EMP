@@ -17,7 +17,7 @@
             }
             $output["RESPUESTA"] = "correcto";
         } catch (\Throwable $th) {
-            $output["RESPUESTA"] = "error Catch". $th;
+            $output["RESPUESTA"] = "Error al añadir piezas";
         }
     }
     else{

@@ -1,4 +1,4 @@
-//Añade piezas a la lista principal del formulario  
+//Añade piezas a la lista principal del formulario
 $('#formulario_anadir').on('submit', function(e){
     e.preventDefault();
     let idJ = document.formulario_anadir.idJob.value;
