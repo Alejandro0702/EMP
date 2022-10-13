@@ -1,0 +1,62 @@
+EMP.
+Archivos:
+    index.html: login.
+    config.php: Archivo de configuración de rutas de los directorios. También comprueba que la sesión ha sido iniciada.
+
+Directorios:
+1. Base de datos
+    Archivos:
+    BD-Modelo Relacional.png: Diagrama relacional de la base de datos.
+    StructuralSteel_db.sql: Tablas de la base de datos e inserciones.
+    StructuralSteel_procedure.sql: Procedimientos para realizar inserciones, eliminar registros, consultas y modificaciones.
+2. css
+    Archivos:
+    Animate.css: Animaciones para el login *Aun no implementada*.
+    normalize.css: mantiene los estilos visuales (diseño) similares entre todos los navegadores.
+    style_principal.css: estilos para las tablas, seleccion de filas de las tablas, alineacion de Botones eliminar y seleccionar.
+    style_trabajos.css: Estilos para los formularios, tablas y botones del modulo  de trabajos.
+    style.css: estilo para login.
+3. img
+    EMP logo.jpg: logo de la empresa.
+    Arch.jpg: imagen de fondo de login.
+4.js
+    Archivos:
+    script_FiltroTabla.js: script para el buscador (filtro de datos) de las tablas.
+    script_login.js: script para login: muestra mensaje de error.
+    script_Reg-Mod.js: script para desactivar y activar divs, tablas, botones.
+    script_Reg-Mod_Job.js:script para desactivar y activar divs, tablas, botones en el modulo trabajos.
+    script_tabla.js: script para poder seleccionar un elemento de la tabla y eliminar un dato.
+    script_tabla_trabajos.js: script para poder seleccionar un elemento de la tabla y eliminar un dato del modulo trabajos. También agrega las piezas seleccionadas de abajo a la tabla de arriba.
+    scripts.js: script para los menus del modulo principal.
+    4.1 js_crud
+        Cada archivo realiza una peticion llamada Fetch a un archivo especifico de php. 
+        La peticion se realiza para eliminar el elemento seleccionado de la tabla.
+        También obtiene los datos de cada celda de la fila seleccionada de la tabla, para rellenar
+        los campos del formulario, esto para realizar las modificaciones deseadas.
+        Archivos:
+        script_pieza.js: realiza peticion Fetch a /php/eliminarPieza.php
+        script_profile.js realiza peticion Fetch a /php/eliminarProfile.php
+        script_TipoUsr.js realiza peticion Fetch a /php/eliminarTipoUsr.php
+        script_trabajos.js **Este realiza peticion Fetch para registrar** a /php/registroPieza_Trabajo.php
+        script_Usuario.js realiza peticion Fetch a /php/eliminarUsr.php
+5.php
+    Archivos:
+    actualizar...: Recibe la peticion y datos mediante el metodo POST , se crea un objeto de la clase correspondiente, se definen los atributos del objeto, y se actualiza en la base de datos.
+    conexion: Configuracion de la base de datos, Realiza la conexión y desconexion a la base de datos
+    eliminar...: Recibe la peticion y datos por una petición FETCH mediante el metodo POST, se crea un objeto de la clase correspondiente, se define el atributo id del objeto, y se elimina de la base de datos.
+    Generarpdf: Clase que permite configurar y crear el archivo pdf.
+    login:  Recibe la peticion y datos mediante el metodo POST, realiza y valida la consulta de usuario y contraseña.
+    logout: Elimina datos de la sesión actual del servidor y del navegador.
+    registro...: Recibe la peticion y datos mediante el metodo POST , se crea un objeto de la clase correspondiente, se definen los atributos del objeto, y se registra en la base de datos.
+    sesion: Comprueba que la sesión está iniciada o no permite ingresar
+    5.1 crud
+        Clases que contienen los métodos para realizar CRUD (Create, Read, Update, Delete),
+        Cada clase es una tabla de la base de datos, así como sus atributos.
+    5.2 libreria
+        Libreria DOMPDF, esta libreria contiene los metodos necesarios para realizar documentos pdf.
+    5.3 php_css
+        Contiene un archivo con los estilos de diseño del encabezado de los reportes.
+    5.4 reportes
+        Cada archivo es donde se genera un reporte en específico.
+6.principal
+    Archivos que contien los modulos del sistema.
