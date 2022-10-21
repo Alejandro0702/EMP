@@ -97,11 +97,11 @@
                             <td>'.$row["W(LBS)"].'</td>
                             <td>'.$row["CL"].'</td>
                             <td>'.$row["HEAT"].'</td>
-                            <td>'.$row["FU"].'</td>
-                            <td>'.$row["QC"].'</td>
-                            <td>'.$row["W"].'</td>
-                            <td>'.$row["CLEAN"].'</td>
-                            <td>'.$row["FINISH"].'</td>
+                            <td '.Color($row["FU"]).'>'.$row["FU"].'%</td>
+                            <td '.Color($row["QC"]).'>'.$row["QC"].'%</td>
+                            <td '.Color($row["W"]).'>'.$row["W"].'%</td>
+                            <td '.Color($row["CLEAN"]).'>'.$row["CLEAN"].'%</td>
+                            <td '.Color($row["FINISH"]).'>'.$row["FINISH"].'%</td>
                             <td>'.$row["DD"].'</td>
                             <td>'.$row["NOTE"].'</td>
                         </tr>
@@ -109,6 +109,42 @@
             }
             $table .= '</table>';
             echo $table;
+        }
+        function Color($x){
+            $num = str_replace('%','', $x);
+            $color = '';
+            switch($num){
+                case 10:
+                case 15:
+                case 20:
+                case 25:
+                    $color = 'bgcolor="#cfffca"';
+                    break;
+                case 30:
+                case 35:
+                case 40:
+                case 45:
+                    $color = 'bgcolor="#a5eea0"';
+                    break;
+                case 50:
+                case 55:
+                case 60:
+                case 65:
+                    $color = 'bgcolor="#77dd77"';
+                    break;
+                case 70:
+                case 75:
+                case 80:
+                case 85:
+                    $color = 'bgcolor="#5dc460"';
+                    break;
+                case 90:
+                case 95:
+                case 100:
+                    $color = 'bgcolor="#42ab49"';
+                    break;
+            }
+            return $color;
         }
     ?>
     </body>

@@ -129,7 +129,7 @@
                         </ol>
 
                         <div id="form-registrar">
-                            <form action="../php/registroTipoPieza.php" method="post" >
+                            <form action="../php/registroTipoPieza.php" method="post" class="Borde-Form">
                                 <label for="descr">Descripción</label>
                                 <br>
                                 <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
@@ -150,7 +150,7 @@
                             </form>
                         </div>
                         <div id="form-modificar">
-                            <form name = "formulario" action="../php/actualizarProfile.php" method="post" >
+                            <form name = "formulario" action="../php/actualizarProfile.php" method="post" class="Borde-Form">
                                 <label for="id">Número Identificador</label>
                                 <br>
                                 <input type="text" name="id" id="id" placeholder="ID" maxlength="25" disabled>

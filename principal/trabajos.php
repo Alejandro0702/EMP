@@ -8,6 +8,8 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Estructuras Metálicas - Trabajos</title>
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="css/styles.css" rel="stylesheet" />
@@ -139,6 +141,7 @@
                             <form id="formulario-registrar" action="../php/registroTrabajo.php" method="post" >
                                 <button type="submit" class="btn btn-primary">Crear Nuevo <i class="fa fa-plus-square"></i></button>
                             </form>
+                            <hr>
                             <br>
                             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                                 <div class="input-group">
@@ -155,7 +158,7 @@
                         
                         <!-- AÑADIR PIEZAS A TRABAJOS-->
                         <div id="form-anadir">
-                            <div id="formulario_selec_trab">
+                            <div id="formulario_selec_trab" >
                                 <div id="formulario_principal">
                                     <h1 class="mt-4">Trabajos</h1>
                                     
@@ -216,6 +219,7 @@
 
                                 </div>
                             </div>
+                            
                             <br>
                             <h5>Piezas Añadidas:</h5>
                                 <button id="quitar" name="quitar" type="button" class="btn btn-danger">Quitar Pieza</button>
@@ -232,19 +236,148 @@
                                 </thead>
                                 <tbody></tbody>
                             </table>
+                            
                             <br>
+                            <hr>
                             <button id="Seleccionar" name="Seleccionar" type="button" class="btn btn-secondary">Seleccionar</button>
                         </div>
 
+
+
                         <!-- MODIFICAR TRABAJOS (AÑADIR O QUITAR PIEZAS)-->
                         <div id="form-modificar">
-                            <h4>Modificar</h4>
-                        </div>
-                        
-                        <!-- MODIFICAR PIEZAS DE TRABAJOS (PROCESO DE PRODUCCION DE LAS PIEZAS)-->
-                        <div id="form-modificar-piezas">
-                            <h4>Modificar Piezas</h4>
-                        </div>
+                            <div id="formulario_Rangos_tablas">
+                                <div id="formulario_Rangos">
+                                    <h1 class="mt-4">Trabajos</h1>
+                                    <ol class="breadcrumb mb-4">
+                                        <li class="breadcrumb-item active">Modificar piezas en producción</li>
+                                    </ol>
+                                    <form id="formulario_rangos" name="formulario_rangos" action="" method="">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="idJob_">Número de Trabajo</label><br>
+                                                <input type="text"  name="idJob_" id="idJob_" class="form-control" placeholder="Selecciona un Trabajo..." maxlength="5" disabled>
+                                            </div>
+                                            <div class="col">
+                                            <label for="idPz_">Pieza - Trabajo</label><br>
+                                            <input type="text"  name="idPz_" id="idPz_" class="form-control" placeholder="Pieza..." maxlength="5" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="CL">CL: </label><br>
+                                                <input type="text"  name="CL" id="CL" class="form-control" placeholder="CL..." maxlength="50">
+                                            </div>
+                                            <div class="col">
+                                                <label for="HEAT">HEAT: </label><br>
+                                                <input type="text"  name="HEAT" id="HEAT" class="form-control" placeholder="HEAT..." maxlength="50">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <!--Rangos-->
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="FU">FU: </label>
+                                                <span id="FU_SPAN"></span><br>
+                                                <input class="form-range" type="range" name="FU" id="FU" min="0" max="100" step="10" onchange="Valor_FU()">
+                                            </div>
+                                            <div class="col">
+                                                <label for="Q_C">Q.C.: </label>
+                                                <span id="Q_C_SPAN"></span><br>
+                                                <input class="form-range" type="range"  name="Q_C" id="Q_C" min="0" max="100" step="10" onchange="Valor_Q_C()">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="W">W: </label>
+                                                <span id="W_SPAN"></span><br>
+                                                <input class="form-range" type="range"  name="W" id="W" min="0" max="100" step="10" onchange="Valor_W()">
+                                            </div>
+                                            <div class="col">
+                                                <label for="CLEAN">CLEAN: </label>
+                                                <span id="CLEAN_SPAN"></span><br>
+                                                <input class="form-range" type="range"  name="CLEAN" id="CLEAN"  min="0" max="100" step="10" onchange="Valor_CLEAN()">
+                                            </div>
+                                        </div>
+                                        
+                                        <button id="btn_Mod" name="btn_Mod" type="button" class="btn btn-primary">Modificar  <i class="fa fa-check"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <hr>
+                            <?php
+                            require_once CRUD_PATH.'trabajos.php';
+                            $trabajos = new Trabajos();
+                            $result = $trabajos->Consulta_Todos();
+                            if(mysqli_num_rows($result) > 0)
+                            {
+                                $table = '
+                                <table id="tabla_det_res" class="table table-striped table-bordered" border=1 style="font-size: 85%;">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">JOB ID</th>
+                                            <th scope="col">ID JOB-PZ</th>
+                                            <th scope="col">ID PZ</th>
+                                            <th scope="col">DESCRIPTION</th>
+                                            <th scope="col">PROFILE</th>
+                                            <th scope="col">LENGHT</th>
+                                            <th scope="col">W(LBS)</th>
+                                            <th scope="col">CL</th>
+                                            <th scope="col">HEAT</th>
+                                            <th scope="col">FU</th>
+                                            <th scope="col">QC</th>
+                                            <th scope="col">W</th>
+                                            <th scope="col">CLEAN</th>
+                                            <th scope="col">FINISH</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot class="thead-dark">
+                                        <tr>
+                                            <th scope="col">JOB ID</th>
+                                            <th scope="col">ID JOB-PZ</th>
+                                            <th scope="col">ID PZ</th>
+                                            <th scope="col">DESCRIPTION</th>
+                                            <th scope="col">PROFILE</th>
+                                            <th scope="col">LENGHT</th>
+                                            <th scope="col">W(LBS)</th>
+                                            <th scope="col">CL</th>
+                                            <th scope="col">HEAT</th>
+                                            <th scope="col">FU</th>
+                                            <th scope="col">QC</th>
+                                            <th scope="col">W</th>
+                                            <th scope="col">CLEAN</th>
+                                            <th scope="col">FINISH</th>
+                                        </tr>
+                                    </tfoot>
+                                ';
+                                while($row = mysqli_fetch_array($result))
+                                {
+                                    $table .= '
+                                            <tr>
+                                                <td>'.$row["JOB ID"].'</td>
+                                                <td>'.$row["ID JOB-PZ"].'</td>
+                                                <td>'.$row["ID PZ"].'</td>
+                                                <td>'.$row["DESCRIPTION"].'</td>
+                                                <td>'.$row["PROFILE"].'</td>
+                                                <td>'.$row["LENGHT"].'</td>
+                                                <td>'.$row["W(LBS)"].'</td>
+                                                <td>'.$row["CL"].'</td>
+                                                <td>'.$row["HEAT"].'</td>
+                                                <td>'.$row["FU"].'%</td>
+                                                <td>'.$row["QC"].'%</td>
+                                                <td>'.$row["W"].'%</td>
+                                                <td>'.$row["CLEAN"].'%</td>
+                                                <td>'.$row["FINISH"].'%</td>
+                                            </tr>
+                                    ';
+                                }
+                                $table .= '</table>';
+                                echo $table;
+                            }
+                            ?>
+                        </div><!-- MODIFICAR TRABAJOS (AÑADIR O QUITAR PIEZAS)-->
+
+
 
                         <!-- IMPRIMIR TRABAJOS CON DETALLES -->
                         <div id="form-detalles">
@@ -252,20 +385,20 @@
                             <ol class="breadcrumb mb-4">
                                 <li class="breadcrumb-item active">Detalles de los trabajos</li>
                             </ol>
-                            <form id="formulario_detalles" name="formulario_detalles" action="../php/reportes/reporte_trabajo-detalles.php" method="POST" target="_blank">
+                            <form id="formulario_detalles" name="formulario_detalles" action="../php/reportes/reporte_trabajo-detalles.php" method="POST" target="_blank" >
                                 <label for="idJob">Número de Trabajo</label>
                                 <br>
-                                <input type="number"  name="idJob" id="idJob" placeholder="Escribe # de Trabajo para imprimir..." maxlength="5">
-                                <br>
+                                <input type="text"  name="idJob" id="idJob" placeholder="Escribe # de Trabajo para imprimir..." maxlength="5">
                                 <div class="form-check">
                                     <input name="printAll" class="form-check-input" type="checkbox" value="1" id="flexCheckChecked">
                                     <label class="form-check-label" for="flexCheckChecked">
                                         Imprimir todo
                                     </label>
                                 </div>
-                                <br><br>
-                                <button id="btn_imprimirDet" name="btn_imprimirDet" type="submit" class="btn btn-info">Imprimir <i class="fa fa-print"></i></button>
+                                
+                                <button id="btn_imprimirDet" name="btn_imprimirDet" type="submit" class="btn btn-primary">Imprimir <i class="fa fa-print"></i></button>
                             </form>
+                            <hr>
                         </div>
 
                         <br>
@@ -346,9 +479,7 @@
                             ?>
                         </div>
                         <div id="tabla-trabajos-det">
-
                             <?php
-                                include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
                                 require_once CRUD_PATH.'trabajos.php';
                                 $trabajos = new Trabajos();
                                 $result = $trabajos->Consulta_Todos();
@@ -416,11 +547,11 @@
                                                     <td>'.$row["W(LBS)"].'</td>
                                                     <td>'.$row["CL"].'</td>
                                                     <td>'.$row["HEAT"].'</td>
-                                                    <td>'.$row["FU"].'</td>
-                                                    <td>'.$row["QC"].'</td>
-                                                    <td>'.$row["W"].'</td>
-                                                    <td>'.$row["CLEAN"].'</td>
-                                                    <td>'.$row["FINISH"].'</td>
+                                                    <td>'.$row["FU"].'%</td>
+                                                    <td>'.$row["QC"].'%</td>
+                                                    <td>'.$row["W"].'%</td>
+                                                    <td>'.$row["CLEAN"].'%</td>
+                                                    <td>'.$row["FINISH"].'%</td>
                                                     <td>'.$row["DD"].'</td>
                                                     <td>'.$row["NOTE"].'</td>
                                                 </tr>

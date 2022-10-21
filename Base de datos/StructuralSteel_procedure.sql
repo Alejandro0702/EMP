@@ -15,33 +15,31 @@ IN _NOTE varchar(150)
 )
 BEGIN
 insert into job_art values
-	(null, _id_job, _id_pz, 1, '0%', '0%', '0%', '0%', '0%', '0%', '0%', curdate(), _NOTE);
+	(null, _id_job, _id_pz, 1, null, null, '0', '0', '0', '0', '0', curdate(), _NOTE);
 END //
 /*CALL pr_Insertar_Piezas_Trabajo(2, 2, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA');*/
 
-/*PENDIENTE MODIFICAR PIEZA******************
+PENDIENTE MODIFICAR PIEZA******************
 DELIMITER //
-create procedure pr_Insertar_Piezas_Trabajo(
-IN _id_job int(11),
-IN _id_pz int(11), 
-IN _qty int(11), 
+create procedure pr_Actualizar_Piezas_Trabajo(
+IN _id_job_art int(11), 
 IN _CL varchar(30), 
 IN _HEAT varchar(30), 
 IN _FU varchar(30),
 IN _QC varchar(30),
 IN _W varchar(30),
 IN _CLEAN varchar(30),
-IN _FINISH varchar(30),
-IN _DD date,
-IN _NOTE varchar(150)
+IN _FINISH varchar(30)
 )
 BEGIN
-insert into job_art values
-	(null, _id_job, _id_pz, 1, _CL, _HEAT, _FU, _QC, _W, _CLEAN, _FINISH, _DD, _NOTE);
+	update job_art
+    set
+    CL = _CL, HEAT = _HEAT, FU = _FU, QC = _QC,
+    W = _W, CLEAN = _CLEAN, FINISH = _FINISH 
+    where id_job_art = _id_job_art;
 END //
 
-*/
-
+/*CALL pr_Actualizar_Piezas_Trabajo (10, 'ok', 'Marca', '50', '50', '50', '50', '50');*/
 
 /******PROCEDIMIENTOS PARA MODIFICACIONES******/
 /*PROCEDIMIENTO PARA MODIFICAR TIPOS DE USUARIO*/
@@ -288,3 +286,23 @@ BEGIN
     ORDER BY job_art.id_job ASC;
 END //
 /*CALL pr_Consulta_Trabajos_id(1);*/
+
+
+DELIMITER //
+CREATE PROCEDURE pr_Consulta_Trabajos_id_pz(
+	IN _id_job INT
+)
+BEGIN
+	select job_art.id_job_art as 'ID JOB-PZ', job_art.id_job as 'JOB ID', job_art.id_pz as 'ID PZ', 
+	pieza.descr as 'DESCRIPTION', profile_pieza.descr as 'PROFILE',
+	pieza.lenght_pz as 'LENGHT', pieza.weight_pz AS 'W(LBS)',
+	job_art.CL, job_art.HEAT, job_art.FU, job_art.QC, job_art.W,
+	job_art.CLEAN, job_art.FINISH, job_art.DD, job_art.NOTE		
+	FROM job_art
+	INNER JOIN pieza on job_art.id_pz = pieza.id_pz
+    INNER JOIN job on job.id_job = job_art.id_job
+	INNER JOIN profile_pieza on profile_pieza.id_profile_pz = pieza.id_profile_pz
+    WHERE job.id_job = _id_job
+    ORDER BY job_art.id_job ASC;
+END //
+/*CALL pr_Consulta_Trabajos_id_pz(1);*/

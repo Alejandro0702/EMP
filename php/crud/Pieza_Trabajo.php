@@ -55,10 +55,38 @@
                 $obj->NOTE
             );";
         }
+        
+        public function Actualizar_Pieza($obj){
+            $con = new Conexion();
+            $con->Conectar();
+            
+            $sql = "CALL pr_Actualizar_Piezas_Trabajo (
+                ". $obj->id .",
+                '". $obj->CL."',
+                '".$obj->HEAT."',
+                '".$obj->FU."',
+                '".$obj->QC."',
+                '".$obj->W."',
+                '".$obj->CLEAN."',
+                '".  $this->Porcentaje($obj)."'
+            );";
+            if ($con->conexion->query($sql) === TRUE) {
+                $msj = '<script>console.log("Usuario actualizado correctamente ;)")</script>';
+                $msj = "Correcto";
+            } else {
+                $msj = "Error: " . $sql . "<br>" . $con->error;
+                $msj = "Error";
+            }
+            $con->Desconectar();
+        }
+        public function Porcentaje($obj){
+            return (($obj->FU + $obj->QC + $obj->W + $obj->CLEAN)/4);
+        }
+
 
         public function Eliminar($obj){
             
         }
-
+        
     }
 ?>

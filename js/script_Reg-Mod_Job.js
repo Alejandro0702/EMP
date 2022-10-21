@@ -2,7 +2,7 @@ var form_reg = document.getElementById('form-registrar');
 var form_mod = document.getElementById('form-modificar');
 var form_det = document.getElementById('form-detalles');
 var form_ana = document.getElementById('form-anadir');
-var form_det_pz = document.getElementById('form-modificar-piezas');
+//var form_det_pz = document.getElementById('form-modificar-piezas');
 
 var reg = document.getElementById('tab-registrar');
 var mod = document.getElementById('tab-modificar');
@@ -12,6 +12,9 @@ var ana = document.getElementById('tab-anadir');
 var tabla_jobs = document.getElementById('tabla-jobs');
 var tabla_det = document.getElementById('tabla-trabajos-det');
 var tabla_pieza = document.getElementById('tabla-piezas');
+
+
+
 
 //var btn_sel = document.getElementById('i_Seleccionar');
 var btn_quitar = document.getElementById('quitar');
@@ -27,7 +30,7 @@ window.onload = function(){
     tabla_jobs.style.display = 'block';
     tabla_det.style.display = 'none';
     tabla_pieza.style.display = 'none';
-    form_det_pz.style.display = 'none';
+    //form_det_pz.style.display = 'none';
     btn_quitar.style.float = 'right';
     //btn_sel.style.display = 'none';
 }
@@ -74,6 +77,7 @@ function Form_Mod(){
     det.className = 'nav-link';
     ana.className = 'nav-link';
     //btn_sel.style.display = 'block';
+    
 
     tabla_jobs.style.display = 'none';//Activa la tabla con detalle de todos los trabajos
     tabla_det.style.display = 'none';
@@ -96,3 +100,6 @@ function Form_Det(){
     tabla_det.style.display = 'block';
     tabla_pieza.style.display = 'none';
 }
+
+
+

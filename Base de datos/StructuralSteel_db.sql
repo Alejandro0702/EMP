@@ -93,6 +93,7 @@ insert into pieza values
 insert into job values (null, curdate());
 select * from job;
 /*REGISTRAR PIEZAS EN TRABAJOS*/
+/*
 insert into job_art values
 (null, 1, 2, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
 (null, 1, 2, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
@@ -106,3 +107,4 @@ insert into job_art values
 (null, 1, 5, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
 (null, 1, 6, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
 (null, 1, 6, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA');
+*/

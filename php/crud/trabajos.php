@@ -47,6 +47,18 @@
             }
             $con->Desconectar();
         }
+        public function Consulta_Piezas_ID($obj){
+            $con = new Conexion();
+            $con->Conectar();
+            $sql = "CALL pr_Consulta_Trabajos_id_pz(".$obj->id.");";
+            $result = $con->conexion->query($sql);
+            if ($result->num_rows < 0) {
+                return null;
+            } else {
+                return $result;
+            }
+            $con->Desconectar();
+        }
         //Consulta de trabajos sin detalles
         public function Consulta_Todos_sd(){
             $con = new Conexion();

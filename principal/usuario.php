@@ -128,7 +128,7 @@
                             <li class="breadcrumb-item active">Usuarios que pueden ingresar al sistema</li>
                         </ol>
                         <div id="form-registrar">
-                            <form action="../php/registroUsuario.php" method="post">
+                            <form action="../php/registroUsuario.php" method="post" class="Borde-Form">
                                 <!-- 2 column grid layout with text inputs for the first and last names -->
                                 <div class="row mb-2">
                                     <div class="col">
@@ -210,7 +210,7 @@
                         </div>
 
                         <div id="form-modificar">
-                            <form id="formulario" name="formulario" action="../php/actualizarUsr.php" method="post">
+                            <form id="formulario" name="formulario" action="../php/actualizarUsr.php" method="post" class="Borde-Form">
                                 <label for="id">Número Identificador</label>
                                 <br>
                                 <input type="text"  name="id" id="id" placeholder="ID" maxlength="25" disabled>
