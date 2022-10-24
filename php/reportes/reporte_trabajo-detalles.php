@@ -112,39 +112,17 @@
         }
         function Color($x){
             $num = str_replace('%','', $x);
-            $color = '';
-            switch($num){
-                case 10:
-                case 15:
-                case 20:
-                case 25:
-                    $color = 'bgcolor="#cfffca"';
-                    break;
-                case 30:
-                case 35:
-                case 40:
-                case 45:
-                    $color = 'bgcolor="#a5eea0"';
-                    break;
-                case 50:
-                case 55:
-                case 60:
-                case 65:
-                    $color = 'bgcolor="#77dd77"';
-                    break;
-                case 70:
-                case 75:
-                case 80:
-                case 85:
-                    $color = 'bgcolor="#5dc460"';
-                    break;
-                case 90:
-                case 95:
-                case 100:
-                    $color = 'bgcolor="#42ab49"';
-                    break;
-            }
-            return $color;
+            if( (10 <= $num) && ($num < 30 )) //Avance entre 10 y 29
+                return 'bgcolor="#cfffca"';
+            if( (30 <= $num) && ($num < 50 )) //Avance entre 30 y 49
+                return 'bgcolor="#a5eea0"';
+            if( (50 <= $num) && ($num < 70 )) //Avance entre 50 y 69
+                return 'bgcolor="#77dd77"';
+            if( (70 <= $num) && ($num < 100 )) //Avance entre 70 y 99
+                return 'bgcolor="#5dc460"';
+            if( $num == 100) //Avance 100%
+                return 'bgcolor="#42ab49"';
+            return '';
         }
     ?>
     </body>
