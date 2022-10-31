@@ -9,7 +9,7 @@
         <title>Estructuras Metálicas - Usuarios</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
-        <link href="./css/style.css" rel="stylesheet" />
+        
         <link href="../css/style_principal.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
@@ -134,13 +134,13 @@
                                     <div class="col">
                                         <div class="form-outline">
                                             <label class="form-label" for="form3Example1">Nombre(s)</label>
-                                            <input name="nombre" type="text" id="form3Example1" class="form-control" placeholder="Nombre(s)"/>
+                                            <input name="nombre" type="text" id="form3Example1" class="form-control" placeholder="Nombre(s)" maxlength="25" required/>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-outline">
                                             <label class="form-label" for="form3Example2">Apellido Paterno</label>
-                                            <input name="apPat" type="text" id="form3Example2" class="form-control" placeholder="Apellido Paterno"/>
+                                            <input name="apPat" type="text" id="form3Example2" class="form-control" placeholder="Apellido Paterno" maxlength="25" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -149,30 +149,30 @@
                                     <div class="col">
                                         <div class="form-outline">
                                             <label class="form-label" for="form3Example1">Apellido Materno</label>
-                                            <input name="apMat" type="text" id="form3Example1" class="form-control" placeholder="Apellido Materno"/>
+                                            <input name="apMat" type="text" id="form3Example1" class="form-control" placeholder="Apellido Materno" maxlength="25" required/>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-outline">
                                             <label class="form-label" for="form3Example2">Teléfono</label>
-                                            <input name="tel" type="text" id="form3Example2" class="form-control" placeholder="Teléfono"/>
+                                            <input name="tel" type="text" id="form3Example2" class="form-control" placeholder="Número telefónico" maxlength="15" pattern="[0-9]+" required/>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Email input -->                      
                                 <div class="form-outline mb-2">
                                     <label class="form-label" for="form3Example3">Correo electrónico</label>
-                                    <input name="email" type="email" id="form3Example3" class="form-control" placeholder="Correo electrónico"/>
+                                    <input name="email" type="email" id="form3Example3" class="form-control" placeholder="Correo electrónico" maxlength="50" required/>
                                 </div>
                                 <div class="form-outline mb-2">
                                     <label class="form-label" for="form3Example4">Nombre de usuario</label>
-                                    <input name="nomUsr" type="text" id="form3Example4" class="form-control" placeholder="Nombre de Usuario"/>
+                                    <input name="nomUsr" type="text" id="form3Example4" class="form-control" placeholder="Nombre de Usuario" maxlength="30" required/>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col">
                                         <div class="form-outline">
                                             <label class="form-label" for="form3Example4">Contraseña</label>
-                                            <input name="pass" type="password" id="form3Example4" class="form-control" placeholder="Contraseña"/>
+                                            <input name="pass" type="password" id="form3Example4" class="form-control" placeholder="Contraseña" maxlength="15" required/>
                                         </div>
                                     </div>
                                     <div class="col">
@@ -220,13 +220,13 @@
                                     <div class="col">
                                         <div class="form-outline">
                                             <label class="form-label" for="form3Example1">Nombre(s)</label>
-                                            <input name="nombre" type="text" id="form3Example1" class="form-control" placeholder="Nombre(s)"/>
+                                            <input name="nombre" type="text" id="form3Example1" class="form-control" placeholder="Nombre(s)" maxlength="25" required/>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-outline">
                                             <label class="form-label" for="form3Example2">Apellido Paterno</label>
-                                            <input name="apPat" type="text" id="form3Example2" class="form-control" placeholder="Apellido Paterno"/>
+                                            <input name="apPat" type="text" id="form3Example2" class="form-control" placeholder="Apellido Paterno" maxlength="25" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -235,30 +235,30 @@
                                     <div class="col">
                                         <div class="form-outline">
                                             <label class="form-label" for="form3Example1">Apellido Materno</label>
-                                            <input name="apMat" type="text" id="form3Example1" class="form-control" placeholder="Apellido Materno"/>
+                                            <input name="apMat" type="text" id="form3Example1" class="form-control" placeholder="Apellido Materno" maxlength="25" required/>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-outline">
                                             <label class="form-label" for="form3Example2">Teléfono</label>
-                                            <input name="tel" type="text" id="form3Example2" class="form-control" placeholder="Teléfono"/>
+                                            <input name="tel" type="text" id="form3Example2" class="form-control" placeholder="Teléfono" maxlength="15" pattern="[0-9]+" required/>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Email input -->                      
                                 <div class="form-outline mb-2">
                                     <label class="form-label" for="form3Example3">Correo electrónico</label>
-                                    <input name="email" type="email" id="form3Example3" class="form-control" placeholder="Correo electrónico"/>
+                                    <input name="email" type="email" id="form3Example3" class="form-control" placeholder="Correo electrónico" maxlength="50" required/>
                                 </div>
                                 <div class="form-outline mb-2">
                                     <label class="form-label" for="form3Example4">Nombre de usuario</label>
-                                    <input name="nomUsr" type="text" id="form3Example4" class="form-control" placeholder="Nombre de Usuario"/>
+                                    <input name="nomUsr" type="text" id="form3Example4" class="form-control" placeholder="Nombre de Usuario" maxlength="30" required/>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col">
                                         <div class="form-outline">
                                             <label class="form-label" for="form3Example4">Contraseña</label>
-                                            <input name="pass" type="password" id="form3Example4" class="form-control" placeholder="Contraseña"/>
+                                            <input name="pass" type="password" id="form3Example4" class="form-control" placeholder="Contraseña" maxlength="15" required/>
                                         </div>
                                     </div>
                                     <div class="col">

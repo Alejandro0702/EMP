@@ -132,15 +132,15 @@
                             <form action="../php/registroTipoPieza.php" method="post" class="Borde-Form">
                                 <label for="descr">Descripción</label>
                                 <br>
-                                <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
+                                <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="15" required />
                                 <br><br>
-                                <input type="text"  name="medida1" id="medida1" placeholder="Medida..." maxlength="25">
+                                <input type="text"  name="medida1" id="medida1" placeholder="Medida..." maxlength="10" pattern="[0-9-/-0-9]+" required/>
                                 <select name="sel_medida1">
                                     <option value = "pulgada">Pulgada (")</option>
                                     <option value = "pie">Pie (')</option>
                                 </select>
                                 x 
-                                <input type="text"  name="medida2" id="medida2" placeholder="Medida..." maxlength="25">
+                                <input type="text"  name="medida2" id="medida2" placeholder="Medida..." maxlength="10" pattern="[0-9-/-0-9]+" required>
                                 <select name="sel_medida2">
                                     <option value = "pulgada">Pulgada (")</option>
                                     <option value = "pie">Pie (')</option>
@@ -153,19 +153,19 @@
                             <form name = "formulario" action="../php/actualizarProfile.php" method="post" class="Borde-Form">
                                 <label for="id">Número Identificador</label>
                                 <br>
-                                <input type="text" name="id" id="id" placeholder="ID" maxlength="25" disabled>
+                                <input type="text" name="id" id="id" placeholder="ID" maxlength="5" disabled required>
                                 <br>
                                 <label for="descr">Descripción</label>
                                 <br>
-                                <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
+                                <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="15" required>
                                 <br><br>
-                                <input type="text"  name="medida1" id="medida1" placeholder="Medida..." maxlength="25">
+                                <input type="text"  name="medida1" id="medida1" placeholder="Medida..." maxlength="10" pattern="[0-9-/-0-9]+" required>
                                 <select id="sel_medida1" name="sel_medida1">
                                     <option value = "pulgada">Pulgada (")</option>
                                     <option value = "pie">Pie (')</option>
                                 </select>
                                 x 
-                                <input type="text"  name="medida2" id="medida2" placeholder="Medida..." maxlength="25">
+                                <input type="text"  name="medida2" id="medida2" placeholder="Medida..." maxlength="10" pattern="[0-9-/-0-9]+" required>
                                 <select id="sel_medida2" name="sel_medida2">
                                     <option value = "pulgada">Pulgada (")</option>
                                     <option value = "pie">Pie (')</option>

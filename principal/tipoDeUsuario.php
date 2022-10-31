@@ -134,7 +134,7 @@
                             <form id="formulario" action="../php/registroTipo.php" method="post" class="Borde-Form">
                                 <label for="descr">Descripción</label>
                                 <br>
-                                <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
+                                <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25" required>
                                 <br><br>
                                 <button type="submit" class="btn btn-primary">Registrar  <i class="fa fa-check"></i></button>
                             </form>
@@ -146,11 +146,11 @@
                             <form id="formulario" name= "formulario" action="../php/actualizarTipo.php" method="post" class="Borde-Form">
                                 <label for="id">Número Identificador</label>
                                 <br>
-                                <input type="text"  name="id" id="id" placeholder="ID" maxlength="25" disabled>
+                                <input type="text"  name="id" id="id" placeholder="ID" maxlength="25" required disabled>
                                 <br>
                                 <label for="descr">Descripción</label>
                                 <br>
-                                <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25">
+                                <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="25" required>
                                 <br><br>
                                 <button id="i_Actualizar" type="submit" class="btn btn-primary">Actualizar   <i class="fa fa-refresh"></i></button>
                             </form>
