@@ -168,11 +168,11 @@
                                     <form id="formulario_anadir" name="formulario_anadir" action="" method="" >
                                         <label for="idJob">Número de Trabajo</label>
                                         <br>
-                                        <input type="text"  name="idJob" id="idJob" placeholder="Selecciona un Trabajo..." maxlength="5">
+                                        <input type="text"  name="idJob" id="idJob" placeholder="Selecciona un Trabajo..." maxlength="5" required>
                                         <br>
                                         <label for="nota">Nota: </label>
                                         <br>
-                                        <input type="text"  name="nota" id="nota" placeholder="Agrega una Nota..." maxlength="150">
+                                        <input type="text"  name="nota" id="nota" placeholder="Agrega una Nota..." maxlength="150" pattern="[A-Za-z]+" title="Solo letras y números" required>
                                         <br><br>
                                         <button id="btn_Anadir" name="btn_Anadir" type="submit" class="btn btn-primary">Añadir todos <i class="fa fa-check"></i></button>
                                     </form>
@@ -256,21 +256,21 @@
                                         <div class="row">
                                             <div class="col">
                                                 <label for="idJob_">Número de Trabajo</label><br>
-                                                <input type="text"  name="idJob_" id="idJob_" class="form-control" placeholder="Selecciona un Trabajo..." maxlength="5" disabled>
+                                                <input type="text"  name="idJob_" id="idJob_" class="form-control" placeholder="Selecciona un Trabajo..." maxlength="5" required disabled>
                                             </div>
                                             <div class="col">
                                             <label for="idPz_">Pieza - Trabajo</label><br>
-                                            <input type="text"  name="idPz_" id="idPz_" class="form-control" placeholder="Pieza..." maxlength="5" disabled>
+                                            <input type="text"  name="idPz_" id="idPz_" class="form-control" placeholder="Pieza..." maxlength="5" required disabled>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <label for="CL">CL: </label><br>
-                                                <input type="text"  name="CL" id="CL" class="form-control" placeholder="CL..." maxlength="50">
+                                                <input type="text"  name="CL" id="CL" class="form-control" placeholder="CL..." maxlength="30">
                                             </div>
                                             <div class="col">
                                                 <label for="HEAT">HEAT: </label><br>
-                                                <input type="text"  name="HEAT" id="HEAT" class="form-control" placeholder="HEAT..." maxlength="50">
+                                                <input type="text"  name="HEAT" id="HEAT" class="form-control" placeholder="HEAT..." maxlength="30">
                                             </div>
                                         </div>
                                         <br>
@@ -305,6 +305,8 @@
                                 </div>
                             </div>
                             <hr>
+                            <button id="i_Eliminar_Pieza" class="btn btn-danger">Eliminar Pieza</button>
+                            <br><br><br>
                             <?php
                             require_once CRUD_PATH.'trabajos.php';
                             $trabajos = new Trabajos();
@@ -418,12 +420,7 @@
                                                 <th scope="col">Fecha de creación</th>
                                             </tr>
                                         </thead>
-                                        <tfoot class="thead-dark">
-                                            <tr>
-                                                <th scope="col">JOB ID</th>
-                                                <th scope="col">Fecha de creación</th>
-                                            </tr>
-                                        </tfoot>
+                                        <tbody>
                                     ';
                                     while($row = mysqli_fetch_array($result))
                                     {
@@ -434,7 +431,15 @@
                                                 </tr>
                                         ';
                                     }
-                                    $table .= '</table>';
+                                    $table .= '
+                                        </tbody>
+                                        <tfoot class="thead-dark">
+                                            <tr>
+                                                <th scope="col">JOB ID</th>
+                                                <th scope="col">Fecha de creación</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>';
                                     echo $table;
                                 }
                             ?>

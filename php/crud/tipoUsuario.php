@@ -84,10 +84,8 @@
                 $msj =  "The record deleted successfully";
             } else {
                 $msj = "Error: " . $sql . "<br>" . $con->error;
-                
             }
             $con->Desconectar();
         }
-
     }
 ?>

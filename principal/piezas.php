@@ -137,8 +137,7 @@
                                     <div class="col">
                                         <div class="form-outline">
                                             <label class="form-label" for="form3Example2">Longitud</label>
-                                            <input name="long" type="text" id="form3Example2" class="form-control" placeholder="Longitud..." maxlength="20" pattern="[0-9]+[\x22-\x27]-[0-9]+[\x22-\x27]" required />
-                                            
+                                            <input name="long" type="text" id="form3Example2" class="form-control" placeholder="Longitud..." maxlength="20" pattern="[0-9]+/?([0-9]?)+[\x22-\x27]-[0-9]+/?([0-9]?)+[\x22-\x27]" required />
                                         </div>
                                     </div>
                                 </div>
@@ -147,7 +146,7 @@
                                     <div class="col">
                                         <div class="form-outline">
                                             <label class="form-label" for="form3Example1">Peso (LBS)</label>
-                                            <input name="peso" type="text" id="form3Example1" class="form-control" placeholder="Peso..."  pattern="[0-9]+" required/>
+                                            <input name="peso" type="text" id="form3Example1" class="form-control" placeholder="Peso..."  maxlength="20" pattern="[0-9]+" required/>
                                         </div>
                                     </div>
                                     <div class="col">
@@ -193,14 +192,14 @@
                                 <div class="row mb-2">
                                     <div class="col">
                                         <div class="form-outline">
-                                            <input name="descr" type="text" id="form3Example1" class="form-control" />
                                             <label class="form-label" for="form3Example1">Descripción</label>
+                                            <input name="descr" type="text" id="form3Example1" class="form-control" placeholder="Descripción..." maxlength="40" pattern="[A-Za-z]+" required/>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-outline">
-                                            <input name="long" type="text" id="form3Example2" class="form-control" />
                                             <label class="form-label" for="form3Example2">Longitud</label>
+                                            <input name="long" type="text" id="form3Example2" class="form-control" placeholder="Longitud..." maxlength="20" maxlength="20" pattern="[0-9]+/?([0-9]?)+[\x22-\x27]-[0-9]+/?([0-9]?)+[\x22-\x27]" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -208,8 +207,8 @@
                                 <div class="row mb-2">
                                     <div class="col">
                                         <div class="form-outline">
-                                            <input name="peso" type="text" id="form3Example1" class="form-control" />
                                             <label class="form-label" for="form3Example1">Peso (LBS)</label>
+                                            <input name="peso" type="text" id="form3Example1" class="form-control" placeholder="Peso..." maxlength="20" pattern="[0-9]+" required/>
                                         </div>
                                     </div>
                                     <div class="col">

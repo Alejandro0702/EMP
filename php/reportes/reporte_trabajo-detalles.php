@@ -27,7 +27,6 @@
         if(empty($_POST['printAll']) && !empty($_POST['idJob'])){
             $id = $_POST['idJob'];
             $trabajos->id = $id;
-            
             $result = $trabajos->Consultar($trabajos);
         }
         else{
@@ -109,6 +108,9 @@
             }
             $table .= '</table>';
             echo $table;
+        }
+        else{
+            echo 'El trabajo con ID: '.$_POST['idJob'] .' no existe, selecciona uno que haya sido creado.';
         }
         function Color($x){
             $num = str_replace('%','', $x);

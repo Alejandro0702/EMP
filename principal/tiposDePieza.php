@@ -134,13 +134,13 @@
                                 <br>
                                 <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="15" required />
                                 <br><br>
-                                <input type="text"  name="medida1" id="medida1" placeholder="Medida..." maxlength="10" pattern="[0-9-/-0-9]+" required/>
+                                <input type="text"  name="medida1" id="medida1" placeholder="Medida..." maxlength="10" pattern="[0-9]+/?([0-9]?)+" required/>
                                 <select name="sel_medida1">
                                     <option value = "pulgada">Pulgada (")</option>
                                     <option value = "pie">Pie (')</option>
                                 </select>
                                 x 
-                                <input type="text"  name="medida2" id="medida2" placeholder="Medida..." maxlength="10" pattern="[0-9-/-0-9]+" required>
+                                <input type="text"  name="medida2" id="medida2" placeholder="Medida..." maxlength="10" pattern="[0-9]+/?([0-9]?)+" required>
                                 <select name="sel_medida2">
                                     <option value = "pulgada">Pulgada (")</option>
                                     <option value = "pie">Pie (')</option>
@@ -159,13 +159,13 @@
                                 <br>
                                 <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="15" required>
                                 <br><br>
-                                <input type="text"  name="medida1" id="medida1" placeholder="Medida..." maxlength="10" pattern="[0-9-/-0-9]+" required>
+                                <input type="text"  name="medida1" id="medida1" placeholder="Medida..." maxlength="10" pattern="[0-9]+/?([0-9]?)+" required>
                                 <select id="sel_medida1" name="sel_medida1">
                                     <option value = "pulgada">Pulgada (")</option>
                                     <option value = "pie">Pie (')</option>
                                 </select>
                                 x 
-                                <input type="text"  name="medida2" id="medida2" placeholder="Medida..." maxlength="10" pattern="[0-9-/-0-9]+" required>
+                                <input type="text"  name="medida2" id="medida2" placeholder="Medida..." maxlength="10" pattern="[0-9]+/?([0-9]?)+" required>
                                 <select id="sel_medida2" name="sel_medida2">
                                     <option value = "pulgada">Pulgada (")</option>
                                     <option value = "pie">Pie (')</option>

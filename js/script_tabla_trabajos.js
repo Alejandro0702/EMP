@@ -1,14 +1,5 @@
-$("#tabla tr").click(function(){
-    $(this).addClass('selected').siblings().removeClass('selected');   
-    //var value=$(this).find('td:first').html();
- });
- 
- $('#i_Eliminar').on('click', function(e){
-    let usr = $("#tabla tr.selected td:first-child").html();
-    //alert("Dato: " + usr);
- });
- 
- 
+
+
  /*Pasa datos de la línea seleccionada*/
 var array = new Array();
 $("#tabla-pz tbody").on('click', 'tr',function(){

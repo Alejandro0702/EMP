@@ -36,9 +36,11 @@ $('#formulario_anadir').on('submit', function(e){
     let tr = table.getElementsByTagName("tr");
     for (i = 1; i < tr.length; i++) {//Fila
       arrayP[i-1] = $("#tabla-pz-anadir tr:nth-child(" + i + ") td:nth-child(1)").html();
-      alert(arrayP[i-1]);
     }
     
+    if(arrayP[0] == 'No data available in table'){
+      return alert('Debes seleccionar piezas para añadirlas al trabajo');
+    }
     (async () => {
       try{
         var datos = { IDJ: idJ, NOTE: note, IDPZ: arrayP };
@@ -75,6 +77,15 @@ $('#btn_Mod').on('click', function(e){
   let cl = document.formulario_rangos.CL.value;
   let heat = document.formulario_rangos.HEAT.value;
 
+  if(id == null || id === ""){
+    return alert('Selecciona una pieza para editar');
+  }
+  if(cl == null || cl=== ""){
+    cl = " ";
+  }
+  if(heat == null || heat === ""){
+    heat = " ";
+  }
   let clean = rang_CLEAN.value;
   let fu = rang_FU.value;
   let qc = rang_Q_C.value;
@@ -114,3 +125,84 @@ $('#btn_Mod').on('click', function(e){
   })();
   
 })//Modificar Boton
+$('#formulario_detalles').on('submit', function(e){
+  let id = document.formulario_detalles.idJob.value;
+  let print = document.formulario_detalles.printAll.checked;
+  console.log(print);
+  if( id == "" && print == false ){
+    alert('Escribe el ID del trabajo a imprimir o marca la casilla para imprimir reporte general');
+    return false;
+  }
+});
+
+var id_Job = '';
+$("#tabla tbody").on('click', 'tr',function(){
+  $(this).addClass('selected').siblings().removeClass('selected');
+  id_Job = $("#tabla tr.selected td:first-child").html();
+});
+
+$('#i_Eliminar').on('click', function(e){
+  id_Job = $("#tabla tr.selected td:first-child").html();
+  (async () => {
+    try {
+        var datos = { ID: id_Job };
+        var init = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(datos)
+        };
+        var response = await fetch('../php/eliminar_Trabajo.php', init);
+        if (response.ok) {
+            var respuesta = await response.json();
+            if(respuesta.RESPUESTA == 'correcto'){
+                window.location.href = "../principal/trabajos.php?eliminar=1";
+            }
+            else{
+                
+                alert("Erro: " + respuesta.RESPUESTA);
+                window.location.href = "../principal/trabajos.php?eliminar=0";
+            }
+        } else {
+            throw new Error(response.statusText);
+        }
+    } catch (err) {
+        console.log("Error al realizar la petición AJAX: " + err.message);
+    }
+})();
+
+});//i_Eliminar
+
+$('#i_Eliminar_Pieza').on('click', function(e){
+  let id = $("#tabla_det_res tr.selected td:nth-child(2)").html();
+  (async () => {
+    try {
+        var datos = { ID: id };
+        var init = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(datos)
+        };
+        var response = await fetch('../php/eliminar_Pieza_Trabajo.php', init);
+        if (response.ok) {
+            var respuesta = await response.json();
+            if(respuesta.RESPUESTA == 'correcto'){
+                window.location.href = "../principal/trabajos.php?eliminarPieza=1";
+            }
+            else{
+                
+                alert("Erro: " + respuesta.RESPUESTA);
+                window.location.href = "../principal/trabajos.php?eliminarPieza=0";
+            }
+        } else {
+            throw new Error(response.statusText);
+        }
+    } catch (err) {
+        console.log("Error al realizar la petición AJAX: " + err.message);
+    }
+})();
+
+});//i_Eliminar_Pieza

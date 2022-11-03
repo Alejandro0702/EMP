@@ -213,7 +213,7 @@
                             <form id="formulario" name="formulario" action="../php/actualizarUsr.php" method="post" class="Borde-Form">
                                 <label for="id">Número Identificador</label>
                                 <br>
-                                <input type="text"  name="id" id="id" placeholder="ID" maxlength="25" disabled>
+                                <input type="text"  name="id" id="id" placeholder="ID" maxlength="25" required disabled>
                                 <br><br>
                                 <!-- 2 column grid layout with text inputs for the first and last names -->
                                 <div class="row mb-2">

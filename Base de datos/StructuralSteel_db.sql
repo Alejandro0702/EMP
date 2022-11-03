@@ -92,6 +92,7 @@ insert into pieza values
 /*REGISTRO DE UN TRABAJO*/
 insert into job values (null, curdate());
 select * from job;
+
 /*REGISTRAR PIEZAS EN TRABAJOS*/
 /*
 insert into job_art values
