@@ -175,6 +175,7 @@ $('#i_Eliminar').on('click', function(e){
 });//i_Eliminar
 
 $('#i_Eliminar_Pieza').on('click', function(e){
+  e.preventDefault();
   let id = $("#tabla_det_res tr.selected td:nth-child(2)").html();
   (async () => {
     try {

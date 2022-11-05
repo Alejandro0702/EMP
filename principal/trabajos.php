@@ -31,19 +31,16 @@
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                </div>
             </form>
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i><?php print $_SESSION['nombre']." ". $_SESSION['apellidoPat'];?></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <!--
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
+                        -->
                         <li><a class="dropdown-item" href="../php/logout.php">Logout</a></li>
                     </ul>
                 </li>
@@ -94,15 +91,6 @@
                                     <a class="nav-link" href="trabajos.php">Trabajos +</a>
                                 </nav>
                             </div>
-                            <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="charts.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Charts
-                            </a>
-                            <a class="nav-link" href="tables.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables
-                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
@@ -139,7 +127,7 @@
                                 <li class="breadcrumb-item active">Trabajos registrados en el sistema</li>
                             </ol>
                             <form id="formulario-registrar" action="../php/registroTrabajo.php" method="post" >
-                                <button type="submit" class="btn btn-primary">Crear Nuevo <i class="fa fa-plus-square"></i></button>
+                                <button type="submit" class="btn btn-primary" title="Oprima para crear un proyecto nuevo">Crear Nuevo <i class="fa fa-plus-square"></i></button>
                             </form>
                             <hr>
                             <br>
@@ -150,7 +138,7 @@
                                     </div>
                             </form>
                             <!-- -->
-                            <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger">Eliminar   <i class="fa fa-times"></i></button>
+                            <button name="n_Eliminar" id="i_Eliminar" class="btn btn-danger" title="Seleccione un trabajo para eliminar">Eliminar   <i class="fa fa-times"></i></button>
                             <form class="derecha mb-0" action="../php/reportes/reporte_trabajo.php" method="post" target="_blank">
                                     <button class="btn btn-info">Imprimir <i class="fa fa-print"></i></button>
                             </form>
@@ -168,13 +156,13 @@
                                     <form id="formulario_anadir" name="formulario_anadir" action="" method="" >
                                         <label for="idJob">Número de Trabajo</label>
                                         <br>
-                                        <input type="text"  name="idJob" id="idJob" placeholder="Selecciona un Trabajo..." maxlength="5" required>
+                                        <input type="text"  name="idJob" id="idJob" placeholder="Selecciona un Trabajo..." title="Seleccione un trabajo de la tabla a su derecha" maxlength="5" required>
                                         <br>
                                         <label for="nota">Nota: </label>
                                         <br>
                                         <input type="text"  name="nota" id="nota" placeholder="Agrega una Nota..." maxlength="150" pattern="[A-Za-z]+" title="Solo letras y números" required>
                                         <br><br>
-                                        <button id="btn_Anadir" name="btn_Anadir" type="submit" class="btn btn-primary">Añadir todos <i class="fa fa-check"></i></button>
+                                        <button id="btn_Anadir" name="btn_Anadir" type="submit" class="btn btn-primary" title="Añadir todas las piezas agregadas a la tabla 'Piezas Añadidas'">Añadir todos <i class="fa fa-check"></i></button>
                                     </form>
                                 </div>
                                 <div id="tablas_trab_pz">
@@ -222,7 +210,7 @@
                             
                             <br>
                             <h5>Piezas Añadidas:</h5>
-                                <button id="quitar" name="quitar" type="button" class="btn btn-danger">Quitar Pieza</button>
+                                <button id="quitar" name="quitar" type="button" class="btn btn-danger" title="Quitar de la lista la pieza seleccionada">Quitar Pieza</button>
                             <br><br>
                             <table id="tabla-pz-anadir" border=1 class="table table-striped table-bordered">
                                 <thead class="thead-dark">
@@ -239,7 +227,8 @@
                             
                             <br>
                             <hr>
-                            <button id="Seleccionar" name="Seleccionar" type="button" class="btn btn-secondary">Seleccionar</button>
+                            <h5>Piezas:</h5>
+                            <button id="Seleccionar" name="Seleccionar" type="button" class="btn btn-secondary" title="Oprime para añadir a la lista de piezas">Seleccionar</button>
                         </div>
 
 
@@ -299,14 +288,14 @@
                                                 <input class="form-range" type="range"  name="CLEAN" id="CLEAN"  min="0" max="100" step="10" onchange="Valor_CLEAN()">
                                             </div>
                                         </div>
-                                        
+                                        <br>
                                         <button id="btn_Mod" name="btn_Mod" type="button" class="btn btn-primary">Modificar  <i class="fa fa-check"></i></button>
+                                        <button id="i_Eliminar_Pieza" class="btn btn-danger">Eliminar Pieza</button>
                                     </form>
                                 </div>
                             </div>
                             <hr>
-                            <button id="i_Eliminar_Pieza" class="btn btn-danger">Eliminar Pieza</button>
-                            <br><br><br>
+                            
                             <?php
                             require_once CRUD_PATH.'trabajos.php';
                             $trabajos = new Trabajos();
@@ -333,24 +322,7 @@
                                             <th scope="col">FINISH</th>
                                         </tr>
                                     </thead>
-                                    <tfoot class="thead-dark">
-                                        <tr>
-                                            <th scope="col">JOB ID</th>
-                                            <th scope="col">ID JOB-PZ</th>
-                                            <th scope="col">ID PZ</th>
-                                            <th scope="col">DESCRIPTION</th>
-                                            <th scope="col">PROFILE</th>
-                                            <th scope="col">LENGHT</th>
-                                            <th scope="col">W(LBS)</th>
-                                            <th scope="col">CL</th>
-                                            <th scope="col">HEAT</th>
-                                            <th scope="col">FU</th>
-                                            <th scope="col">QC</th>
-                                            <th scope="col">W</th>
-                                            <th scope="col">CLEAN</th>
-                                            <th scope="col">FINISH</th>
-                                        </tr>
-                                    </tfoot>
+                                    <tbody>
                                 ';
                                 while($row = mysqli_fetch_array($result))
                                 {
@@ -373,7 +345,27 @@
                                             </tr>
                                     ';
                                 }
-                                $table .= '</table>';
+                                $table .= '
+                                    </tbody>
+                                    <tfoot class="thead-dark">
+                                        <tr>
+                                            <th scope="col">JOB ID</th>
+                                            <th scope="col">ID JOB-PZ</th>
+                                            <th scope="col">ID PZ</th>
+                                            <th scope="col">DESCRIPTION</th>
+                                            <th scope="col">PROFILE</th>
+                                            <th scope="col">LENGHT</th>
+                                            <th scope="col">W(LBS)</th>
+                                            <th scope="col">CL</th>
+                                            <th scope="col">HEAT</th>
+                                            <th scope="col">FU</th>
+                                            <th scope="col">QC</th>
+                                            <th scope="col">W</th>
+                                            <th scope="col">CLEAN</th>
+                                            <th scope="col">FINISH</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>';
                                 echo $table;
                             }
                             ?>

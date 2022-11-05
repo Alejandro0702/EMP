@@ -14,8 +14,10 @@ $("#Seleccionar").click(function(){
 
 const agregarFila = (array) => {
    let t = $('#tabla-pz-anadir').DataTable();
-   t.row.add([array[0], array[1], array[2], array[3], array[4]]).draw(false);
-   /*
+   if(array[0] != undefined)
+      return t.row.add([array[0], array[1], array[2], array[3], array[4]]).draw(false);
+   return alert('Selecciona una pieza');
+      /*
    let row = '';
    for (let index = 0; index < array.length; index++) {
       row = row + '<td>'+ array[index]+'</td>';
