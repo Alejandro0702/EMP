@@ -8,16 +8,18 @@
         {
             $con = new Conexion();
         }
-        public function Registrar(){
+        public function Registrar($obj){
             $con = new Conexion();
             $con->Conectar();
             $sql = "CALL pr_Generar_Trabajo();";
+            
+            if($obj->id != null || $obj->id != "" )
+                $sql = "INSERT INTO job values (". $obj->id .", CURDATE() )";
+            
             if ($con->conexion->query($sql) === TRUE) {
-                $msj =  '<script>console.log("New record created successfully")</script>';
                 $msj = "Correcto";
             } else {
                 $msj =  "Error: " . $sql . "<br>" . $con->error;
-                $msj = "Error";
             }
             $con->Desconectar();
         }

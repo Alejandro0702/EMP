@@ -127,8 +127,15 @@
                                 <li class="breadcrumb-item active">Trabajos registrados en el sistema</li>
                             </ol>
                             <form id="formulario-registrar" action="../php/registroTrabajo.php" method="post" >
+                                <label for="id">Número de Trabajo</label>
+                                <br>
+                                <span id="span_id"></span>
+                                <br>
+                                <input type="text"  name="id" id="id" placeholder="Escribe un # de trabajo..." title="Solo números" maxlength="8" pattern="[0-9]+" required>
+                                <br><br>
                                 <button type="submit" class="btn btn-primary" title="Oprima para crear un proyecto nuevo">Crear Nuevo <i class="fa fa-plus-square"></i></button>
                             </form>
+                            <br>
                             <hr>
                             <br>
                             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">

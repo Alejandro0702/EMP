@@ -207,3 +207,31 @@ $('#i_Eliminar_Pieza').on('click', function(e){
 })();
 
 });//i_Eliminar_Pieza
+
+
+
+$('#id').on('keyup',function(e){
+  document.getElementById('span_id').style.color = 'red';
+  if($(this).val() != ''){
+    let nFilas = $("#tabla tr").length;
+    for (let index = 1; index < nFilas - 1; index++){
+      array[index - 1] = $("#tabla tr:nth-child("+ index +") td:nth-child(1)").html();
+    }
+    let x = array.find(element => element == $(this).val());
+    if(x !== undefined)
+      $('#span_id').text('ID Existente, escribe uno distinto');
+    else 
+      $('#span_id').text('ID Correcto');
+  }//if this val
+  else{
+    $('#span_id').text('');
+  }
+});//id on keyup
+
+
+/*
+$('#formulario-registrar').on('submit',function(e){
+  document.formulario-registrar.id.value;
+
+  return e.preventDefault();
+});*/
