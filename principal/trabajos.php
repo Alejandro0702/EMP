@@ -455,7 +455,6 @@
                                     <thead class="thead-dark">
                                         <tr>
                                             <th scope="col">ID</th>
-                                            <th scope="col">Descripción</th>
                                             <th scope="col">LENGHT</th>
                                             <th scope="col">WEIGHT</th>
                                             <th scope="col">PROFILE</th>
@@ -468,7 +467,6 @@
                                 $table .= '
                                     <tr>
                                         <td>'.$row["ID"].'</td>
-                                        <td>'.$row["Descripcion"].'</td>
                                         <td>'.$row["LENGHT"].'</td>
                                         <td>'.$row["WEIGHT"].'</td>
                                         <td>'.$row["PROFILE"].'</td>
@@ -494,7 +492,6 @@
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th scope="col">JOB ID</th>
-                                                <th scope="col">P.O.</th>
                                                 <th scope="col">ID PZ</th>
                                                 <th scope="col">ID JOB-PZ</th>
                                                 <th scope="col">QTY</th>
@@ -516,7 +513,6 @@
                                         <tfoot class="thead-dark">
                                             <tr>
                                                 <th scope="col">JOB ID</th>
-                                                <th scope="col">P.O.</th>
                                                 <th scope="col">ID PZ</th>
                                                 <th scope="col">ID JOB-PZ</th>
                                                 <th scope="col">QTY</th>
@@ -541,7 +537,6 @@
                                         $table .= '
                                                 <tr>
                                                     <td>'.$row["JOB ID"].'</td>
-                                                    <td>'.$row["P.O."].'</td>
                                                     <td>'.$row["ID PZ"].'</td>
                                                     <td>'.$row["ID JOB-PZ"].'</td>
                                                     <td>'.$row["QTY"].'</td>

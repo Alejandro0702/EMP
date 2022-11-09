@@ -118,6 +118,10 @@
 
                         <div id="form-registrar">
                             <form action="../php/registroTipoPieza.php" method="post" class="Borde-Form">
+                                <label for="id">ID</label>
+                                <br>
+                                <input type="text" name="id" id="id" placeholder="Ingresa ID" maxlength="8" pattern="[A-Za-z0-9]+" required />
+                                <br>
                                 <label for="descr">Descripción</label>
                                 <br>
                                 <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="15" required />

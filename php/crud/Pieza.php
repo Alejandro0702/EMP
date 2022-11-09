@@ -3,7 +3,6 @@
     require_once MODEL_PATH."conexion.php";
     class Pieza{
         public $id;
-        public $desc;
         public $lenght;
         public $weight;
         public $id_profile_pz;
@@ -19,9 +18,10 @@
             $tabla = "pieza";
             $sql = "INSERT INTO ". $tabla ."
             VALUES (
-            null, '". $obj->desc. "','".
-            $obj->lenght . "','".
-            $obj->weight."', ". $obj->id_profile_pz . ");";
+            null, 
+            '". $obj->lenght . "',
+            '".$obj->weight."',
+            ". $obj->id_profile_pz . ");";
             if ($con->conexion->query($sql) === TRUE) {
                 echo '<script>console.log("New record created successfully")</script>';
             } else {
@@ -38,8 +38,8 @@
             $con = new Conexion();
             $con->Conectar();
             $tabla = " pieza ";
-            $sql = "SELECT id_pz as 'ID', pieza.descr as 'Descripcion',
-            lenght_pz as 'LENGHT', weight_pz as 'WEIGHT', profile_pieza.descr as 'PROFILE'
+            $sql = "SELECT id_pz as 'ID', lenght_pz as 'LENGHT',
+            weight_pz as 'WEIGHT', profile_pieza.descr as 'PROFILE'
              FROM ". $tabla. " INNER JOIN profile_pieza ON pieza.id_profile_pz = profile_pieza.id_profile_pz;";
             $result = $con->conexion->query($sql);
             if ($result->num_rows < 0) {
@@ -54,7 +54,6 @@
             $con->Conectar();
             $sql = "CALL pr_Actualizar_Pieza(
                  ". $obj->id .",
-                '". $obj->desc ."',
                 '". $obj->lenght ."', 
                 '". $obj->weight ."',
                  ". $obj->id_profile_pz . "

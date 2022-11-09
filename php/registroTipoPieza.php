@@ -5,7 +5,7 @@
     $tipoPz = new TipoPieza();
     if( !empty($_POST['descr']) && !empty($_POST['medida1']) 
     && !empty($_POST['medida2']) && !empty($_POST['sel_medida1']) 
-    && !empty($_POST['sel_medida2']) ){
+    && !empty($_POST['sel_medida2']) && !empty($_POST['id'])){
 
         $descripcion = $_POST['descr']. " ";
         if($_POST['sel_medida1'] == "pulgada")
@@ -18,8 +18,13 @@
         else
             $descripcion = $descripcion. $_POST['medida2'] . "''" ;
         $tipoPz->desc = $descripcion;
-        $tipoPz->Registrar($tipoPz);
-        header('Location: ../principal/tiposDePieza.php?registro=1');
+        $tipoPz->id = $_POST['id'];
+        try {
+            $tipoPz->Registrar($tipoPz);
+            header('Location: ../principal/tiposDePieza.php?registro=1');
+        } catch (\Throwable $th) {
+            header('Location: ../principal/tiposDePieza.php?registro=0');
+        }
     }
     else{
         header('Location: ../principal/tiposDePieza.php?registro=0');

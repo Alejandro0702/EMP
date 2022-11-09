@@ -43,14 +43,7 @@
                         </tr>
                 ';
             }
-            $table .= '
-                <tfoot class="thead-dark">
-                    <tr>
-                        <th scope="col">JOB ID</th>
-                        <th scope="col">Fecha de creación</th>
-                    </tr>
-                </tfoot>
-            </table>';
+            $table .= '</table>';
             echo $table;
         }
     ?>

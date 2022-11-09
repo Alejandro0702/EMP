@@ -45,12 +45,6 @@
                 ';
             }
             $table .= '
-                <tfoot class="thead-dark">
-                    <tr>
-                        <th scope="col"> ID </th>
-                        <th scope="col">Descripción</th>                  
-                    </tr>
-                </tfoot>
             </table>';
             echo $table;
         }

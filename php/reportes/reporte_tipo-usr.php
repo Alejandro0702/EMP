@@ -39,21 +39,13 @@
             while($row = mysqli_fetch_array($result))
             {
                 $table .= '
-                        <tr>
-                            <td >'.$row["ID"].'</td>
-                            <td >'.$row["Descripcion"].'</td>
-                        </tr>
-                    
+                    <tr>
+                        <td >'.$row["ID"].'</td>
+                        <td >'.$row["Descripcion"].'</td>
+                    </tr>
                 ';
             }
-            $table .= '
-                    <tfoot>
-                    <tr>
-                        <th scope="col"> ID </th>
-                        <th scope="col">Descripción</th>
-                    </tr>
-                </tfoot>
-            </table>';
+            $table .= '</table>';
             echo $table;
         }
     ?>

@@ -118,14 +118,14 @@
                                 <div class="row mb-2">
                                     <div class="col">
                                         <div class="form-outline">
-                                            <label class="form-label" for="form3Example1">Descripción</label>
-                                            <input name="descr" type="text" id="form3Example1" class="form-control" placeholder="Descripción..." maxlength="40" required/>
+                                            <label class="form-label" for="form3Example2">Longitud</label>
+                                            <input name="long" type="text" id="form3Example2" class="form-control" placeholder="Longitud..." maxlength="20" pattern="[0-9]+/?([0-9]?)+[\x22-\x27]-[0-9]+/?([0-9]?)+[\x22-\x27]" required />
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-outline">
-                                            <label class="form-label" for="form3Example2">Longitud</label>
-                                            <input name="long" type="text" id="form3Example2" class="form-control" placeholder="Longitud..." maxlength="20" pattern="[0-9]+/?([0-9]?)+[\x22-\x27]-[0-9]+/?([0-9]?)+[\x22-\x27]" required />
+                                            <label class="form-label" for="form3Example1">Peso (LBS)</label>
+                                            <input name="peso" type="text" id="form3Example1" class="form-control" placeholder="Peso..."  maxlength="20" pattern="[0-9]+" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -133,23 +133,17 @@
                                 <div class="row mb-2">
                                     <div class="col">
                                         <div class="form-outline">
-                                            <label class="form-label" for="form3Example1">Peso (LBS)</label>
-                                            <input name="peso" type="text" id="form3Example1" class="form-control" placeholder="Peso..."  maxlength="20" pattern="[0-9]+" required/>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-outline">
-                                        <label class="form-label" for="form3Example4">Tipo de Pieza</label>
-                                        <br>
-                                                    <?php
+                                            <br>
+                                            <label class="form-label" for="form3Example4">Tipo de Pieza</label>
+                                                <?php
                                                     include('../php/crud/tipoPieza.php');
                                                     $tipoPz = new TipoPieza();
                                                     $result = $tipoPz->Consulta_Todos();
-                                                        if(mysqli_num_rows($result) > 0)
-                                                        {
-                                                            $select = '
-                                                                <select name = "sel_Tipo" class="select">
-                                                            ';
+                                                    if(mysqli_num_rows($result) > 0)
+                                                    {
+                                                        $select = '
+                                                            <select name = "sel_Tipo" class="select">
+                                                        ';
                                                         while($row = mysqli_fetch_array($result))
                                                         {
                                                             $select .= '
@@ -158,11 +152,10 @@
                                                             </option>
                                                             ';
                                                         }
-                                                            $select .= '</select>';
-                                                            echo $select;
-                                                        }
-                                                        
-                                                    ?>
+                                                        $select .= '</select>';
+                                                        echo $select;
+                                                    }
+                                                ?>
                                         </div>
                                     </div>
                                 </div>                
@@ -172,22 +165,22 @@
                         </div>
                         <div id="form-modificar">
                             <form name="formulario" action="../php/actualizarPieza.php" method="post" class="Borde-Form">
-                                <label for="id">Número Identificador</label>
+                                <label class="form-label" for="id">Número Identificador</label>
                                 <br>
                                 <input type="text"  name="id" id="id" placeholder="ID" maxlength="25" disabled>
-                                <br><br>
+                                <br>
                                 <!-- 2 column grid layout with text inputs for the first and last names -->
                                 <div class="row mb-2">
                                     <div class="col">
                                         <div class="form-outline">
-                                            <label class="form-label" for="form3Example1">Descripción</label>
-                                            <input name="descr" type="text" id="form3Example1" class="form-control" placeholder="Descripción..." maxlength="40" pattern="[A-Za-z]+" required/>
+                                            <label class="form-label" for="form3Example2">Longitud</label>
+                                            <input name="long" type="text" id="form3Example2" class="form-control" placeholder="Longitud..." maxlength="20" pattern="[0-9]+/?([0-9]?)+[\x22-\x27]-[0-9]+/?([0-9]?)+[\x22-\x27]" required/>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-outline">
-                                            <label class="form-label" for="form3Example2">Longitud</label>
-                                            <input name="long" type="text" id="form3Example2" class="form-control" placeholder="Longitud..." maxlength="20" pattern="[0-9]+/?([0-9]?)+[\x22-\x27]-[0-9]+/?([0-9]?)+[\x22-\x27]" required/>
+                                            <label class="form-label" for="form3Example1">Peso (LBS)</label>
+                                            <input name="peso" type="text" id="form3Example1" class="form-control" placeholder="Peso..." maxlength="20" pattern="[0-9]+" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -195,12 +188,7 @@
                                 <div class="row mb-2">
                                     <div class="col">
                                         <div class="form-outline">
-                                            <label class="form-label" for="form3Example1">Peso (LBS)</label>
-                                            <input name="peso" type="text" id="form3Example1" class="form-control" placeholder="Peso..." maxlength="20" pattern="[0-9]+" required/>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-outline">
+                                            <br>
                                             <label class="form-label" for="form3Example4">Tipo de Pieza</label>
                                             <?php
                                                 include_once ($_SERVER['DOCUMENT_ROOT'].'/EMP/config.php');
@@ -210,7 +198,7 @@
                                                 if(mysqli_num_rows($result) > 0)
                                                 {
                                                     $select = '
-                                                        <select name = "sel_Tipo" class="select">
+                                                        <select id = "sel_Tipo" name = "sel_Tipo" class="select">
                                                     ';
                                                 while($row = mysqli_fetch_array($result))
                                                 {
@@ -255,7 +243,6 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">ID</th>
-                                        <th scope="col">Descripción</th>
                                         <th scope="col">LENGHT</th>
                                         <th scope="col">WEIGHT</th>
                                         <th scope="col">PROFILE</th>
@@ -268,7 +255,6 @@
                             $table .= '
                                 <tr>
                                     <td>'.$row["ID"].'</td>
-                                    <td>'.$row["Descripcion"].'</td>
                                     <td>'.$row["LENGHT"].'</td>
                                     <td>'.$row["WEIGHT"].'</td>
                                     <td>'.$row["PROFILE"].'</td>
@@ -280,7 +266,6 @@
                                 <tfoot class="thead-dark">
                                     <tr>
                                         <th scope="col">ID</th>
-                                        <th scope="col">Descripción</th>
                                         <th scope="col">LENGHT</th>
                                         <th scope="col">WEIGHT</th>
                                         <th scope="col">PROFILE</th>

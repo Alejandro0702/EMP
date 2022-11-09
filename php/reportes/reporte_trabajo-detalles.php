@@ -45,9 +45,7 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">JOB ID</th>
-                        <th scope="col">P.O.</th>
                         <th scope="col">ID PZ</th>
-                        <th scope="col">ID JOB-PZ</th>
                         <th scope="col">QTY</th>
                         <th scope="col">DESCRIPTION</th>
                         <th scope="col">PROFILE</th>
@@ -70,9 +68,7 @@
                 $table .= '
                         <tr>
                             <td>'.$row["JOB ID"].'</td>
-                            <td>'.$row["P.O."].'</td>
                             <td>'.$row["ID PZ"].'</td>
-                            <td>'.$row["ID JOB-PZ"].'</td>
                             <td>'.$row["QTY"].'</td>
                             <td>'.$row["DESCRIPTION"].'</td>
                             <td>'.$row["PROFILE"].'</td>
@@ -90,30 +86,7 @@
                         </tr>
                 ';
             }
-            $table .= '
-                <tfoot class="thead-dark">
-                    <tr>
-                        <th scope="col">JOB ID</th>
-                        <th scope="col">P.O.</th>
-                        <th scope="col">ID PZ</th>
-                        <th scope="col">ID JOB-PZ</th>
-                        <th scope="col">QTY</th>
-                        <th scope="col">DESCRIPTION</th>
-                        <th scope="col">PROFILE</th>
-                        <th scope="col">LENGHT</th>
-                        <th scope="col">W(LBS)</th>
-                        <th scope="col">CL</th>
-                        <th scope="col">HEAT</th>
-                        <th scope="col">FU</th>
-                        <th scope="col">QC</th>
-                        <th scope="col">W</th>
-                        <th scope="col">CLEAN</th>
-                        <th scope="col">FINISH</th>
-                        <th scope="col">DD</th>
-                        <th scope="col">NOTE</th>
-                    </tr>
-                </tfoot>
-            </table>';
+            $table .= '</table>';
             echo $table;
         }
         else{

@@ -5,6 +5,7 @@
         public $id_job_art;
         public $id_job;
         public $id_pz;
+        public $descr;
         public $qty;
         public $CL;
         public $HEAT;
@@ -22,6 +23,7 @@
             $sql = "CALL pr_Insertar_Piezas_Trabajo(
                 $obj->id_job,
                 $obj->id_pz,
+                '$obj->descr',
                 '$obj->NOTE'
             );";
             if ($con->conexion->query($sql) === TRUE) {
@@ -59,10 +61,10 @@
         public function Actualizar_Pieza($obj){
             $con = new Conexion();
             $con->Conectar();
-            
             $sql = "CALL pr_Actualizar_Piezas_Trabajo (
                 ". $obj->id .",
-                '". $obj->CL."',
+                '".$obj->descr."',
+                '".$obj->CL."',
                 '".$obj->HEAT."',
                 '".$obj->FU."',
                 '".$obj->QC."',

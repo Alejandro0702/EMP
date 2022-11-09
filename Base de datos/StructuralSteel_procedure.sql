@@ -11,18 +11,20 @@ DELIMITER //
 create procedure pr_Insertar_Piezas_Trabajo(
 IN _id_job int(11),
 IN _id_pz int(11),
+IN _descr varchar(40),
 IN _NOTE varchar(150)
 )
 BEGIN
 insert into job_art values
-	(null, _id_job, _id_pz, 1, null, null, '0', '0', '0', '0', '0', curdate(), _NOTE);
+	(null, _id_job, _id_pz, 1, _descr ,null, null, '0', '0', '0', '0', '0', curdate(), _NOTE);
 END //
 /*CALL pr_Insertar_Piezas_Trabajo(2, 2, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA');*/
 
-PENDIENTE MODIFICAR PIEZA******************
+
 DELIMITER //
 create procedure pr_Actualizar_Piezas_Trabajo(
-IN _id_job_art int(11), 
+IN _id_job_art int(11),
+IN _descr varchar(40),
 IN _CL varchar(30), 
 IN _HEAT varchar(30), 
 IN _FU varchar(30),
@@ -33,9 +35,9 @@ IN _FINISH varchar(30)
 )
 BEGIN
 	update job_art
-    set
-    CL = _CL, HEAT = _HEAT, FU = _FU, QC = _QC,
-    W = _W, CLEAN = _CLEAN, FINISH = _FINISH 
+    set 
+    descr = _descr, CL = _CL, HEAT = _HEAT, FU = _FU,
+    QC = _QC, W = _W, CLEAN = _CLEAN, FINISH = _FINISH 
     where id_job_art = _id_job_art;
 END //
 
@@ -81,7 +83,7 @@ END //
 
 /*PROCEDIMIENTO PARA MODIFICAR TIPOS DE PIEZAS*/
 DELIMITER //
-CREATE PROCEDURE pr_Actualizar_ProfilePz(IN _id int, IN _descr varchar(40))
+CREATE PROCEDURE pr_Actualizar_ProfilePz(IN _id VARCHAR(8), IN _descr varchar(40))
 BEGIN
 	update profile_pieza set descr = _descr where id_profile_pz = _id;
 END //
@@ -93,21 +95,18 @@ END //
 DELIMITER //
 CREATE PROCEDURE pr_Actualizar_Pieza(
 	_id_pz 			int,
-	_descr			varchar(40),
 	_lenght_pz		varchar(20),
 	_weight_pz		varchar(20),
 	_id_profile_pz 	int
 )
 BEGIN
 	update pieza set
-    descr = _descr,
     lenght_pz = _lenght_pz,
     weight_pz = _weight_pz,
     id_profile_pz = _id_profile_pz
     where id_pz = _id_pz;
 END //
-/*call pr_Actualizar_Pieza(1, 'TEMPLATEEE', '1\'-2"' , '5', 1);*/
-
+/*call pr_Actualizar_Pieza(1, '1\'-2"' , '13', 1);*/
 
 /****** PROCEDIMIENTOS PARA ELIMINAR******/
 /*PROCEDIMIENTO PARA ELIMINAR TRABAJOS*/
@@ -194,7 +193,7 @@ END //
 /* CONSULTA DE PROFILE - PIEZA POR ID*/
 DELIMITER //
 create procedure pr_Consultar_profile_pieza_id(
-	IN _id_profile_pz INT
+	IN _id_profile_pz VARCHAR(8)
 )
 BEGIN
 	SELECT
@@ -210,9 +209,9 @@ CALL pr_Consultar_profile_pieza_id(3);*/
 DELIMITER //
 create procedure pr_Consultar_pieza()
 BEGIN
-	SELECT id_pz as 'ID', descr as 'Descripcion',
-		lenght_pz as 'LENGHT', weight_pz as 'WEIGHT', id_profile_pz as 'PROFILE'
-		FROM pieza;
+	SELECT id_pz as 'ID', lenght_pz as 'LENGHT',
+    weight_pz as 'WEIGHT', id_profile_pz as 'PROFILE'
+	FROM pieza;
 END //
 /*CALL pr_Consultar_pieza();*/
 
@@ -222,8 +221,8 @@ create procedure pr_Consultar_pieza_id(
 	IN _id_pz INT
 )
 BEGIN
-	SELECT id_pz as 'ID', descr as 'Descripcion',
-		lenght_pz as 'LENGHT', weight_pz as 'WEIGHT', id_profile_pz as 'PROFILE'
+	SELECT id_pz as 'ID', lenght_pz as 'LENGHT',
+		weight_pz as 'WEIGHT', id_profile_pz as 'PROFILE'
 		FROM pieza
         WHERE id_pz = _id_pz;
 END //
@@ -252,9 +251,9 @@ END //
 DELIMITER //
 CREATE PROCEDURE pr_Consulta_Trabajos()
 BEGIN
-	select job_art.id_job_art as 'ID JOB-PZ', job.fechaRegistro as 'P.O.',
+	select job_art.id_job_art as 'ID JOB-PZ', 
     job_art.id_job as 'JOB ID', job_art.qty as 'QTY', job_art.id_pz as 'ID PZ', 
-	pieza.descr as 'DESCRIPTION', profile_pieza.descr as 'PROFILE',
+	job_art.descr as 'DESCRIPTION', profile_pieza.descr as 'PROFILE',
 	pieza.lenght_pz as 'LENGHT', pieza.weight_pz AS 'W(LBS)',
 	job_art.CL, job_art.HEAT, job_art.FU, job_art.QC, job_art.W,
 	job_art.CLEAN, job_art.FINISH, job_art.DD, job_art.NOTE		
@@ -273,8 +272,8 @@ CREATE PROCEDURE pr_Consulta_Trabajos_id(
 	IN _id_job INT
 )
 BEGIN
-	select job_art.id_job_art as 'ID JOB-PZ', job.fechaRegistro as 'P.O.', job_art.id_job as 'JOB ID', job_art.qty as 'QTY', job_art.id_pz as 'ID PZ', 
-	pieza.descr as 'DESCRIPTION', profile_pieza.descr as 'PROFILE',
+	select job_art.id_job_art as 'ID JOB-PZ', job_art.id_job as 'JOB ID', job_art.qty as 'QTY', job_art.id_pz as 'ID PZ', 
+	job_art.descr as 'DESCRIPTION', profile_pieza.descr as 'PROFILE',
 	pieza.lenght_pz as 'LENGHT', pieza.weight_pz AS 'W(LBS)',
 	job_art.CL, job_art.HEAT, job_art.FU, job_art.QC, job_art.W,
 	job_art.CLEAN, job_art.FINISH, job_art.DD, job_art.NOTE		
@@ -294,7 +293,7 @@ CREATE PROCEDURE pr_Consulta_Trabajos_id_pz(
 )
 BEGIN
 	select job_art.id_job_art as 'ID JOB-PZ', job_art.id_job as 'JOB ID', job_art.id_pz as 'ID PZ', 
-	pieza.descr as 'DESCRIPTION', profile_pieza.descr as 'PROFILE',
+	job_art.descr as 'DESCRIPTION', profile_pieza.descr as 'PROFILE',
 	pieza.lenght_pz as 'LENGHT', pieza.weight_pz AS 'W(LBS)',
 	job_art.CL, job_art.HEAT, job_art.FU, job_art.QC, job_art.W,
 	job_art.CLEAN, job_art.FINISH, job_art.DD, job_art.NOTE		

@@ -95,8 +95,12 @@
             </div>
             
             <!-- Principal -->
-            <div id="layoutSidenav_content">
-                <main>
+            <div id="layoutSidenav_content" >
+                <main class="bg-image-principal">
+                    <img src="../img/EMP logo.jpg" class="bg-logo-principal">
+                    
+                    
+                    <!--
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Principal</h1>
                         <ol class="breadcrumb mb-4">
@@ -133,6 +137,7 @@
                         </div>
                         
                     </div>
+                -->
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">

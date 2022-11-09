@@ -25,25 +25,32 @@ function Valor_CLEAN(){
     document.getElementById("CLEAN_SPAN").innerHTML = rang_CLEAN.value + "%";
 }
 
-//Añade piezas a la lista principal del formulario
+//Añade piezas a la lista principal del formulario 
 $('#formulario_anadir').on('submit', function(e){
     e.preventDefault();
     let idJ = document.formulario_anadir.idJob.value;
     let note = document.formulario_anadir.nota.value;
     let table = document.getElementById("tabla-pz-anadir");
-    var arrayP = new Array();
-    
+    var arrayP = new Array();//Array de ID's
+    let arrayD = new Array();//Array de Descripciones
     let tr = table.getElementsByTagName("tr");
-    for (i = 1; i < tr.length; i++) {//Fila
-      arrayP[i-1] = $("#tabla-pz-anadir tr:nth-child(" + i + ") td:nth-child(1)").html();
-    }
     
-    if(arrayP[0] == 'No data available in table'){
+    if($("#tabla-pz-anadir tr:nth-child(1) td:nth-child(1)").html() == 'No data available in table')
       return alert('Debes seleccionar piezas para añadirlas al trabajo');
-    }
+    
+      for (i = 1; i < tr.length; i++) {//Fila
+        arrayP[i-1] = $("#tabla-pz-anadir tr:nth-child(" + i + ") td:nth-child(1)").html();
+        if(document.getElementById('descr_' + (i-1)).value == undefined
+        || document.getElementById('descr_' + (i-1)).value == ""){
+          document.getElementById('descr_' + (i-1)).style.borderColor = 'red';
+          return alert('Campo: "Descripcion" vacío');
+        }
+        arrayD[i-1] = document.getElementById('descr_' + (i-1)).value;
+      }
+
     (async () => {
       try{
-        var datos = { IDJ: idJ, NOTE: note, IDPZ: arrayP };
+        var datos = { IDJ: idJ, NOTE: note, IDPZ: arrayP, DESCR: arrayD };
         var init = {
           method: "POST",
           headers: {'Content-Type': 'application/json' }, body: JSON.stringify(datos)

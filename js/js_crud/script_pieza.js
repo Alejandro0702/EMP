@@ -59,11 +59,19 @@ $('#i_Eliminar').on('click', function(e){
 
 $('#i_Seleccionar').on('click', function(e){
     document.formulario.id.value = $("#tabla tr.selected td:first-child").html();
-    document.formulario.descr.value = $("#tabla tr.selected td:nth-child(2)").html();
-    document.formulario.long.value = $("#tabla tr.selected td:nth-child(3)").html();
-    document.formulario.peso.value = $("#tabla tr.selected td:nth-child(4)").html();
+    document.formulario.long.value = $("#tabla tr.selected td:nth-child(2)").html();
+    document.formulario.peso.value = $("#tabla tr.selected td:nth-child(3)").html();
+    let x = $("#tabla tr.selected td:nth-child(4)").html();
+    let sel = document.getElementById('sel_Tipo');
+    sel.selectedIndex = Seleccionar(sel, x);
 });
 
 $('#i_Actualizar').on('click', function(e){
     document.getElementById('id').disabled = false;
 }); 
+
+function Seleccionar(sel, x){
+    for (let i = 0; i < sel.length; i++)
+        if(sel.options[i].text == x)
+            return i;
+}

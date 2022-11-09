@@ -22,16 +22,15 @@ foreign key(idTipo_usr) references tipo_usuario(idTipo_usr)
 );
 
 create table profile_pieza(
-id_profile_pz int primary key auto_increment,
+id_profile_pz varchar(8) primary key,
 descr	varchar(40)
 );
 
 create table pieza(
 id_pz int primary key auto_increment,
-descr	varchar(40),
 lenght_pz	varchar(20),
 weight_pz	varchar(20),
-id_profile_pz int,
+id_profile_pz varchar(8),
 foreign key(id_profile_pz) references profile_pieza (id_profile_pz)
 );
 
@@ -46,6 +45,7 @@ id_job_art	int primary key auto_increment,
 id_job		int,
 id_pz 		int,
 qty			int,
+descr	varchar(40),
 CL 			varchar(30),
 HEAT 		varchar(30),
 FU 			varchar(30),
@@ -74,38 +74,40 @@ insert into usuario values
 
 /*TIPOS DE PIEZAS*/
 insert into profile_pieza values
-(null, 'PL 1/8" x 10"'),
-(null, 'PL 1/8" x 12"'),
-(null, 'PL 1/8" x 19"'),
-(null, 'PL 1/8" x 22"');
+('1A', 'PL 1/8" x 10"'),
+('2A', 'PL 1/8" x 12"'),
+('3A', 'PL 1/8" x 19"'),
+('4A', 'PL 1/8" x 22"');
 
 /*PIEZAS
 DUDA *TEMPLATE*/
 insert into pieza values 
-(null, 'TEMPLATE', '1''-2"', '5', 1),
-(null, 'TEMPLATE', '1''-0"', '5', 2),
-(null, 'TEMPLATE', '1''-0"', '5', 2),
-(null, 'TEMPLATE', '1''-8"', '13', 3),
-(null, 'TEMPLATE', '2''-8"', '25', 4),
-(null, 'TEMPLATE', '3''-0"', '28', 4);
+(null, '1''-2"', '5', '1A'),
+(null, '1''-0"', '5', '2A'),
+(null, '1''-0"', '5', '2A'),
+(null, '1''-8"', '13', '3A'),
+(null, '2''-8"', '25', '4A'),
+(null, '3''-0"', '28', '4A');
 
 /*REGISTRO DE UN TRABAJO*/
 insert into job values (null, curdate());
 select * from job;
 
 /*REGISTRAR PIEZAS EN TRABAJOS*/
-/*
+select * from pieza;
 insert into job_art values
-(null, 1, 2, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 2, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 3, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 3, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 3, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 3, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 3, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 4, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 4, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 5, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 6, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 6, 1, null, 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA');
-*/
+(null, 1, 2, 1, 'TEMPLATE' ,'ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 2, 1,  'TEMPLATE' ,'ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 3, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 3, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 3, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 3, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 3, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 4, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 4, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 5, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 6, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 6, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA');
+
+
+

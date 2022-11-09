@@ -50,17 +50,8 @@ $(document).ready( function () {
         let x = $("#tabla_trab tr.selected td:first-child").html();
         $('#idJob').val(x);
     });
-    var tableAnadir = $('#tabla-pz-anadir').DataTable({
-        paging: false,
-        ordering: true,
-        info: false
-    });
-    $("#tabla-pz-anadir tbody").on('click', 'tr',function(){
-        $(this).toggleClass('selected');
-    });
-    $('#quitar').click(function () {
-        tableAnadir.row('.selected').remove().draw(false);
-    });
+
+
     
     $('#tabla_det thead th').each(function () {
         var title = $(this).text();

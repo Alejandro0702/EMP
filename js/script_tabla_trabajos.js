@@ -12,18 +12,32 @@ $("#Seleccionar").click(function(){
    agregarFila(array);
 });
 
+var countRow = -1;
 const agregarFila = (array) => {
    let t = $('#tabla-pz-anadir').DataTable();
-   if(array[0] != undefined)
-      return t.row.add([array[0], array[1], array[2], array[3], array[4]]).draw(false);
+   if(array[0] != undefined){
+      countRow++;
+      return t.row.add([array[0], '<input id="descr_'+ countRow +'" type="text" placeholder="Descripción..." title="Ingrese Descripcion" required/>',array[1], array[2], array[3]]).draw(false);
+   }
    return alert('Selecciona una pieza');
-      /*
-   let row = '';
-   for (let index = 0; index < array.length; index++) {
-      row = row + '<td>'+ array[index]+'</td>';
-   }*/
-   //document.getElementById('tabla-pz-anadir').insertRow(1).innerHTML = row;
 }
 
+
+//Data Table
+var tableAnadir = $('#tabla-pz-anadir').DataTable({
+   paging: false,
+   ordering: true,
+   info: false
+});
+$("#tabla-pz-anadir tbody").on('click', 'tr',function(){
+   $(this).toggleClass('selected');
+});
+
 //Remover pieza seleccionada
+$('#quitar').click(function () {
+   let x = $("#tabla-pz-anadir tr.selected td:nth-child(2)").html();
+   alert(x);
+   tableAnadir.row('.selected').remove().draw(false);
+   countRow--;
+});
 

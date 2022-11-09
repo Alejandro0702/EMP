@@ -30,3 +30,21 @@ hr{
 .derecha{
     float: right;
 }
+.bg-image-principal{
+    background-image: url("../img/planos.jpg");
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.bg-logo-principal{
+    /* Full height */
+    height: 22%;
+    
+}

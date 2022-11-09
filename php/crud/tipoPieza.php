@@ -20,7 +20,7 @@
             $con->Conectar();
             $tabla = "profile_pieza";
             $sql = "INSERT INTO ". $tabla ."
-            VALUES (null, '". $obj->desc. "');";
+            VALUES ('$obj->id', '". $obj->desc. "');";
             if ($con->conexion->query($sql) === TRUE) {
                 $msj = '<script>console.log("New record created successfully")</script>';
             } else {
@@ -64,7 +64,7 @@
             $con->Conectar();
             $tabla = "profile_pieza";
             $sql = "CALL pr_Actualizar_ProfilePz(
-                ".  $obj->id .", 
+                '".  $obj->id ."', 
                 '". $obj->desc ."'
             )";
             if ($con->conexion->query($sql) === TRUE) {
@@ -79,7 +79,7 @@
             $con = new Conexion();
             $con->Conectar();
             $sql = "DELETE FROM profile_pieza 
-            where id_profile_pz = ".$obj->id.";";
+            where id_profile_pz = '".$obj->id."';";
             if ($con->conexion->query($sql) === TRUE) {
                 $msj = "The record deleted successfully";
             } else {

@@ -30,7 +30,6 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Descripción</th>
                         <th scope="col">LENGHT</th>
                         <th scope="col">WEIGHT</th>
                         <th scope="col">PROFILE</th>
@@ -42,7 +41,6 @@
                 $table .= '
                     <tr>
                         <td>'.$row["ID"].'</td>
-                        <td>'.$row["Descripcion"].'</td>
                         <td>'.$row["LENGHT"].'</td>
                         <td>'.$row["WEIGHT"].'</td>
                         <td>'.$row["PROFILE"].'</td>
