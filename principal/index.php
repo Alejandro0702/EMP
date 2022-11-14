@@ -99,7 +99,6 @@
                 <main class="bg-image-principal">
                     <img src="../img/EMP logo.jpg" class="bg-logo-principal">
                     
-                    
                     <!--
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Principal</h1>

@@ -96,18 +96,16 @@ select * from job;
 /*REGISTRAR PIEZAS EN TRABAJOS*/
 select * from pieza;
 insert into job_art values
-(null, 1, 2, 1, 'TEMPLATE' ,'ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 2, 1,  'TEMPLATE' ,'ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 3, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 3, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 3, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 3, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 3, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 4, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 4, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 5, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 6, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
-(null, 1, 6, 1,  'TEMPLATE','ok', 'S09896', null, null, null, null, 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA');
-
-
+(null, 1, 2, 1, 'TEMPLATE' ,'ok', 'S09896', '0', '0', '0', '0', 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 2, 1,  'TEMPLATE' ,'ok', 'S09896', '0', '0', '0', '0', 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 3, 1,  'TEMPLATE','ok', 'S09896', '0', '0', '0', '0', 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 3, 1,  'TEMPLATE','ok', 'S09896', '0', '0', '0', '0', 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 3, 1,  'TEMPLATE','ok', 'S09896', '0', '0', '0', '0', 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 3, 1,  'TEMPLATE','ok', 'S09896', '0', '0', '0', '0', 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 3, 1,  'TEMPLATE','ok', 'S09896', '0', '0', '0', '0', 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 4, 1,  'TEMPLATE','ok', 'S09896', '0', '0', '0', '0', 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 4, 1,  'TEMPLATE','ok', 'S09896', '0', '0', '0', '0', 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 5, 1,  'TEMPLATE','ok', 'S09896', '0', '0', '0', '0', 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 6, 1,  'TEMPLATE','ok', 'S09896', '0', '0', '0', '0', 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA'),
+(null, 1, 6, 1,  'TEMPLATE','ok', 'S09896', '0', '0', '0', '0', 'NO PAINT', '2022-09-30', 'NOTA DESCRIPTIVA');
 

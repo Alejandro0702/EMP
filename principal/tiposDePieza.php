@@ -117,7 +117,7 @@
                         </ol>
 
                         <div id="form-registrar">
-                            <form action="../php/registroTipoPieza.php" method="post" class="Borde-Form">
+                            <form id="form_profile_reg" name="form_profile_reg" class="Borde-Form">
                                 <label for="id">ID</label>
                                 <br>
                                 <input type="text" name="id" id="id" placeholder="Ingresa ID" maxlength="8" pattern="[A-Za-z0-9]+" required />
@@ -125,43 +125,51 @@
                                 <label for="descr">Descripción</label>
                                 <br>
                                 <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="15" required />
-                                <br><br>
-                                <input type="text"  name="medida1" id="medida1" placeholder="Medida..." maxlength="10" pattern="[0-9]+/?([0-9]?)+" required/>
-                                <select name="sel_medida1">
-                                    <option value = "pulgada">Pulgada (")</option>
-                                    <option value = "pie">Pie (')</option>
-                                </select>
-                                x 
-                                <input type="text"  name="medida2" id="medida2" placeholder="Medida..." maxlength="10" pattern="[0-9]+/?([0-9]?)+" required>
-                                <select name="sel_medida2">
-                                    <option value = "pulgada">Pulgada (")</option>
-                                    <option value = "pie">Pie (')</option>
-                                </select>
+                                <br><br>                    
+                                <div id="div_medida" >
+                                    <input type="text"  name="medida1" id="medida1" placeholder="Medida..." maxlength="10" pattern="[0-9]+/?([0-9]?)+" required/>
+                                    <select id="sel_medida1" name="sel_medida1">
+                                        <option value = "pulgada">Pulgada (")</option>
+                                        <option value = "pie">Pie (')</option>
+                                    </select>
+                                    x 
+                                    <input type="text"  name="medida2" id="medida2" placeholder="Medida..." maxlength="10" pattern="[0-9]+/?([0-9]?)+" required>
+                                    <select id="sel_medida2" name="sel_medida2">
+                                        <option value = "pulgada">Pulgada (")</option>
+                                        <option value = "pie">Pie (')</option>
+                                    </select>
+                                </div>
+                                <br>
+                                <button id="btn_medida" type="button" class="btn btn-success">Nueva Medida   <i class="fa fa-plus"></i></button>
+                                <button id="btn_medida_quitar" type="button" class="btn btn-warning">Quitar Medida   <i class="fa fa-minus"></i></button>
+                                
                                 <br><br>
                                 <button type="submit" class="btn btn-primary">Registrar  <i class="fa fa-check"></i></button>
                             </form>
                         </div>
                         <div id="form-modificar">
-                            <form name = "formulario" action="../php/actualizarProfile.php" method="post" class="Borde-Form">
+                            <form name = "formulario" id="form_profile_upd" action="../php/actualizarProfile.php" method="post" class="Borde-Form">
                                 <label for="id">Número Identificador</label>
                                 <br>
-                                <input type="text" name="id" id="id" placeholder="ID" maxlength="5" disabled required>
+                                <input type="text" name="id_upd" id="id_upd" placeholder="ID" maxlength="5" disabled required disabled>
                                 <br>
                                 <label for="descr">Descripción</label>
                                 <br>
-                                <input type="text"  name="descr" id="descr" placeholder="Ingresa una descripción" maxlength="15" required>
+                                <input type="text"  name="descr_upd" id="descr_upd" placeholder="Ingresa una descripción" maxlength="15" required>
                                 <br><br>
-                                <input type="text"  name="medida1" id="medida1" placeholder="Medida..." maxlength="10" pattern="[0-9]+/?([0-9]?)+" required>
-                                <select id="sel_medida1" name="sel_medida1">
-                                    <option value = "pulgada">Pulgada (")</option>
-                                    <option value = "pie">Pie (')</option>
-                                </select>
-                                x 
-                                <input type="text"  name="medida2" id="medida2" placeholder="Medida..." maxlength="10" pattern="[0-9]+/?([0-9]?)+" required>
-                                <select id="sel_medida2" name="sel_medida2">
-                                    <option value = "pulgada">Pulgada (")</option>
-                                    <option value = "pie">Pie (')</option>
-                                </select>
+                                <div id="div_medida_upd" >
+                                    <input type="text"  name="medida_upd1" id="medida_upd1" placeholder="Medida..." maxlength="10" pattern="[0-9]+/?([0-9]?)+" required>
+                                    <select id="sel_medida_upd1" name="sel_medida_upd1">
+                                        <option value = "pulgada">Pulgada (")</option>
+                                        <option value = "pie">Pie (')</option>
+                                    </select>
+                                    x 
+                                    <input type="text"  name="medida_upd2" id="medida_upd2" placeholder="Medida..." maxlength="10" pattern="[0-9]+/?([0-9]?)+" required>
+                                    <select id="sel_medida_upd2" name="sel_medida_upd2">
+                                        <option value = "pulgada">Pulgada (")</option>
+                                        <option value = "pie">Pie (')</option>
+                                    </select>
+                                </div>
                                 <br><br>
                                 <button id="i_Actualizar" type="submit" class="btn btn-primary">Actualizar   <i class="fa fa-refresh"></i></button>
                             </form>

@@ -36,7 +36,7 @@ IN _FINISH varchar(30)
 BEGIN
 	update job_art
     set 
-    descr = _descr, CL = _CL, HEAT = _HEAT, FU = _FU,
+    CL = _CL, HEAT = _HEAT, FU = _FU,
     QC = _QC, W = _W, CLEAN = _CLEAN, FINISH = _FINISH 
     where id_job_art = _id_job_art;
 END //
